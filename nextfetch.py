@@ -19,9 +19,9 @@ def get_uptime():
     # TODO: use "".join() to better format spaces
     # uptime += f"{d:d}:"
     # uptime += f"{h%24:d}:"
-    uptime += f"{h:02d}h, "
-    uptime += f"{m:02d}m, "
-    uptime += f"{s:02d}s"
+    uptime += f"{h:2d}hours, "
+    uptime += f"{m:2d}mins, "
+    uptime += f"{s:2d}secs"
 
     if uptime != "":
         return uptime
@@ -71,6 +71,7 @@ for line in fetch.split("\n"):
     if regex_match:
         fetch = fetch.replace(regex_match.group(), "")
 
+
 def horizontal_formatter(fetch, stat, keyword_len, stat_len, fetch_len):
     if keyword_len < stat_len and fetch_len != 1:
         # number of chars to delete
@@ -96,6 +97,7 @@ def horizontal_formatter(fetch, stat, keyword_len, stat_len, fetch_len):
     fetch = str(stat).join(fetch)
 
     return fetch
+
 
 for keyword in stats.keys():
     # split fetch string at each keyword (sequentially)
