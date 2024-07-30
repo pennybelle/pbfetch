@@ -112,27 +112,19 @@ for line in fetch.split("\n"):
     if regex_match:
         fetch = fetch.replace(regex_match.group(), "")
 
-for keyword in stats.keys():
-    # replaceKeyword(fetch, keyword, stat)
-
-    fetch = fetch.split(keyword)
-
-    stat = stats[keyword]
-    keyword_len = len(keyword)
-    stat_len = len(stat)
-    fetch_len = len(fetch)
-    # print(fetch) # debug
-
+def horizontal_formatter(fetch, stat, keyword_len, stat_len, fetch_len):
     if keyword_len < stat_len and fetch_len != 1:
+        # number of chars to delete
         diff = stat_len - keyword_len
-        modified = fetch[1][diff:] # remove chars following keyword
+
+        # remove chars following keyword
+        modified = fetch[1][diff:]
 
         # replaces second half with modified string
         fetch[1] = modified
-        
-    elif keyword_len > stat_len and fetch_len != 1:
 
-        # number of chars to del
+    elif keyword_len > stat_len and fetch_len != 1:
+        # number of chars to add
         diff = keyword_len - stat_len
 
         # adds whitespace following keyword
@@ -141,7 +133,23 @@ for keyword in stats.keys():
         # replaces second half with modified string
         fetch[1] = modified
 
-    fetch = str(stat).join(fetch) # rejoin into str 
+    # rejoin into str and replace keyword with value
+    fetch = str(stat).join(fetch)
 
+    return fetch
+
+for keyword in stats.keys():
+    # split fetch string at each keyword (sequentially)
+    fetch = fetch.split(keyword)
+
+    # associate stat keyword with its respective value
+    stat = stats[keyword]
+
+    # store lengths for reuse
+    keyword_len = len(keyword)
+    stat_len = len(stat)
+    fetch_len = len(fetch)
+
+    fetch = horizontal_formatter(fetch, stat, keyword_len, stat_len, fetch_len)
 
 print(fetch.strip())
