@@ -20,9 +20,16 @@ def get_uptime():
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
     d, h = divmod(h, 24)
-    uptime = f"{d:d} days {h%24:d} hours {m:02d} minutes {s:02d} seconds"
-    
-    return uptime
+    uptime = ""
+    uptime += f"{d:d} day{'s' if d > 1 else ''}," if d > 0 else ""
+    uptime += f" {h%24:d} hour{'s' if h > 1 else ''}," if h > 0 else ""
+    uptime += f" {m:02d} minute{'s' if m > 1 else ''}" if m > 0 else ""
+    uptime += f" {s:02d} second{'s' if m > 1 else ''}" if seconds < 60 else ""
+
+    if uptime != "":
+        return uptime
+    else:
+        return None
 
 # def get_username():
 #     with open("/etc/passwd", "r") as file:
