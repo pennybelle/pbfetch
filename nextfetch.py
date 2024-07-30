@@ -62,13 +62,31 @@ stats = {
     "MACHINE": stat_machine,
 }
 
+# def get_longest_stat_length(stats):
+#     return max(len(str(stat)) for stat in stats)
+
+# print(get_longest_stat_length(stats))
+
+for stat in stats.items():
+    pass
+
 for line in fetch.split("\n"):
     regex_match = re.search("#.*$", line)
     # print(regex_match) # debug
     if regex_match:
         fetch = fetch.replace(regex_match.group(), "")
 
-for stat in stats.keys():
-    fetch = fetch.replace(stat, stats[stat])
+for keyword in stats.keys():
+    stat = stats[keyword]
+    fetch = fetch.split(keyword)
+    if len(keyword) > len(stat):
+        # print(fetch)
+        fetch[1] = list(fetch[1]).pop(0) # this fuckin line.....
+    elif len(keyword) < len(stat):
+        # fetch = fetch.replace(keyword, stat)
+        stat += " " * (len(stat) - len(keyword))
+    fetch = str(stat).join(fetch) # rejoin into str 
 
-print(fetch.strip())
+    # fetch = fetch.replace(keyword, stats[keyword])
+
+# print(fetch.strip())
