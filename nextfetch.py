@@ -17,6 +17,7 @@ def get_uptime():
     h, m = divmod(m, 60)
     d, h = divmod(h, 24)
     uptime = ""
+    # TODO: use "".join() to better format spaces
     uptime += f"{d:d} day{'s' if d > 1 else ''}," if d > 0 else ""
     uptime += f" {h%24:d} hour{'s' if h > 1 else ''}," if h > 0 else ""
     uptime += f" {m:2d} minute{'s' if m > 1 else ''}" if m > 0 else ""
@@ -37,6 +38,7 @@ def os_parse():
             stat_os = None
     
         return stat_os
+    
 
 stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
 stat_os = f"OS: {os_parse()}"
@@ -46,8 +48,8 @@ stat_version = platform.version()
 stat_ram = "RAM: " + str(
     round(psutil.virtual_memory().total / (1024.0 ** 3))
 ) + " GB"
-stat_uptime = f"Uptime:{get_uptime()}"
-stat_packages = f"Packages: {len(str(subprocess.check_output(["pacman", "-Q"])).split(" "))} (pacman)"
+stat_uptime = f"{get_uptime()}"
+stat_packages = f"{len(str(subprocess.check_output(["pacman", "-Q"])).split(" "))} (pacman)"
 
 stats = {
     "HOSTNAME": stat_hostname,
@@ -59,7 +61,13 @@ stats = {
     "PACKAGES": stat_packages,
 }
 
+for line in fetch.split("\n"):
+    regex_match = re.search("#.*$", line)
+    # print(regex_match) # debug
+    if regex_match:
+        fetch = fetch.replace(regex_match.group(), "")
+
 for stat in stats.keys():
     fetch = fetch.replace(stat, stats[stat])
 
-print(fetch)
+print(fetch.strip())
