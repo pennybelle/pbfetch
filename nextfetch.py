@@ -64,29 +64,77 @@ stats = {
 
 # def get_longest_stat_length(stats):
 #     return max(len(str(stat)) for stat in stats)
-
 # print(get_longest_stat_length(stats))
 
-for stat in stats.items():
-    pass
+# for stat in stats.items():
+#     pass
 
+def replaceKeyword(template, keyword, replaceText):
+    # Split the string on the word
+    splitTemplate = template.split(keyword, 1)
+
+    # Make sure the string was actually split
+    if len(splitTemplate) == 1:
+        return template
+    
+    # Measure the length of the second element in the split
+    beforeStripLength = len(splitTemplate[1])
+
+    # Remove the whitespace of the second element in the split
+    splitTemplate[1] = splitTemplate[1].lstrip()
+
+    # Measure the length after stripping :3 to figure out how
+    #   many whitespaces we removed
+    afterStripLength = len(splitTemplate[1])
+
+    # Use those values to calculate the whitespaces
+    whitespaceCount = beforeStripLength - afterStripLength;
+
+    # Figure out the max length the replacement can be
+    keywordLength = len(keyword)
+    maxAllowedLength = keywordLength + whitespaceCount;
+
+    # Store the length of what we are using to replace it
+    replaceTextLength = len(replaceText)
+
+    # Make sure our replaceText isn't too long
+    if replaceTextLength > maxAllowedLength:
+        replaceText = replaceText[:maxAllowedLength]
+
+    # Pad replaceText with spaces to match the whitespace we removed
+    replaceText = replaceText.ljust(maxAllowedLength, ' ')
+
+    return splitTemplate[0] + replaceText + splitTemplate[1]
+
+# catch and release comments using # notation
 for line in fetch.split("\n"):
     regex_match = re.search("#.*$", line)
-    # print(regex_match) # debug
     if regex_match:
         fetch = fetch.replace(regex_match.group(), "")
 
 for keyword in stats.keys():
     stat = stats[keyword]
-    fetch = fetch.split(keyword)
-    if len(keyword) > len(stat):
-        # print(fetch)
-        fetch[1] = list(fetch[1]).pop(0) # this fuckin line.....
-    elif len(keyword) < len(stat):
-        # fetch = fetch.replace(keyword, stat)
-        stat += " " * (len(stat) - len(keyword))
-    fetch = str(stat).join(fetch) # rejoin into str 
 
-    # fetch = fetch.replace(keyword, stats[keyword])
+    replaceKeyword(fetch, keyword, stat)
 
-# print(fetch.strip())
+    # fetch = fetch.split(keyword)
+
+    # keyword_len = len(keyword)
+    # stat_len = len(stat)
+    # fetch_len = len(fetch)
+    # print(fetch) # debug
+
+    # if keyword_len > stat_len and fetch_len != 1:
+    #     diff = keyword_len - stat_len # number of chars to del
+    #     modified = fetch[1][diff:] # remove chars following keyword
+    #     fetch[1] = modified # replaces second half with modified string
+    # elif keyword_len < stat_len and fetch_len != 1:
+    #     modifier = stat_len - keyword_len
+    #     modified = str(" " * modifier) + fetch[1]
+    #     fetch[1] = modified
+    #     # stat += " " * (len(stat) - len(keyword)) # insert whitespace
+
+    # fetch = str(stat).join(fetch) # rejoin into str 
+
+
+print(fetch.strip())
