@@ -14,8 +14,6 @@ def get_longest_line_length(input):
     else:
         return 0
 
-longest_line = get_longest_line_length(logo)
-
 def get_uptime():
     with open("/proc/uptime", "r") as file:
         seconds = int(float(file.readline().split()[0]))
@@ -26,8 +24,8 @@ def get_uptime():
     uptime = ""
     uptime += f"{d:d} day{'s' if d > 1 else ''}," if d > 0 else ""
     uptime += f" {h%24:d} hour{'s' if h > 1 else ''}," if h > 0 else ""
-    uptime += f" {m:02d} minute{'s' if m > 1 else ''}" if m > 0 else ""
-    uptime += f" {s:02d} second{'s' if m > 1 else ''}" if seconds < 60 else ""
+    uptime += f" {m:2d} minute{'s' if m > 1 else ''}" if m > 0 else ""
+    uptime += f"{s:02d} second{'s' if m > 1 else ''}" if seconds < 60 else ""
 
     if uptime != "":
         return uptime
@@ -45,19 +43,19 @@ def os_parse():
             stat_os = None
         return stat_os
 
+stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
 stat_os = f"OS: {os_parse()}"
+stat_arch = f"Arch: {platform.machine()}"
 stat_kernel = f"Kernel: {platform.release()}"
 stat_version = platform.version()
-stat_arch = f"Arch: {platform.machine()}"
-stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
 # stat_ip = socket.gethostbyname(stat_hostname)
 # stat_mac = ":".join(re.findall("..", "%012x" % uuid.getnode()))
-stat_processor = platform.processor()
+# stat_processor = platform.processor()
 stat_ram = "RAM: " + str(
     round(psutil.virtual_memory().total / (1024.0 ** 3))
 ) + " GB"
-stat_platform = platform.platform()
-stat_uptime = f"Uptime: {get_uptime()}"
+# stat_platform = platform.platform()
+stat_uptime = f"Uptime:{get_uptime()}"
 stat_packages = f"Packages: {len(str(subprocess.check_output(["pacman", "-Q"])).split(" "))} (pacman)"
 
 stats = [
@@ -72,7 +70,7 @@ stats = [
     # stat_version,
     # stat_ip,
     # stat_mac,
-    stat_processor,
+    # stat_processor,
     # stat_platform,
 ]
 
@@ -83,6 +81,9 @@ loop_len = logo_len if logo_len > stats_len else stats_len
 
 # stats use a different index to handle empty lines in logo or null stats properly
 stats_index = 0
+
+# set split formatting based on width of logo (if present)
+longest_line = get_longest_line_length(logo)
 
 # enumberate over length of logo or stats list (whichever is longer)
 for index in range(loop_len):
