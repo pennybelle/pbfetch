@@ -55,14 +55,14 @@ stat_machine = platform.machine()
 
 # init stats using keywords for configuration in .conf
 stats = {
-    "HOSTNAME": stat_hostname,
-    "OPERATINGSYSTEM": stat_os,
-    "ARCHITECTURE": stat_arch,
-    "KERNEL": stat_kernel,
-    "MEMORY": stat_ram,
-    "UPTIME": stat_uptime,
-    "PACKAGES": stat_packages,
-    "MACHINE": stat_machine,
+    "$HOSTNAME": stat_hostname,
+    "$SYSTEM": stat_os,
+    "$ARCHITECTURE": stat_arch,
+    "$KERNEL": stat_kernel,
+    "$MEMORY": stat_ram,
+    "$UPTIME": stat_uptime,
+    "$PACKAGES": stat_packages,
+    "$MACHINE": stat_machine,
 }
 
 # catch and release comments using # notation
