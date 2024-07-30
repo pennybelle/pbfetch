@@ -1,5 +1,4 @@
-import platform, socket, re, uuid, psutil
-import os, subprocess, datetime
+import platform, socket, re, uuid, psutil, os, subprocess
 
 with open("config.conf", "r") as config:
     content = config.read()
@@ -18,10 +17,11 @@ def get_uptime():
     d, h = divmod(h, 24)
     uptime = ""
     # TODO: use "".join() to better format spaces
-    uptime += f"{d:d} day{'s' if d > 1 else ''}," if d > 0 else ""
-    uptime += f" {h%24:d} hour{'s' if h > 1 else ''}," if h > 0 else ""
-    uptime += f" {m:2d} minute{'s' if m > 1 else ''}" if m > 0 else ""
-    uptime += f"{s:02d} second{'s' if m > 1 else ''}" if seconds < 60 else ""
+    # uptime += f"{d:d}:"
+    # uptime += f"{h%24:d}:"
+    uptime += f"{h:02d}h, "
+    uptime += f"{m:02d}m, "
+    uptime += f"{s:02d}s"
 
     if uptime != "":
         return uptime
@@ -38,18 +38,18 @@ def os_parse():
             stat_os = None
     
         return stat_os
-    
 
 stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
-stat_os = f"OS: {os_parse()}"
-stat_arch = f"Arch: {platform.machine()}"
-stat_kernel = f"Kernel: {platform.release()}"
+stat_os = f"{os_parse()}"
+stat_arch = f"{platform.machine()}"
+stat_kernel = f"{platform.release()}"
 stat_version = platform.version()
-stat_ram = "RAM: " + str(
+stat_ram = str(
     round(psutil.virtual_memory().total / (1024.0 ** 3))
 ) + " GB"
 stat_uptime = f"{get_uptime()}"
 stat_packages = f"{len(str(subprocess.check_output(["pacman", "-Q"])).split(" "))} (pacman)"
+stat_machine = platform.machine()
 
 stats = {
     "HOSTNAME": stat_hostname,
@@ -59,6 +59,7 @@ stats = {
     "MEMORY": stat_ram,
     "UPTIME": stat_uptime,
     "PACKAGES": stat_packages,
+    "MACHINE": stat_machine,
 }
 
 for line in fetch.split("\n"):
