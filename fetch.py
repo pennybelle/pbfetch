@@ -23,15 +23,15 @@ def get_uptime():
     
     return uptime
 
-def get_username():
-    with open("/etc/passwd", "r") as file:
-        data = file.readlines()
+# def get_username():
+#     with open("/etc/passwd", "r") as file:
+#         data = file.readlines()
     
-    for item in data:
-        if "x:1000:1000" in item:
-            username = item.split(":")[0]
+#     for item in data:
+#         if "x:1000:1000" in item:
+#             username = item.split(":")[0]
     
-    return username
+#     return username
 
 def os_parse():
     with open("/etc/os-release", "r") as content:
@@ -52,7 +52,7 @@ stat_machine = f"Arch: {platform.machine()}"
 # stat_username = subprocess.check_output(
 #     "getent passwd 1000 | cut -d':' -f1"
 # )
-stat_hostname = f"{get_username()}@{socket.gethostname()}"
+stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
 # stat_ip = socket.gethostbyname(stat_hostname)
 # stat_mac = ":".join(re.findall("..", "%012x" % uuid.getnode()))
 stat_processor = platform.processor()
