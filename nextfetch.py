@@ -113,28 +113,35 @@ for line in fetch.split("\n"):
         fetch = fetch.replace(regex_match.group(), "")
 
 for keyword in stats.keys():
+    # replaceKeyword(fetch, keyword, stat)
+
+    fetch = fetch.split(keyword)
+
     stat = stats[keyword]
-
-    replaceKeyword(fetch, keyword, stat)
-
-    # fetch = fetch.split(keyword)
-
-    # keyword_len = len(keyword)
-    # stat_len = len(stat)
-    # fetch_len = len(fetch)
+    keyword_len = len(keyword)
+    stat_len = len(stat)
+    fetch_len = len(fetch)
     # print(fetch) # debug
 
-    # if keyword_len > stat_len and fetch_len != 1:
-    #     diff = keyword_len - stat_len # number of chars to del
-    #     modified = fetch[1][diff:] # remove chars following keyword
-    #     fetch[1] = modified # replaces second half with modified string
-    # elif keyword_len < stat_len and fetch_len != 1:
-    #     modifier = stat_len - keyword_len
-    #     modified = str(" " * modifier) + fetch[1]
-    #     fetch[1] = modified
-    #     # stat += " " * (len(stat) - len(keyword)) # insert whitespace
+    if keyword_len < stat_len and fetch_len != 1:
+        diff = stat_len - keyword_len
+        modified = fetch[1][diff:] # remove chars following keyword
 
-    # fetch = str(stat).join(fetch) # rejoin into str 
+        # replaces second half with modified string
+        fetch[1] = modified
+        
+    elif keyword_len > stat_len and fetch_len != 1:
+
+        # number of chars to del
+        diff = keyword_len - stat_len
+
+        # adds whitespace following keyword
+        modified = str(" " * diff) + fetch[1]
+
+        # replaces second half with modified string
+        fetch[1] = modified
+
+    fetch = str(stat).join(fetch) # rejoin into str 
 
 
 print(fetch.strip())
