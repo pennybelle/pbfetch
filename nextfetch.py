@@ -8,6 +8,7 @@ with open("config.conf", "r") as config:
         print("You must insert something in the config!")
         exit()
 
+
 def get_uptime():
     with open("/proc/uptime", "r") as file:
         seconds = int(float(file.readline().split()[0]))
@@ -19,14 +20,15 @@ def get_uptime():
     # TODO: use "".join() to better format spaces
     # uptime += f"{d:d}:"
     # uptime += f"{h%24:d}:"
-    uptime += f"{h:2d}hours, "
-    uptime += f"{m:2d}mins, "
-    uptime += f"{s:2d}secs"
+    uptime += f"{h:2d} hours "
+    uptime += f"{m:2d} mins "
+    uptime += f"{s:2d} secs" if seconds < 60 else ""
 
     if uptime != "":
         return uptime
     else:
         return None
+
 
 def os_parse():
     with open("/etc/os-release", "r") as content:
