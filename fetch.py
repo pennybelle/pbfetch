@@ -8,10 +8,10 @@ with open("logo.txt", "r") as logo:
         logo = None
 
 # get longest line length of logo for stat formatting
-longest_line = 0
-for line in logo.splitlines():
-    if len(line) > longest_line:
-        longest_line = len(line)
+def get_longest_line_length(input):
+    return max(len(line) for line in input.splitlines(input))
+
+longest_line = 0 if logo is None else get_longest_line_length(logo)
 
 def get_uptime():
     with open("/proc/uptime", "r") as file:
@@ -19,7 +19,8 @@ def get_uptime():
     
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
-    uptime = f"{h:d}:{m:02d}:{s:02d}"
+    d, h = divmod(h, 24)
+    uptime = f"{d:d} days {h%24:d} hours {m:02d} minutes {s:02d} seconds"
     
     return uptime
 
