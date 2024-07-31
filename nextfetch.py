@@ -20,9 +20,28 @@ def get_uptime():
     # TODO: use "".join() to better format spaces
     # uptime += f"{d:d}:"
     # uptime += f"{h%24:d}:"
-    uptime += f"{h:2d} hours "
-    uptime += f"{m:2d} mins "
-    uptime += f"{s:2d} secs" if seconds < 60 else ""
+    
+    if h > 0:
+        if uptime:
+            uptime = " ".join([uptime, f"{h:2d} hours"])
+        else:
+            uptime = f"{h:2d} hours"
+
+    if seconds > 60:
+        if uptime:
+            uptime = " ".join([uptime, f"{m:2d} mins"])
+        else:
+            uptime = f"{m:2d} mins"
+
+    if s > 0:
+        if uptime:
+            uptime = " ".join([uptime, f"{s:2d} secs"])
+        else:
+            uptime = f"{s:2d} secs"
+
+    # uptime += f"{h:2d} hours " if h > 0 else ""
+    # uptime += f"{m:2d} mins " if seconds > 60 else ""
+    # uptime += f"{s:2d} secs" if s > 0 else ""
 
     if uptime != "":
         return uptime
