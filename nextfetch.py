@@ -1,6 +1,6 @@
 import platform, socket, re, psutil, os, subprocess
 
-with open("config.conf", "r") as config:
+with open("config.txt", "r") as config:
     content = config.read()
     if content:
         fetch = content
@@ -61,6 +61,11 @@ def os_parse():
         return stat_os
     
 
+def temp_parse():
+    with open("/sys/class/thermal/thermal_zone0/temp") as temp:
+        return round(int(temp.read()) / 1000)
+
+
 # stat logic
 stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
 stat_os = os_parse()
@@ -68,14 +73,25 @@ stat_arch = platform.machine()
 stat_kernel = platform.release()
 stat_version = platform.version()
 stat_uptime = get_uptime()
-stat_ram = str(
-    round(psutil.virtual_memory().total / (1024.0 ** 3))
-) + "GB"
+stat_cpu = f"{round(psutil.cpu_percent(0.1))}% [{temp_parse()}°c]"
+total_ram = round(psutil.virtual_memory().total / (1024.0 ** 2))
+stat_ram = (
+    f"{round(psutil.virtual_memory()[3]/1000000)}/"
+    f"{total_ram}"
+    " MB"
+)
 stat_packages = f"{len(
     str(
         subprocess.check_output(["pacman", "-Q"])
     ).split(" ")
 )} (pacman)"
+
+statvfs = os.statvfs("/")
+total_disk_size_in_bytes = statvfs.f_frsize * statvfs.f_blocks
+total_disk_size_in_gb = round(total_disk_size_in_bytes / (1024.0 ** 2))
+disk_free_space_gb = round(statvfs.f_frsize * statvfs.f_bfree / (1024.0 ** 2))
+total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
+stat_disk_total_and_used = f"{total_disk_size_used}/{total_disk_size_in_gb} MB"
 
 # init stats using keywords for configuration in .conf
 stats = {
@@ -86,6 +102,8 @@ stats = {
     "$MEM": stat_ram,
     "$UP": stat_uptime,
     "$PAC": stat_packages,
+    "$CPU": stat_cpu,
+    "$DISK": stat_disk_total_and_used,
 }
 
 for index, line in enumerate(fetch.split("\n")):
@@ -127,7 +145,7 @@ for keyword in stats.keys():
     fetch = fetch.split(keyword)
 
     # associate stat keyword with its respective value
-    stat = stats[keyword]
+    stat = str(stats[keyword])
 
     # store lengths for reuse
     keyword_len = len(keyword)
@@ -143,4 +161,4 @@ for keyword in stats.keys():
         fetch_len
     )
 
-print(fetch.strip())
+print(fetch.rstrip())
