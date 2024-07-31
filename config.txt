@@ -25,3 +25,7 @@
 # $MEM  = RAM (Memory)
 # $UP   = Uptime
 # $PAC  = Packages (only pacman currently supported) 
+
+# Warnings:
+
+# Using escape characters can cause unpredictable behavior
