@@ -5,4 +5,4 @@
 An unbelievably customizable hardware/software fetch. No more being limited to a logo on the left.
 
 ## Installation:
-Integrated with Rye. Use `rye run nextfetch` to run fetch.
+Integrated with Rye. Use `rye sync` and then `rye run nextfetch` to run fetch.
