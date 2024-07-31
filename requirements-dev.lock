@@ -11,4 +11,4 @@
 
 -e file:.
 psutil==6.0.0
-    # via fetch
+    # via pbfetch
