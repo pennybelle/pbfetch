@@ -44,27 +44,30 @@ def os_parse():
 
 # stat logic
 stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
-stat_os = f"{os_parse()}"
-stat_arch = f"{platform.machine()}"
-stat_kernel = f"{platform.release()}"
+stat_os = os_parse()
+stat_arch = platform.machine()
+stat_kernel = platform.release()
 stat_version = platform.version()
+stat_uptime = get_uptime()
 stat_ram = str(
     round(psutil.virtual_memory().total / (1024.0 ** 3))
-) + " GB"
-stat_uptime = f"{get_uptime()}"
-stat_packages = f"{len(str(subprocess.check_output(["pacman", "-Q"])).split(" "))} (pacman)"
-stat_machine = platform.machine()
+) + "GB"
+stat_packages = f"{len(
+    str(
+        subprocess.check_output(["pacman", "-Q"])
+    ).split(" ")
+)} (pacman)"
+
 
 # init stats using keywords for configuration in .conf
 stats = {
     "$HOST": stat_hostname,
-    "$SYSTEM": stat_os,
-    "$ARCHITECTURE": stat_arch,
-    "$KERNEL": stat_kernel,
-    "$MEMORY": stat_ram,
-    "$UPTIME": stat_uptime,
-    "$PACKAGES": stat_packages,
-    "$MACHINE": stat_machine,
+    "$SYS": stat_os,
+    "$ARCH": stat_arch,
+    "$KER": stat_kernel,
+    "$MEM": stat_ram,
+    "$UP": stat_uptime,
+    "$PAC": stat_packages,
 }
 
 for index, line in enumerate(fetch.split("\n")):
