@@ -43,10 +43,6 @@ def get_uptime():
     if s > 0:
         uptime = format_uptime(uptime, secs)
 
-    # uptime += f"{h:2d} hours " if h > 0 else ""
-    # uptime += f"{m:2d} mins " if seconds > 60 else ""
-    # uptime += f"{s:2d} secs" if s > 0 else ""
-
     if uptime != "":
         return uptime
     else:
@@ -81,7 +77,6 @@ stat_packages = f"{len(
     ).split(" ")
 )} (pacman)"
 
-
 # init stats using keywords for configuration in .conf
 stats = {
     "$HOST": stat_hostname,
@@ -94,10 +89,6 @@ stats = {
 }
 
 for index, line in enumerate(fetch.split("\n")):
-    # # remove whitespace from each line
-    # stripped_line = line.strip()
-    # fetch = fetch.replace(fetch[index], stripped_line)
-
     # catch and release comments using # notation
     regex_match = re.search("#.*$", line)
     if regex_match:
