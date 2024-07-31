@@ -1,4 +1,4 @@
-import platform, socket, re, uuid, psutil, os, subprocess
+import platform, socket, re, psutil, os, subprocess
 
 with open("config.conf", "r") as config:
     content = config.read()
@@ -57,7 +57,7 @@ stat_machine = platform.machine()
 
 # init stats using keywords for configuration in .conf
 stats = {
-    "$HOSTNAME": stat_hostname,
+    "$HOST": stat_hostname,
     "$SYSTEM": stat_os,
     "$ARCHITECTURE": stat_arch,
     "$KERNEL": stat_kernel,
@@ -67,8 +67,12 @@ stats = {
     "$MACHINE": stat_machine,
 }
 
-# catch and release comments using # notation
-for line in fetch.split("\n"):
+for index, line in enumerate(fetch.split("\n")):
+    # # remove whitespace from each line
+    # stripped_line = line.strip()
+    # fetch = fetch.replace(fetch[index], stripped_line)
+
+    # catch and release comments using # notation
     regex_match = re.search("#.*$", line)
     if regex_match:
         fetch = fetch.replace(regex_match.group(), "")
