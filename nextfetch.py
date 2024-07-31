@@ -1,5 +1,7 @@
 import platform, socket, re, psutil, os, subprocess
 
+DELAY = 0.1
+
 with open("config.txt", "r") as config:
     content = config.read()
     if content:
@@ -73,7 +75,7 @@ stat_arch = platform.machine()
 stat_kernel = platform.release()
 stat_version = platform.version()
 stat_uptime = get_uptime()
-stat_cpu = f"{round(psutil.cpu_percent(0.1))}% [{temp_parse()}°c]"
+stat_cpu = f"{round(psutil.cpu_percent(DELAY))}% [{temp_parse()}°c]"
 total_ram = round(psutil.virtual_memory().total / (1024.0 ** 2))
 stat_ram = (
     f"{round(psutil.virtual_memory()[3]/1000000)}/"
