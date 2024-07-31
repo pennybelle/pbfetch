@@ -13,19 +13,24 @@ def main():
 
 
     def get_uptime():
+        # parse uptime from /proc/uptime
         with open("/proc/uptime", "r") as file:
             seconds = int(float(file.readline().split()[0]))
-        
+
+        # math for time formatting with day, hr, min, sec
         m, s = divmod(seconds, 60)
         h, m = divmod(m, 60)
         d, h = divmod(h, 24)
 
+        # string formatting using calculated vals from above
         days = f"{d:d}d"
         hours = f"{h:d}h"
         mins = f"{m:d}m"
         secs = f"{s:d}s"
         uptime = ""
 
+        # only join to uptime if uptime isnt empty
+        # else replace empty uptime with new value
         def format_uptime(uptime, time):
             if uptime:
                 uptime = " ".join([uptime, time])
@@ -34,6 +39,7 @@ def main():
             
             return uptime
 
+        # only show relevant data (if day is 0, dont show day)
         if d > 0:
             uptime = format_uptime(uptime, days)
 
@@ -52,6 +58,7 @@ def main():
             return None
 
 
+    # parse os name from /etc/os-release
     def os_parse():
         with open("/etc/os-release", "r") as content:
             if content:
@@ -64,6 +71,7 @@ def main():
             return stat_os
         
 
+    # parse & format temp from /sys/class/thermal/thermal_zone0/temp
     def temp_parse():
         with open("/sys/class/thermal/thermal_zone0/temp") as temp:
             return round(int(temp.read()) / 1000)
@@ -88,7 +96,6 @@ def main():
             subprocess.check_output(["pacman", "-Q"])
         ).split(" ")
     )} (pacman)"
-
     statvfs = os.statvfs("/")
     total_disk_size_in_bytes = statvfs.f_frsize * statvfs.f_blocks
     total_disk_size_in_gb = round(total_disk_size_in_bytes / (1024.0 ** 2))
@@ -164,5 +171,7 @@ def main():
             fetch_len
         )
 
+    # finally, print fetch to terminal
+    # remove whitespace only after the last non-whitespace char
     print(fetch.rstrip())
 
