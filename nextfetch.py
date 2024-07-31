@@ -17,28 +17,31 @@ def get_uptime():
     h, m = divmod(m, 60)
     d, h = divmod(h, 24)
 
-    hours = f"{h:2d} hours"
-    mins = f"{m:2d} mins"
-    secs = f"{s:2d} secs"
+    days = f"{d:d}d"
+    hours = f"{h:d}h"
+    mins = f"{m:d}m"
+    secs = f"{s:d}s"
     uptime = ""
 
-    if h > 0:
+    def format_uptime(uptime, time):
         if uptime:
-            uptime = " ".join([uptime, hours])
+            uptime = " ".join([uptime, time])
         else:
-            uptime = hours
+            uptime = time
+        
+        return uptime
+
+    if d > 0:
+        uptime = format_uptime(uptime, days)
+
+    if h > 0:
+        uptime = format_uptime(uptime, hours)
 
     if seconds > 60:
-        if uptime:
-            uptime = " ".join([uptime, mins])
-        else:
-            uptime = mins
+        uptime = format_uptime(uptime, mins)
 
     if s > 0:
-        if uptime:
-            uptime = " ".join([uptime, secs])
-        else:
-            uptime = secs
+        uptime = format_uptime(uptime, secs)
 
     # uptime += f"{h:2d} hours " if h > 0 else ""
     # uptime += f"{m:2d} mins " if seconds > 60 else ""
