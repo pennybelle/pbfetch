@@ -153,15 +153,15 @@ def main():
                 ):
                     index += 1
 
-                # TODO: remove char without slicing
-                # modified = fetch_data[1][index + 1:] # its because of slicing...
-                
-                # only remove char if char == " " (IT WORKS!!!!)
-                modified = [*fetch_data[1]]
-                # modified.reverse()
-                del modified[index]
-                # modified.reverse()
-                modified = "".join(modified)
+                # TODO: remove only whitespace chars
+                # (IT WORKS!!!!)(kinda...)
+                # modified = [*fetch_data[1]]
+                # del modified[index]
+                # modified = "".join(modified)
+                modified = (
+                    fetch_data[1].replace(fetch_data[1][index], "", 1)
+                )
+                # modified.pop(index)
 
                 # debug
                 print(fetch_data[0], end="", flush="")
@@ -169,16 +169,6 @@ def main():
                 time.sleep(DEBUG_DELAY)
 
                 fetch_data[1] = modified
-
-            # # get line length
-            # line_len = len(fetch_data[1]) - key_len
-            # print(line_len)
-
-            # # remove chars following keyword
-            # modified = fetch[1].replace(key, stat).ljust(line_len)
-
-            # # remove chars following keyword
-            # modified = fetch[1][diff:]
 
             # replaces second half with modified string
             fetch_data[1] = modified
@@ -211,11 +201,9 @@ def main():
 
 
 
-    # stat logic
     stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
     stat_os = parse_os()
     # stat_arch = platform.machine()
-    stat_arch = "x86_64" if os.path.isfile("/lib/ld-linux-x86-64.so.2") else "x86"
     stat_kernel = platform.release()
     stat_version = platform.version()
     stat_uptime = parse_uptime()
@@ -225,6 +213,9 @@ def main():
     # TODO: parse memory usage from /proc/meminfo
     ram_total, ram_used = parse_mem()
     # total_ram = round(psutil.virtual_memory().total / (1024.0 ** 2)) # depreciated
+    stat_arch = (
+        "x86_64" if os.path.isfile("/lib/ld-linux-x86-64.so.2") else "x86"
+    )
     stat_ram = str(
         f"{round(ram_used/1000)}/"
         f"{round(ram_total/1000)}"
@@ -295,8 +286,7 @@ def main():
                 stat
             )
 
-        # finally, print fetch to terminal
-        # format only from the right
+        # finally print fetch to terminal, format only from the right
         print(fetch_data.rstrip())
     
     # run fetch
