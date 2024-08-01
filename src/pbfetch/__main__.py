@@ -1,4 +1,4 @@
-import nextfetch
+import pbfetch
 import sys
 
-sys.exit(nextfetch.main())
+sys.exit(pbfetch.main())

@@ -1,14 +1,15 @@
-import re
-import pbfetch.horizontal_formatter as hf
-from pbfetch.stats import stats as get_stats
+import re, os
+import pbfetch.main_funcs.horizontal_formatter as hf
+from pbfetch.main_funcs.stats import stats as get_stats
 
 # init stats using keywords for configuration in .conf
 stats = get_stats()
+file = os.path.join("src", "pbfetch", "config", "config.txt")
 
 
 def fetch():
     # read config and exit if empty
-    with open("config.txt", "r") as config:
+    with open(file, "r") as config:
         content = config.read()
         if content:
             fetch_data = content
