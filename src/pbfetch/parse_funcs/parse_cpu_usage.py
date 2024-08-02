@@ -1,25 +1,54 @@
-# from pbfetch.main_funcs.stats import stat_uptime
+import time
 
 
 def parse_cpu_usage():
-    file = "/proc/loadavg"
-    # ghz = 0
-    # mhz = 0
+    file = "/proc/stat"
     try:
-        with open(file) as cpu_info:
-            cpu_info = cpu_info.read()
-            cpu_info = cpu_info.split(" ")
-            usage = float(cpu_info[2])
+        with open(file) as file:
 
-        # for line in cpu_info:
-        #     if "model name" in line and "GHz" in line:
-        #         ghz += int(float(line.split(" ")[-1].replace("GHz", "")))
+            def line_parse():
+                info = file.read().splitlines()
+                for line in info:
+                    if "cpu " not in line:
+                        continue
+                    spline = line.split(" ")
+                    break
 
-        #     if "cpu MHz" in line:
-        #         mhz += int(float(line.split()[-1]))
+                return spline
 
-        # return ghz, mhz
-        return int((usage) * 100)
+            spline = line_parse()
+            # print(spline)
+            # total = int(spline[2])
+
+            # first_check = int(spline[3])
+            # time.sleep(0.5)
+            # second_check = int(spline[3])
+
+            # one = int(spline[2])
+            two = int(spline[2])
+            # three = int(spline[4])
+            four = int(spline[4])
+            five = int(spline[5])
+
+            usage = f"{float((two + four) * 100 / (two + four + five)):.3g}"
+
+            # if first_check > second_check:
+            #     usage = ((first_check - second_check) / total) * 100
+            # else:
+            #     usage = ((second_check - first_check) / total) * 100
+
+            # spline = line_parse()
+            # u = int(spline[2])
+            # t = int(spline[2]) + int(spline[4]) + int(spline[5])
+
+            # time.sleep(1)
+
+            # spline = line_parse()
+            # u1 = int(spline[2])
+            # t1 = int(spline[2]) + int(spline[4]) + int(spline[5])
+
+        return usage
+        # return int((u - t) * 100 / (u1 - t1))
 
     except Exception as e:
         print(e)

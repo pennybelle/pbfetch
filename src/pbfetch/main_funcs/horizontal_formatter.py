@@ -1,5 +1,11 @@
+# from time import sleep
+
+
 # format each line so right side accommodates for stat len
 def horizontal_formatter(fetch_data, key, stat):
+    # # debug delay for format animation
+    # DEBUG_DELAY = 0.1
+
     # split fetch string at each keyword (sequentially)
     fetch_data = fetch_data.split(str(key))
 
@@ -14,6 +20,11 @@ def horizontal_formatter(fetch_data, key, stat):
 
         # remove chars following keyword
         for _ in range(diff):
+            # # debug
+            # print(fetch_data[0], end="", flush="")
+            # print(modified.rstrip())
+            # sleep(DEBUG_DELAY)
+
             index = 0
             while index < diff and fetch_data[1][index] != " ":
                 index += 1
@@ -25,11 +36,6 @@ def horizontal_formatter(fetch_data, key, stat):
             # modified = "".join(modified)
             modified = fetch_data[1].replace(fetch_data[1][index], "", 1)
             # modified.pop(index)
-
-            # debug
-            # print(fetch_data[0], end="", flush="")
-            # print(modified.rstrip())
-            # time.sleep(DEBUG_DELAY)
 
             fetch_data[1] = modified
 
