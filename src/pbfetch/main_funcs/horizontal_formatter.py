@@ -16,28 +16,20 @@ def horizontal_formatter(fetch_data, key, stat):
         # number of chars to delete
         diff = stat_len - key_len
 
-        # remove chars following keyword
+        # remove only whitespace chars following keyword
         for _ in range(diff):
             index = 0
             while index < diff and fetch_data[1][index] != " ":
                 index += 1
 
-            # TODO: remove only whitespace chars
-            # (IT WORKS!!!!)(kinda...)
-            # modified = [*fetch_data[1]]
-            # del modified[index]
-            # modified = "".join(modified)
             modified = fetch_data[1].replace(fetch_data[1][index], "", 1)
-            # modified.pop(index)
-
             fetch_data[1] = modified
 
             # debug
-            print(chr(27) + "[2J")
             print(fetch_data[0], end="", flush="")
             print(fetch_data[1].rstrip())
             sleep(0.025)
-        print(chr(27) + "[2J")
+            system("cls" if name == "nt" else "clear")
 
         # replaces second half with modified string
         fetch_data[1] = modified
