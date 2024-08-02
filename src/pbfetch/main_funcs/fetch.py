@@ -14,7 +14,7 @@ def fetch():
         if content:
             fetch_data = content
         else:
-            print("You must insert something in the config!")
+            print("You must insert something in the config! Try some ascii art UwU")
             exit()
 
     # omit comments from output
