@@ -4,7 +4,7 @@ def parse_os():
         if content:
             stat_os = content.read()
             stat_os = stat_os.split("=")
-            stat_os = stat_os[1].split("\n")[0].replace('"', "")
+            stat_os = stat_os[1].splitlines()[0].replace('"', "")
         else:
             stat_os = None
 

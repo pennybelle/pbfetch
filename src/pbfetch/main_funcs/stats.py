@@ -3,7 +3,12 @@ import pbfetch.parse_funcs.parse_os as pos
 import pbfetch.parse_funcs.parse_temp as temp
 import pbfetch.parse_funcs.parse_cpu as cpu
 import pbfetch.parse_funcs.parse_mem as mem
-import platform, socket, psutil, os, subprocess, time
+import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
+import pbfetch.parse_funcs.parse_hostname as hostname
+import pbfetch.parse_funcs.parse_login as login
+import pbfetch.parse_funcs.parse_kernel as kernel
+
+import os, subprocess
 
 
 def stats():
@@ -18,13 +23,16 @@ def stats():
 
 
 
-    stat_hostname = f"{os.getlogin()}@{socket.gethostname()}"
+    stat_hostname = f"{login.parse_login()}@{hostname.parse_hostname()}"
     stat_os = pos.parse_os()
     # stat_arch = platform.machine()
-    stat_kernel = platform.release()
-    stat_version = platform.version()
+    stat_kernel = kernel.parse_kernel_release()
     stat_uptime = uptime.parse_uptime()
-    stat_cpu_percent = f"{round(psutil.cpu_percent(DELAY))}%"
+    # stat_cpu_percent = f"{round(psutil.cpu_percent(DELAY))}%"
+    usage = cpu_usage.parse_cpu_usage()
+    # print(ghz, mhz)
+    # stat_cpu_percent = f"{round(((ghz * 100)/mhz) * 100)}%"
+    stat_cpu_percent = f"{usage}%"
     stat_cpu_temp = f"{temp.parse_temp()}°c" 
     stat_cpu_name = cpu.parse_cpu()
     # TODO: parse memory usage from /proc/meminfo
@@ -67,7 +75,7 @@ def stats():
         "$UP": stat_uptime,
         "$PAC": stat_packages,
         "$TEM": stat_cpu_temp,
-        "$%": stat_cpu_percent,
+        "$PT": stat_cpu_percent,
         "$CPU": stat_cpu_name,
         "$DISK": stat_disk_total_and_used,
     }

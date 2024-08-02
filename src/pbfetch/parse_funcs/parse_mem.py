@@ -4,7 +4,7 @@ def parse_mem():
     try:
         with open(file) as mem_info:
             mem_info = mem_info.read()
-            mem_info = mem_info.split("\n")
+            mem_info = mem_info.splitlines()
 
         total = None
         active = None
