@@ -78,9 +78,9 @@ def stats():
         "$MEM": stat_ram,
         "$UP": stat_uptime,
         "$PAC": stat_packages,
+        "$CPU": stat_cpu_name,
         "$TEM": stat_cpu_temp,
         "$PT": stat_cpu_percent,
-        "$CPU": stat_cpu_name,
         "$DISK": stat_disk_total_and_used,
     }
 
