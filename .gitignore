@@ -10,4 +10,7 @@ wheels/
 .venv
 
 # config
-config.txt
+# config.txt
+
+# backup
+backup/
