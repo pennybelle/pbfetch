@@ -36,9 +36,9 @@ def fetch():
         # format char differences for keyword and respective value
         fetch_data = hf.replace_keyword(fetch_data, keyword, stat)
 
-    # TODO: make this optional from the config.txt
-    # clear the terminal
-    os.system("cls" if os.name == "nt" else "clear")
+    # # TODO: make this optional from the config.txt
+    # # clear the terminal
+    # os.system("cls" if os.name == "nt" else "clear")
 
     # finally print fetch to terminal, format only from the right
     return fetch_data.rstrip()

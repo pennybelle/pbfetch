@@ -5,10 +5,10 @@ from os import system, name
 def replace_keyword(fetch_data, keyword, replace_text):
     fetch_data = fetch_data.rstrip()
 
-    # debug
-    system("cls" if name == "nt" else "clear")
-    print(fetch_data)
-    sleep(0.1)
+    # # debug
+    # system("cls" if name == "nt" else "clear")
+    # print(fetch_data)
+    # sleep(0.1)
 
     # split the string on keyword
     split_fetch_data = fetch_data.split(keyword, 1)
