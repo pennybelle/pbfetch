@@ -1,5 +1,10 @@
 from time import sleep
 from os import system, name
+from shutil import get_terminal_size
+from subprocess import Popen, PIPE
+from re import sub
+
+# from pbfetch.constants import rgb_regex
 
 
 def replace_keyword(fetch_data, keyword, replace_text):
@@ -44,7 +49,60 @@ def replace_keyword(fetch_data, keyword, replace_text):
     # pad replace_text with spaces to match the removed whitespace
     replace_text = replace_text.ljust(max_allowed_len, " ")
 
-    return split_fetch_data[0] + replace_text + split_fetch_data[1]
+    return_text = split_fetch_data[0] + replace_text + split_fetch_data[1]
+
+    # check how many characters can fit in the row
+    terminal_width = Popen(["tput", "cols"], stdout=PIPE)
+    terminal_width = int(float(terminal_width.communicate()[0].strip()))
+    # print(terminal_width)  # debug
+
+    # get length of longest line
+    longest_line_len = len(max(return_text.splitlines(), key=len))
+
+    # print(longest_line_len)  # debug
+
+    # cut off end of line if longer than console width
+    if longest_line_len > terminal_width:
+        # temp list of lines without rgb to gather line len
+        omit_rgb = sub(
+            r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)",
+            "",
+            return_text,
+        ).splitlines()
+
+        # with rgb, these lines get sliced if too long
+        return_text = return_text.splitlines()
+
+        # iterate over lines without rgb to get real len of line
+        for index, line in enumerate(omit_rgb):
+            # skip line if its not too long
+            if len(line) <= terminal_width:
+                # print(line)  # debug
+                continue  # debug
+
+            # if line is too long, replace the respective line content
+            # in return_text with the sliced line
+            # (i think this is the problem)
+            return_text[index] = return_text[index].replace(
+                line, line[: terminal_width - 3] + "..."
+            )
+
+        # # depreciated
+        # for line_index in lines_over_max_len:
+        #     line = return_text[line_index][: terminal_width - 3]
+        #     line = line + "..."
+        #     return_text[line_index] = line
+        #     # print(line)  # debug
+        #     # print(len(line))
+        return_text = "\n".join(return_text)
+
+    return_text = sub(
+        r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)",
+        r"[38;2;\g<1>;\g<2>;\g<3>m",
+        return_text,
+    )
+
+    return return_text
 
 
 # # format each line so right side accommodates for stat len
