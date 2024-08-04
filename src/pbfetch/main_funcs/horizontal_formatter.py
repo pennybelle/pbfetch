@@ -18,6 +18,7 @@ def replace_keyword(fetch_data, keyword, replace_text):
     # split the string on keyword
     split_fetch_data = fetch_data.split(keyword, 1)
 
+<<<<<<< Updated upstream
     # make sure string contains both halves
     if len(split_fetch_data) == 1:
         return fetch_data
@@ -30,6 +31,29 @@ def replace_keyword(fetch_data, keyword, replace_text):
 
     # measure len of second element after stripping whitespace chars
     after_strip_len = len(split_fetch_data[1])
+=======
+        # remove only whitespace chars following keyword
+        for index in range(diff):
+            # index = 0
+            if fetch_data[1][index] == " ":
+                modified = fetch_data[1].replace(fetch_data[1][index], "", 1)
+                fetch_data[1] = modified
+
+                # debug
+                print(fetch_data[0], end="", flush="")
+                print(fetch_data[1].rstrip())
+                sleep(0.025)
+                system("cls" if name == "nt" else "clear")
+
+            else:
+                new_index = index + 1
+                while new_index < diff - index and fetch_data[1][new_index] != " ":
+                    modified = fetch_data[1].replace(fetch_data[1][index], "", 1)
+                    fetch_data[1] = modified
+
+        # replaces second half with modified string
+        fetch_data[1] = modified[: stat_len - index]
+>>>>>>> Stashed changes
 
     # calculate whitespace with before and after lens of second element
     whitespace_count = before_strip_len - after_strip_len
