@@ -57,21 +57,24 @@ def replace_keyword(fetch_data, keyword, replace_text):
     terminal_width = int(float(terminal_width.communicate()[0].strip()))
     # print(terminal_width)  # debug
 
-    # get length of longest line
-    longest_line_len = len(max(return_text.splitlines(), key=len))
-
-    # print(longest_line_len)  # debug
-
-    # cut off end of line if longer than console width
-    if longest_line_len <= terminal_width:
-        return return_text
-
     # temp list of lines without rgb to gather line len
     omit_rgb = sub(
         r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)",
         "",
         return_text,
     ).splitlines()
+
+    # get length of longest line
+    longest_line_len = len(max(omit_rgb, key=len))
+
+    # cut off end of line if longer than console width
+    if longest_line_len <= terminal_width:
+        return_text = sub(
+            r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)",
+            r"[38;2;\g<1>;\g<2>;\g<3>m",
+            return_text,
+        )
+        return return_text
 
     # with rgb, these lines get sliced if too long
     return_text = return_text.splitlines()
