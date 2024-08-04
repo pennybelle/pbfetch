@@ -70,13 +70,7 @@ def replace_keyword(fetch_data, keyword, replace_text):
 
     # cut off end of line if longer than console width
     if longest_line_len <= terminal_width:
-        return_text = sub(
-            r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)",
-            r"[38;2;\g<1>;\g<2>;\g<3>m",
-            return_text,
-        )
-        return_text = sub(r"\$RST", "[39m", return_text)
-        return return_text
+        return final_touches(return_text)
 
     # with rgb, these lines get sliced if too long
     return_text = return_text.splitlines()
@@ -88,11 +82,11 @@ def replace_keyword(fetch_data, keyword, replace_text):
             # print(line)  # debug
             continue  # debug
 
-        # difference of lengths between console width and line len
-        diff = len(line) - terminal_width
+        # # difference of lengths between console width and line len
+        # diff = len(line) - terminal_width
 
         # line to replace old line that's too long
-        new_line = line[: len(line) - diff - 3] + "..."
+        new_line = line[: terminal_width - 3] + "..."
         # print(f"new: {new_line}")  # debug
 
         # if line is too long, replace the respective line content
@@ -110,6 +104,10 @@ def replace_keyword(fetch_data, keyword, replace_text):
     #     # print(len(line))
     return_text = "\n".join(return_text)
 
+    return final_touches(return_text)
+
+
+def final_touches(return_text):
     return_text = sub(
         r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)",
         r"[38;2;\g<1>;\g<2>;\g<3>m",
