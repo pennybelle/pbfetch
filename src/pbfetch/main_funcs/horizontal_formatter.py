@@ -62,7 +62,8 @@ def replace_keyword(fetch_data, keyword, replace_text):
         r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)",
         "",
         return_text,
-    ).splitlines()
+    )
+    omit_rgb = sub(r"\$RST", "", omit_rgb).splitlines()
 
     # get length of longest line
     longest_line_len = len(max(omit_rgb, key=len))
@@ -74,6 +75,7 @@ def replace_keyword(fetch_data, keyword, replace_text):
             r"[38;2;\g<1>;\g<2>;\g<3>m",
             return_text,
         )
+        return_text = sub(r"\$RST", "[39m", return_text)
         return return_text
 
     # with rgb, these lines get sliced if too long
@@ -86,12 +88,18 @@ def replace_keyword(fetch_data, keyword, replace_text):
             # print(line)  # debug
             continue  # debug
 
+        # difference of lengths between console width and line len
+        diff = len(line) - terminal_width
+
+        # line to replace old line that's too long
+        new_line = line[: len(line) - diff - 3] + "..."
+        # print(f"new: {new_line}")  # debug
+
         # if line is too long, replace the respective line content
         # in return_text with the sliced line
         # (i think this is the problem)
-        return_text[index] = return_text[index].replace(
-            line, line[: terminal_width - 3] + "..."
-        )
+        return_text[index] = return_text[index].replace(line, new_line)
+        print(return_text[index])  # debug
 
     # # depreciated
     # for line_index in lines_over_max_len:
@@ -107,5 +115,6 @@ def replace_keyword(fetch_data, keyword, replace_text):
         r"[38;2;\g<1>;\g<2>;\g<3>m",
         return_text,
     )
+    return_text = sub(r"\$RST", "[39m", return_text)
 
     return return_text
