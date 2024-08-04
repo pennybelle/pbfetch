@@ -1,6 +1,6 @@
 # pbfetch
 
-![Screenshot_20240803_184936](https://github.com/user-attachments/assets/039f0e53-4f0d-4644-b7ff-74fe352190d9)
+![Screenshot_20240803_191108](https://github.com/user-attachments/assets/8fb08b86-90ce-48d7-a428-dbc8c6dbf848)
 
 An unbelievably customizable hardware/software fetch. No more being limited to a logo on the left.
 
