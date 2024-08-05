@@ -19,7 +19,7 @@ if system != "Linux":
 
 
 file = "config.txt"
-usr_share = os.path.join("/", "usr", "share", "pbfetch", "config")
+usr_tmp = os.path.join("/", "usr", "share", "pbfetch", "config")
 config_directory = os.path.join("/", "home", user, ".config", "pbfetch", "config")
 
 
@@ -40,7 +40,7 @@ def fetch():
         if os.path.exists(os.path.join(config_directory, file)) is not True:
             print("Generating default config")
             shutil.copy(
-                os.path.join(usr_share, file),
+                os.path.join(usr_tmp, file),
                 os.path.join(config_directory, file),
             )
         with open(os.path.join(config_directory, file)) as fetch_data:
@@ -55,13 +55,13 @@ def fetch():
 
     else:
         print(f"Generating new config in {config_directory}")
-        with open(str(os.path.join(usr_share, file))) as usr_share_file:
+        with open(str(os.path.join(usr_tmp, file))) as usr_share_file:
             content = usr_share_file.read()
 
             if content:
                 os.makedirs(config_directory)
                 shutil.copy(
-                    os.path.join(usr_share, file),
+                    os.path.join(usr_tmp, file),
                     os.path.join(config_directory, file),
                 )
                 fetch_data = content
