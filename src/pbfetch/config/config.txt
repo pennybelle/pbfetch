@@ -20,7 +20,7 @@
 <RGB(255,255,255)>                      <RST> <RGB(255,255,255)>_|                                                                    <RST>
 <RGB(255,255,255)>                      <RST> <RGB(255,255,255)>_|                                                                    <RST>
 
-<RGB(255,255,255)>                      <RST> <RGB(255,255,255)>        This project aims to be the most customizable fetch
+<RGB(255,255,255)>                      <RST> <RGB(255,255,255)>        This project aims to be the most customizable fetch.
 <RGB(255,255,255)>                      <RST> <RGB(255,255,255)>        You can do almost anything with the config.txt. It
 <RGB(255,255,255)>                      <RST> <RGB(255,255,255)>        is located in <RST>~/.config/pbfetch/config
 
