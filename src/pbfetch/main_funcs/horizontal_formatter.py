@@ -1,139 +1,147 @@
-from time import sleep
-from os import system, name
+from re import sub, fullmatch, compile
+
+current_loading_spinner = "/"
 
 
-def replace_keyword(fetch_data, keyword, replace_text):
-    fetch_data = fetch_data.rstrip()
+def replace_keyword(template, keyword, replace_text):
+    # Replace the text with a loading spinner
+    if replace_text == "":
+        replace_text = current_loading_spinner
 
-    # debug
-    system("cls" if name == "nt" else "clear")
-    print(fetch_data)
-    sleep(0.3)
+    # Split the string on the word
+    split_template = template.split(keyword, 1)
 
-    # split the string on keyword
-    split_fetch_data = fetch_data.split(keyword, 1)
+    # Make sure the string was actually split
+    if len(split_template) == 1:
+        return template
 
-    # make sure string contains both halves
-    if len(split_fetch_data) == 1:
-        return fetch_data
+    # Measure the length of the second element in the split
+    before_strip_length = len(split_template[1])
 
-    # measure len of second element in split data
-    before_strip_len = len(split_fetch_data[1])
+    # Remove the whitespace of the second element in the split
+    split_template[1] = split_template[1].lstrip()
 
-    # remove whitespace of the second element in split data
-    split_fetch_data[1] = split_fetch_data[1].lstrip()
+    # Measure the length after stripping :3 to figure out how
+    #   many whitespaces we removed
+    after_strip_length = len(split_template[1])
 
-    # measure len of second element after stripping whitespace chars
-    after_strip_len = len(split_fetch_data[1])
+    # Use those values to calculate the whitespaces
+    whitespace_count = before_strip_length - after_strip_length
 
-    # calculate whitespace with before and after lens of second element
-    whitespace_count = before_strip_len - after_strip_len
+    # Figure out the max length the replacement can be
+    keyword_length = len(keyword)
+    max_allowed_length = keyword_length + whitespace_count
 
-    # figure out relacement text max len
-    keyword_len = len(keyword)
-    max_allowed_len = keyword_len + whitespace_count
+    # Store the length of what we are using to replace it
+    replace_tex_length = len(replace_text)
 
-    # store lens to replace text with desired len
-    replace_text_len = len(replace_text)
+    # Make sure our replaceText isn't too long
+    if replace_tex_length > max_allowed_length:
+        replace_text = replace_text[:max_allowed_length]
 
-    # make sure replace text isnt too long
-    if replace_text_len > max_allowed_len:
-        replace_text = replace_text[: max_allowed_len - 3]
-        replace_text = replace_text + "..."
+    # Pad replaceText with spaces to match the whitespace we removed
+    replace_text = replace_text.ljust(max_allowed_length, " ")
 
-    # pad replace_text with spaces to match the removed whitespace
-    replace_text = replace_text.ljust(max_allowed_len, " ")
-
-    return split_fetch_data[0] + replace_text + split_fetch_data[1]
+    return split_template[0] + replace_text + split_template[1]
 
 
-# # format each line so right side accommodates for stat len
-# def horizontal_formatter(fetch_data, key, stat):
-#     print(f"before: \n{fetch_data.rstrip()}")
-#     # split fetch string at each keyword (sequentially)
-#     fetch_data = fetch_data.rstrip().split(str(key))
+def split_at_length(text, max_length):
+    START_FLAG = "<"
+    END_FLAG = ">"
 
-#     # store lengths for reuse
-#     key_len = len(key)
-#     stat_len = len(stat)
-#     fetch_len = len(fetch_data)
+    COMMAND_PATTERNS = [
+        compile(
+            r"RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)"
+        ),
+        compile(r"RST"),
+    ]
 
-#     if key_len < stat_len and fetch_len != 1:
+    current_count = 0
+    skip_count = 0
+
+    return_buffer = ""
+
+    text_length = len(text)
+    # Loop through each character in the string one at a time
+    for i in range(0, text_length):
+        # Capture the current character we are looking at
+        current_char = text[i]
+
+        # Add that current character to our return buffer
+        return_buffer += current_char
+
+        # Allow for us to skip parts of the text
+        if skip_count > 0:
+            skip_count -= 1
+            continue
+
+        # If the current character is the starting flag we need to check
+        #   if the following character are a command
+        if current_char == START_FLAG:
+            # Create a buffer to push the next characters to
+            buffer = ""
+
+            # Loop through the string from the current location to
+            #   the next END_FLAG capturing the characters as we go
+            for j in range(1, text_length):
+                # Capture the current character at this index
+                buffer_char = text[i + j]
+
+                # If the captured character is our end flag then stop
+                if buffer_char == END_FLAG:
+                    break
+
+                # Add it to our buffer
+                buffer += buffer_char
+
+            # Check to see if buffer is a command
+            if fullmatch(COMMAND_PATTERNS[0], buffer, flags=0) or fullmatch(
+                COMMAND_PATTERNS[1], buffer, flags=0
+            ):
+                # print(buffer)  # debug
+                # Skip the characters that exist in our command
+                skip_count = len(buffer) + len(END_FLAG)
+                # We KNOW this is a command tag and we don't want to count it, so
+                #   continue out of this for loop cycle before the count
+                continue
+
+        # count
+        current_count += 1
+
+        # IF we have reached our max length, stop counting and return what we have
+        if current_count >= max_length:
+            break
+
+    return return_buffer
 
 
-#         # # number of chars to delete
-#         # diff = stat_len - key_len
+def final_touches(return_text):
+    return_text = sub(
+        r"<RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)\>",
+        r"[38;2;\g<1>;\g<2>;\g<3>m",
+        return_text,
+    )
+    return_text = str(sub(r"\<RST\>", "[39m", return_text))
 
-#         # # TODO: new algo:
-#         # # fetch_data is a list split at the keyword (removes keyword)
-#         # # diff is difference between len of keyword and stat
-#         # # diff is how many whitespace chars are removed to the right
-#         # # loop over chars in second string in fetchdata ([1])
-#         # # keep a deletion_count of how many " " chars are deleted
-#         # # if deletion_count = 0 and char is "\n" then print entire stat + "\n"
-#         # # else if char is " " then delete char and add to deletion_count
-#         # # else if char is not " " or "\n",
-#         # # remove deletion_count from stat (from the right)
-#         # # join fetch_data with stat
+    return return_text
 
-#         # # keep a whitespace_count of how many " " chars are deleted
-#         # whitespace_count = 0
 
-#         # # remove only whitespace chars following keyword
-#         # for index in range(diff):
-#         #     # line = fetch_data[1]
-#         #     char = fetch_data[1][index]
+def replace_dictionary(template, dictionary, max_line_length):
+    # Replace all of the keywords in the dictionary
+    for k, v in dictionary.items():
+        if v == "":
+            # do penny :3
+            v = "LOADING..."
+        template = replace_keyword(template, k, v)
 
-#         #     # # debug
-#         #     # print(fetch_data[0], end="", flush="")
-#         #     # print(fetch_data[1].rstrip())
-#         #     # sleep(0.025)
-#         #     # system("cls" if name == "nt" else "clear")
+    # Make sure each line does not exceed max_line_length
+    lines = template.splitlines()
 
-#         #     # if char is "\n" then print entire stat + "\n"
-#         #     if whitespace_count == 0 and char == "\n":
-#         #         print("if")
-#         #         stat = stat + "\n"
-#         #         break
+    for i in range(0, len(lines)):
+        lines[i] = split_at_length(lines[i], max_line_length)
 
-#         #     # WORKS!!!
-#         #     # if char is " " then delete char and add to whitespace_count
-#         #     elif char == " ":
-#         #         print("elif")
-#         #         modified = fetch_data[1][1:]  # slice off leftmost char
-#         #         fetch_data[1] = modified
-#         #         whitespace_count += 1
+    # return final_touches("\n".join(lines))
+    return_text = "\n".join(lines)
+    return_text = final_touches(return_text)
 
-#         #     else:
-#         #         print("else")
-#         #         stat = stat[:whitespace_count]
-#         #         break
-#         #         # new_index = index + 1
-#         #         # while new_index < diff and fetch_data[1][new_index] == " ":
-#         #         #     modified = fetch_data[1].replace(fetch_data[1][index], "", 1)
-#         #         #     # fetch_data[1] = modified
-
-#         # print(whitespace_count)
-
-#         # # # replaces second half with modified string
-#         # # fetch_data[1] = modified
-
-#     elif key_len > stat_len and fetch_len != 1:
-#         # number of chars to add
-#         diff = key_len - stat_len
-
-#         # adds whitespace following keyword
-#         modified = str(" " * diff) + fetch_data[1]
-
-#         # replaces second half with modified string
-#         fetch_data[1] = modified
-
-#         # # rejoin into str and replace keyword with value
-#         # fetch_data = str(stat).join(fetch_data)
-
-#     # rejoin into str and replace keyword with value
-#     fetch_data = str(stat).join(fetch_data)
-
-#     print(f"after: \n{fetch_data}")
-
-#     return fetch_data
+    return return_text
