@@ -5,7 +5,7 @@ import pbfetch.parse_funcs.parse_cpu as cpu
 import pbfetch.parse_funcs.parse_mem as mem
 import pbfetch.parse_funcs.parse_login as login
 import pbfetch.parse_funcs.parse_kernel as kernel
-import pbfetch.parse_funcs.parse_hostname as hostname
+# import pbfetch.parse_funcs.parse_hostname as hostname
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
 import subprocess, platform, psutil
@@ -68,8 +68,10 @@ def stats():
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
-    stats = {
+    stats_dict = {
+        "$SYSTEM": system,
         # "$UNAME": _uname,
+        "$USER": stat_user,
         "$HOST": stat_hostname,
         "$SYS": stat_os,
         # "$ARCH": stat_arch,
@@ -92,4 +94,4 @@ def stats():
 
 
 
-    return stats
+    return stats_dict
