@@ -53,7 +53,7 @@ def split_at_length(text, max_length):
         compile(
             r"RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)"
         ),
-        compile(r"RST"),
+        compile(r"/RGB"),
     ]
 
     current_count = 0
@@ -121,7 +121,7 @@ def final_touches(return_text):
         r"[38;2;\g<1>;\g<2>;\g<3>m",
         return_text,
     )
-    return_text = str(sub(r"\<RST\>", "[39m", return_text))
+    return_text = str(sub(r"\</RGB\>", "[39m", return_text))
 
     return return_text
 
