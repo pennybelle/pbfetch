@@ -1,8 +1,5 @@
-from pbfetch.main_funcs.fetch import fetch
-
-# TODO: import keywords from config, customizable by user
+from pbfetch.main_funcs.run_fetch import run_fetch
 
 
 def main():
-    # print fetch
-    print(fetch())
+    run_fetch()
