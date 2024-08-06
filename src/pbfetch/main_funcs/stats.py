@@ -66,12 +66,7 @@ def stats():
     stat_disk_total_and_used = (
         f"{total_disk_size_used}/{total_disk_size_in_gb} MB"
     )
-
-    # TODO: add easter egg stats for fun dynamic things
-    # init stats using keywords for configuration in .conf
-    stats_dict = {
-        "$system": system,
-        "$configpath": str(
+    configpath = str(
             os.path.join(
                 "/",
                 "home",
@@ -79,7 +74,13 @@ def stats():
                 ".config",
                 "pbfetch",
                 "config")
-        ),
+        )
+
+    # TODO: add easter egg stats for fun dynamic things
+    # init stats using keywords for configuration in .conf
+    stats_dict = {
+        "$system": system,
+        "$configpath": configpath,
         # "$UNAME": _uname,
         "$user": stat_user,
         "$host": stat_hostname,

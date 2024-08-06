@@ -22,7 +22,7 @@
 
 <rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        This project aims to be the most customizable fetch.          </rgb>
 <rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        You can do almost anything with the config.txt.               </rgb>
-<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        It is located in </rgb>$configpath<rgb(255,255,255)>                                  </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        It is located in </rgb>$configpath
 
 <rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        Have fun customizing! Take note of the comments in            </rgb>
 <rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        the default config, as they contain valuable info.            </rgb>
