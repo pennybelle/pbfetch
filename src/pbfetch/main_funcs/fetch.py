@@ -1,4 +1,4 @@
-import re, os, shutil
+import re
 from subprocess import Popen, PIPE
 
 import pbfetch.main_funcs.horizontal_formatter as hf
@@ -7,8 +7,7 @@ from pbfetch.main_funcs.stats import stats
 # from pbfetch.main_funcs.stats import system
 
 stats_dict = stats()
-system = stats_dict["$SYSTEM"]
-user = stats_dict["$USER"]
+system = stats_dict["$system"]
 
 if system != "Linux":
     print("This fetch is currently only supported on linux, sorry!")
@@ -16,11 +15,6 @@ if system != "Linux":
 
 
 """/usr/share/pbfetch/config/"""
-
-
-file = "config.txt"
-usr_tmp = os.path.join("/", "usr", "share", "pbfetch", "config")
-config_directory = os.path.join("/", "home", user, ".config", "pbfetch", "config")
 
 
 # # init stats using keywords for configuration in .conf
@@ -34,42 +28,7 @@ def get_console_width():
     return console_width
 
 
-def fetch():
-    # copy a default config into ~/.config/pbfetch/config/ on first launch
-    if os.path.isdir(config_directory):
-        if os.path.exists(os.path.join(config_directory, file)) is not True:
-            print("Generating default config")
-            shutil.copy(
-                os.path.join(usr_tmp, file),
-                os.path.join(config_directory, file),
-            )
-        with open(os.path.join(config_directory, file)) as fetch_data:
-            content = fetch_data.read()
-
-            if content:
-                fetch_data = content
-            else:
-                print("The config is empty! Try adding some ascii art OwO")
-                print(f"The config can be located in {config_directory}")
-                exit()
-
-    else:
-        print(f"Generating new config in {config_directory}")
-        with open(str(os.path.join(usr_tmp, file))) as usr_share_file:
-            content = usr_share_file.read()
-
-            if content:
-                os.makedirs(config_directory)
-                shutil.copy(
-                    os.path.join(usr_tmp, file),
-                    os.path.join(config_directory, file),
-                )
-                fetch_data = content
-                print("Default config copied successfully")
-            else:
-                print("The default config is empty...Uh Oh!")
-                exit()
-
+def fetch(fetch_data):
     # omit comments from output
     for line in fetch_data.split("\n"):
         # catch and release comments using # notation

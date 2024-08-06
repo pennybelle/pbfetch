@@ -9,6 +9,7 @@ import pbfetch.parse_funcs.parse_kernel as kernel
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
 import subprocess, platform, psutil
+import os
 from os import uname, statvfs
 
 
@@ -69,21 +70,30 @@ def stats():
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
     stats_dict = {
-        "$SYSTEM": system,
+        "$system": system,
+        "$configpath": str(
+            os.path.join(
+                "/",
+                "home",
+                stat_user,
+                ".config",
+                "pbfetch",
+                "config")
+        ),
         # "$UNAME": _uname,
-        "$USER": stat_user,
-        "$HOST": stat_hostname,
-        "$SYS": stat_os,
+        "$user": stat_user,
+        "$host": stat_hostname,
+        "$sys": stat_os,
         # "$ARCH": stat_arch,
-        "$ARCH": stat_architecture,
-        "$KER": stat_kernel,
-        "$MEM": stat_ram,
-        "$UP": stat_uptime,
-        "$PAC": stat_packages,
-        "$CPU": stat_cpu_name,
-        "$TEM": stat_cpu_temp,
-        "$PT": stat_cpu_percent,
-        "$DISK": stat_disk_total_and_used,
+        "$arch": stat_architecture,
+        "$ker": stat_kernel,
+        "$mem": stat_ram,
+        "$up": stat_uptime,
+        "$pac": stat_packages,
+        "$cpu": stat_cpu_name,
+        "$tem": stat_cpu_temp,
+        "$pt": stat_cpu_percent,
+        "$disk": stat_disk_total_and_used,
     }
 
 

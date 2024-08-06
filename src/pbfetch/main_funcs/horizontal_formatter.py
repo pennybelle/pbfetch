@@ -51,9 +51,9 @@ def split_at_length(text, max_length):
 
     COMMAND_PATTERNS = [
         compile(
-            r"RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)"
+            r"rgb\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)"
         ),
-        compile(r"/RGB"),
+        compile(r"\/rgb"),
     ]
 
     current_count = 0
@@ -74,6 +74,10 @@ def split_at_length(text, max_length):
         if skip_count > 0:
             skip_count -= 1
             continue
+
+        # TODO: add here a conditional that checks if the last
+        #   few characters in the string match a keyword, if so
+        #   then add the stat value to the buffer and return buffer
 
         # If the current character is the starting flag we need to check
         #   if the following character are a command
@@ -117,11 +121,11 @@ def split_at_length(text, max_length):
 
 def final_touches(return_text):
     return_text = sub(
-        r"<RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)\>",
+        r"<rgb\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)\>",
         r"[38;2;\g<1>;\g<2>;\g<3>m",
         return_text,
     )
-    return_text = str(sub(r"\</RGB\>", "[39m", return_text))
+    return_text = str(sub(r"\<\/rgb\>", "[39m", return_text))
 
     return return_text
 
