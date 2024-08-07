@@ -22,6 +22,8 @@ def replace_keyword(template, keyword, replace_text):
     # Store the length of what we are using to replace it
     replace_tex_length = len(replace_text)
 
+    # template = template.ljust(console_width)
+
     # Split the string on the word
     split_template = template.partition(keyword)
     split_template = [*split_template]
@@ -29,6 +31,12 @@ def replace_keyword(template, keyword, replace_text):
     # Make sure the string was actually split
     if split_template[1] == "" and split_template[2] == "":
         return template
+
+    # modified_line = split_template[2].ljust(
+    #     console_width - (len(split_template[0]) + len(replace_text))
+    # )
+    # print(modified_line)
+    # split_template[2] = modified_line
 
     # Measure the length of the second element in the split
     before_strip_length = len(split_template[2])
@@ -49,17 +57,26 @@ def replace_keyword(template, keyword, replace_text):
 
     min_allowed_length = console_width
 
-    if len(template) < min_allowed_length:
-        template = template.ljust(console_width)
+    # print(
+    #     len(template) - replace_tex_length - whitespace_count,
+    #     min_allowed_length,
+    #     whitespace_count,
+    # )
+    if (len(template) - replace_tex_length - whitespace_count) < min_allowed_length:
+        # print("<")
+        template = template.ljust(console_width * 2)
 
     # Make sure our replaceText isn't too long
     elif replace_tex_length > max_allowed_length:
+        # print(">")
         replace_text = replace_text[:max_allowed_length]
 
-    # stitch together the line with the stat in place of its key
-    replace_text = split_template[0] + replace_text + split_template[2]
+    # Pad replaceText with spaces to match the whitespace we removed
+    replace_text = replace_text.ljust(max_allowed_length, " ")
+    template = split_template[0] + replace_text + split_template[2]
+    # replace_text = replace_text.ljust(console_width - len(replace_text), " ")
 
-    return replace_text
+    return template
 
 
 def split_at_length(text):
@@ -153,16 +170,16 @@ def replace_dictionary(template, dictionary):
 
     for i in range(0, len(lines)):
         lines[i] = split_at_length(lines[i])
+        lines[i] = lines[i].ljust(console_width)
+        # print(sub(" ", "_", lines[i]))
+
+        # Replace all of the keywords in the dictionary
+        for k, v in dictionary.items():
+            if v == "":
+                v = "LOADING..."
+            lines[i] = replace_keyword(lines[i], k, v)
 
     template = "\n".join(lines)
-
-    # Replace all of the keywords in the dictionary
-    for k, v in dictionary.items():
-        if v == "":
-            v = "LOADING..."
-        template = replace_keyword(template, k, v)
-
     return_text = final_touches(template)
-    # return final_touches("\n".join(lines))
 
     return return_text

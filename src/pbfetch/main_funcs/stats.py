@@ -73,7 +73,8 @@ def stats():
                 stat_user,
                 ".config",
                 "pbfetch",
-                "config")
+                "config"
+            )
         )
 
     # TODO: add easter egg stats for fun dynamic things
