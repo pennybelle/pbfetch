@@ -8,3 +8,4 @@ def run_fetch():
     fetch_data = handle_config()
     # print fetch
     print(fetch(fetch_data))
+    # fetch(fetch_data)
