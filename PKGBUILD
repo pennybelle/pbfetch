@@ -1,4 +1,4 @@
-# Maintainer: Your Name <penny belle 98 at gmail dot com>
+# Maintainer: Penelope Belle <penny belle 98 at gmail dot com>
 pkgname=pbfetch-git
 pkgver=r124.dc4b440
 pkgrel=1
@@ -12,8 +12,6 @@ provides=("${pkgname}")
 conflicts=("${pkgname}")
 source=("git+https://github.com/pennybelle/pbfetch.git")
 sha256sums=('SKIP')
-# dist=("${pkgname}")
-# groups=()omg
 
 pkgver() {
     cd "$srcdir/${pkgname%-git}"
@@ -22,15 +20,16 @@ pkgver() {
 
 build() {
     cd "$srcdir/${pkgname%-git}"
+    echo "Building binary ..."
     python -m build --wheel --no-isolation
-    # rye publish
-    # build --wheel --no-isolation
 }
 
 package() {
     cd "$srcdir/${pkgname%-git}"
-    echo "Copying config to /usr/share/pbfetch/config/"
+    echo "Copying default config to /usr/share/pbfetch/config/ (requires pass) ..."
     sudo cp "$srcdir/${pkgname%-git}/src/${pkgname%-git}/config/config.txt" "/usr/share/pbfetch/config/config.txt"
+    echo "Installing binary ..."
     python -m installer --destdir="$pkgdir" dist/*.whl
     install -Dm0755 pbfetch "$pkgdir/usr/bin/pbfetch"
+    echo "Installed successfully! Please restart your shell to use pbfetch. Enjoy! OwO"
 }
