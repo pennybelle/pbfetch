@@ -80,8 +80,6 @@ def stats():
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
     stats_dict = {
-        "$system": system,
-        "$configpath": configpath,
         # "$UNAME": _uname,
         "$user": stat_user,
         "$host": stat_hostname,
@@ -96,6 +94,8 @@ def stats():
         "$tem": stat_cpu_temp,
         "$pt": stat_cpu_percent,
         "$disk": stat_disk_total_and_used,
+        "$system": system,
+        "$configpath": configpath,
     }
 
 
