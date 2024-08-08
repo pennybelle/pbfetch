@@ -36,7 +36,7 @@ if system != "Linux":
 
 
 def fetch(fetch_data):
-    replaced_fetch_data = []
+    # replaced_fetch_data = []
 
     # omit comments from output
     for line in fetch_data.split("\n"):
@@ -56,10 +56,10 @@ def fetch(fetch_data):
 
         # format char differences for keyword and respective value
 
-    for line in fetch_data.splitlines():
-        replaced_fetch_data.append(hf.replace_dictionary(line, stats_dict))
+    # for line in fetch_data.splitlines():
+    fetch_data = hf.replace_dictionary(fetch_data, stats_dict)
 
-    fetch_data = "\n".join(replaced_fetch_data)
+    # fetch_data = "\n".join(replaced_fetch_data)
     # fetch_data = hf.replace_dictionary(fetch_data, stats_dict)
 
     # # TODO: make this optional from the config.txt
