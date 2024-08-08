@@ -5,7 +5,8 @@ from pbfetch.main_funcs.handle_config import handle_config
 
 
 def run_fetch():
+    # generate/read config
     fetch_data = handle_config()
+
     # print fetch
     print(fetch(fetch_data))
-    # fetch(fetch_data)

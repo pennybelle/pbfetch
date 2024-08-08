@@ -15,50 +15,23 @@ console_width = get_console_width()
 
 
 def replace_keyword(template, keyword, replace_text):
-    print(type(template))
     template = template.splitlines()
     replaced_template = []
+
     for line in template:
         # Replace the text with a loading spinner
         if keyword not in line:
-            print("no keyword :c")
             replaced_template.append(line)
             continue
 
         # Store the length of what we are using to replace it
         replace_tex_length = len(replace_text)
 
-        # template = template.ljust(console_width)
-
         # Split the string on the word
         split_line = line.split(keyword)
-        # split_template = [*split_template]
-        print(split_line)
 
         # if len(line) < console_width:
         split_line[1] = split_line[1].ljust(replace_tex_length)
-
-        # # Make sure the string was actually split
-        # if split_template[1] == "" and split_template[2] == "":
-        #     return template
-
-        # if (split_template[1] == keyword and split_template[2].isspace()) or (
-        #     split_template[1] == keyword and split_template[2] == ""
-        # ):
-        #     print("doot")
-        #     modified_line = split_template[2].ljust(
-        #         len(split_template[0]) + len(replace_text) + len(split_template[2])
-        #     )
-        #     # print(modified_line)
-        #     split_template[2] = modified_line
-
-        # modified_line = split_template[2].ljust(
-        #     console_width - (len(split_template[0]) - len(replace_text))
-        # )
-        # # print(modified_line)
-        # split_template[2] = modified_line
-
-        # split_template[2] = split_template[2].ljust(console_width)
 
         # Measure the length of the second element in the split
         before_strip_length = len(split_line[1])
@@ -77,40 +50,21 @@ def replace_keyword(template, keyword, replace_text):
         keyword_length = len(keyword)
         max_allowed_length = keyword_length + whitespace_count
 
-        # min_allowed_length = console_width
-
-        # print(
-        #     len(template) - replace_tex_length - whitespace_count,
-        #     min_allowed_length,
-        #     whitespace_count,
-        # )
-        # if (len(template) - replace_tex_length - whitespace_count) < min_allowed_length:
-        #     print("<")
-        #     template = template.ljust(console_width * 2)
-
-        # Make sure our replaceText isn't too long (THIS BITCH)
+        # Make sure our replaceText isn't too long
         replace_text = replace_text.ljust(max_allowed_length, " ")
-        # template = split_template[0] + replace_text + split_template[1]
 
         if replace_tex_length > max_allowed_length:
-            # print(">")
             replace_text = replace_text[:max_allowed_length]
 
         # Pad replaceText with spaces to match the whitespace we removed
         replaced_template.append(split_line[0] + replace_text + split_line[1])
-        # replace_text = replace_text.ljust(console_width - len(replace_text), " ")
 
     template = "\n".join(replaced_template)
 
-    return template  # i give up...
+    return template
 
 
 def split_at_length(line):
-    # TODO: add a counter var that this function returns.
-    #   the counter will keep track of how many
-    #   characters it counts that are not printed in
-    #   the final output.
-
     START_FLAG = "<"
     END_FLAG = ">"
 
@@ -123,12 +77,9 @@ def split_at_length(line):
 
     current_count = 0
     skip_count = 0
-    # tag_count = 0
-    # tag_buffer = 0
-
     return_buffer = ""
-
     line_length = len(line)
+
     # Loop through each character in the string one at a time
     for i in range(0, line_length):
         # Capture the current character we are looking at
@@ -198,7 +149,6 @@ def final_touches(return_text):
 
 
 def replace_dictionary(template, dictionary):
-    print(type(template))
     # Replace all of the keywords in the dictionary
     for k, v in dictionary.items():
         if v == "":
@@ -210,8 +160,6 @@ def replace_dictionary(template, dictionary):
 
     for i in range(0, len(lines)):
         lines[i] = split_at_length(lines[i])
-        # lines[i] = lines[i].ljust(console_width)
-        # print(sub(" ", "_", lines[i]))
 
     template = "\n".join(lines)
     return_text = final_touches(template)
