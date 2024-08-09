@@ -1,0 +1,57 @@
+<rgb(091,206,250)>                              </rgb> <rgb(255,255,255)>┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓</rgb>
+<rgb(091,206,250)>⣿⣿⣿⣿⣿⣿⠿⠋⠁⠀⠀⠀⢀⠀⠀⠀⢠⠀⠀⠀⠀⠉⠙⠿⣿⣿⣿⣿⣿⣿</rgb> <rgb(255,255,255)>┃ Software:                   ┃ $host              ┃</rgb> <rgb(213,045,000)>⣿⣿⣿⢸⣿⣿⡏⢰⣿⣿⣿⡟⢠⣜⡛⣛⣡⣿⣿⣿⡏⢠⣄⠀⠻⠀⣿⣿⣿⣿⣿</rgb>
+<rgb(091,206,250)>⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠰⡄⠀⣃⣠⣤⣬⣆⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿</rgb> <rgb(255,255,255)>┃ • OS: $sys                  ┃ a really good girl ┃</rgb> <rgb(213,045,000)>⣿⣿⡇⣼⣿⡟⠀⣾⣿⡿⠋⣰⣿⣿⠀⣿⣿⣿⣿⣿⢇⠸⢿⡿⠆⡀⢻⣿⣿⣿⣿</rgb>
+<rgb(245,169,184)>⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿</rgb> <rgb(255,255,255)>┃ • Uptime: $up               ┗━━━━━━━━━━━━━━━━━━━━┫</rgb> <rgb(255,154,086)>⣿⣿⡇⢿⠟⠰⠇⠛⠋⣤⣚⣛⣛⣿⠀⣿⣿⣿⣿⢏⣼⣿⣶⣶⣿⣇⠸⣿⣿⣿⣿</rgb>
+<rgb(245,169,184)>⣿⣿⣿⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⠆⠀⠀⠀⣠⣀⠀⠀⠈⣿⣿</rgb> <rgb(255,255,255)>┃ • Packages: $pac                                 ┃</rgb> <rgb(255,154,086)>⣿⣿⡇⣈⣴⠆⠀⠀⠀⠀⠀⠀⣬⣿⡆⢻⣿⣿⢏⣼⣿⢿⣟⡿⣿⣿⡄⢿⣿⡿⣿</rgb>
+<rgb(255,255,255)>⣿⣿⡏⠀⡴⢄⠀⠀⢠⣾⣿⣿⠿⠿⠿⣿⣿⣦⣽⣼⣀⣜⣠⣿⣿⣴⡄⠀⣽⣿</rgb> <rgb(255,255,255)>┃ • Kernel: $ker                                   ┃</rgb> <rgb(255,255,255)>⣿⣿⡇⣿⣿⡄⣤⣄⠛⣀⣘⢿⣿⣿⡏⢚⣩⣵⣾⣿⣿⡆⠈⠉⠛⠻⠷⠈⣿⡇⣿</rgb>
+<rgb(255,255,255)>⣿⣿⡇⠠⢰⠆⢢⣤⣼⣿⣿⣧⣶⣶⡖⠀⠀⠀⢈⣿⣿⣯⣭⣭⠉⠉⠁⠀⣿⣿</rgb> <rgb(255,255,255)>┃                                                  ┃</rgb> <rgb(255,255,255)>⠘⣿⣧⢹⣿⣷⣬⣛⣛⣛⣭⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⣀⢠⡄⢀⣀⣄⠹⢀⣿</rgb>
+<rgb(255,255,255)>⣿⣿⡇⠠⡀⢺⠸⢿⣿⣿⣿⣿⣿⣿⣥⣤⣤⣴⣿⣿⣿⣿⣿⣛⣀⣀⡀⣰⣿⣿</rgb> <rgb(255,255,255)>┃ Hardware:                                        ┃</rgb> <rgb(255,255,255)>⡇⣌⠻⡎⣷⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣎⡻⢦⣴⡾⣻⣿⡆⣸⣿</rgb>
+<rgb(245,169,184)>⣿⣿⡇⠀⠈⠣⠴⡾⢻⣿⣿⣿⣿⣿⣿⣟⠻⠿⠿⠛⠿⠿⢛⣿⣿⣿⠇⣿⣿⣿</rgb> <rgb(255,255,255)>┃ • CPU: $cpu                                      ┃</rgb> <rgb(211,098,164)>⡇⣿⣷⣮⣽⣿⣿⡟⣋⣤⡘⣿⣿⣿⣿⣿⣩⣿⣿⣿⣿⣿⣿⣷⣶⣾⣿⡿⢀⠏⣿</rgb>
+<rgb(245,169,184)>⣿⣿⡇⠀⠀⠀⠀⠀⠀⠉⠻⠿⣿⣿⣿⣿⣿⣮⣛⣫⣵⣾⣿⣿⠿⠋⢠⣿⣿⣿</rgb> <rgb(255,255,255)>┃ • RAM: $mem                 ┏━━━━━━━━━━━━━━━━━━━━┫</rgb> <rgb(211,098,164)>⡇⠹⣿⣿⣿⣿⣿⢰⣿⣿⣷⣌⡻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢸⡹⢁⢠⣾⣿</rgb>
+<rgb(091,206,250)>⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⡀⢰⣶⣿⣿⣟⠛⠛⠛⠛⠛⠋⠉⠀⠀⠀⢸⣿⣿⣿</rgb> <rgb(255,255,255)>┃ • Disk: $disk               ┃ CPU Usage: $pt     ┃</rgb> <rgb(163,002,098)>⡀⡀⠈⠻⣿⣿⣿⡎⢿⣿⣿⣿⣿⣶⣭⣍⣛⡛⢻⣿⣿⣿⣿⣿⣿⣾⣿⡿⣸⣿⣿</rgb>
+<rgb(091,206,250)>⣿⣿⠀⠀⠀⠀⠀⠀⢀⢸⣿⣦⣝⠻⡿⣡⣄⠀⠀⠀⠀⠀⠀⢐⠀⠀⢸⣿⣿⣿</rgb> <rgb(255,255,255)>┃ • Arch: $arch               ┃ CPU Temp: $tem     ┃</rgb> <rgb(163,002,098)>⠀⣷⣿⣷⣦⣙⠻⢿⣮⣛⠿⣿⣿⣿⣿⣿⣿⢏⣾⣿⣿⣿⣿⣿⣿⠿⣋⢱⣿⡏⣿</rgb>
+<rgb(091,206,250)>                              </rgb> <rgb(255,255,255)>┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┛</rgb>
+                                                                                                                                    
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>          _|            _|_|              _|                _|        </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>_|_|_|    _|_|_|      _|        _|_|    _|_|_|_|    _|_|_|  _|_|_|    </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>_|    _|  _|    _|  _|_|_|_|  _|_|_|_|    _|      _|        _|    _|  </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>_|    _|  _|    _|    _|      _|          _|      _|        _|    _|  </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>_|_|_|    _|_|_|      _|        _|_|_|      _|_|    _|_|_|  _|    _|  </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>_|                                                                    </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>_|                                                                    </rgb>
+
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        This project aims to be the most customizable fetch.          </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        You can do almost anything with the config.txt.               </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        It is located in</rgb> $configpath
+
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        Have fun customizing! Take note of the comments in            </rgb>
+<rgb(255,255,255)>                      </rgb> <rgb(255,255,255)>        the default config, as they contain valuable info.            </rgb>
+
+
+# Legend:
+
+# $host = Username@Hostname
+# $sys  = Operating System
+# $ker  = Kernel
+# $mem  = RAM (Memory)
+# $up   = Uptime
+# $pac  = Packages (only pacman currently supported)
+# $arch = CPU Architecture
+# $cpu  = CPU Name,
+# $tem  = CPU Temp,
+# $pt   = CPU Usage (percent),
+# $disk = Disk ("used/total MB"),
+
+# Warnings:
+
+# - Putting comments at the top of this file can cause unpredictable behavior
+# - Using escape characters can cause unpredictable behavior. Use the <rgb> and </rgb> tags for colors instead.
+# - Make sure to close your <rgb()> tags with </rgb> to prevent unpredictable behavior.
+# - Using multiple keyword tags on one line can cause unpredictable behavior 
+# and may require fine tuning by the user
+
+# Plans:
+
+# - Allow color by line/character index by giving an array as an input in the config.txt.
+# This would allow for a more comprehensive config while also allowing for more color customization options.
+# - Add photos to fetch output

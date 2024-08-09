@@ -5,12 +5,15 @@ import pbfetch.parse_funcs.parse_cpu as cpu
 import pbfetch.parse_funcs.parse_mem as mem
 import pbfetch.parse_funcs.parse_login as login
 import pbfetch.parse_funcs.parse_kernel as kernel
+import pbfetch.parse_funcs.parse_shell as shell
+import pbfetch.parse_funcs.parse_de as de
+import pbfetch.parse_funcs.parse_fs as fs
 # import pbfetch.parse_funcs.parse_hostname as hostname
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
 import subprocess, platform, psutil
 import os
-from os import uname, statvfs
+from os import statvfs
 
 
 def stats():
@@ -26,9 +29,11 @@ def stats():
 
 
     # uname = tuple(platform.uname())
-    _uname = tuple(uname())
+    _uname = tuple(platform.uname())
     system = _uname[0]
-    stat_user = login.parse_login()
+    environ = dict(os.environ)
+
+    stat_user = environ["USER"]
     stat_host = _uname[1]
     stat_kernel_ver = _uname[2]
     stat_architecture = _uname[4]
@@ -67,15 +72,22 @@ def stats():
         f"{total_disk_size_used}/{total_disk_size_in_gb} MB"
     )
     configpath = str(
-            os.path.join(
-                "/",
-                "home",
-                stat_user,
-                ".config",
-                "pbfetch",
-                "config"
-            )
+        os.path.join(
+            "/",
+            "home",
+            stat_user,
+            ".config",
+            "pbfetch",
+            "config"
         )
+    )
+    # stat_shell = shell.parse_shell()
+    stat_shell = environ["SHELL"]
+    stat_de = de.parse_de().strip()
+    stat_fs = fs.parse_fs().strip()
+    stat_lang = environ["LANG"]
+    stat_datetime = " ".join(subprocess.check_output(["date"]).decode("utf-8").split())
+    # stat_node = platform.node()
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
@@ -94,6 +106,12 @@ def stats():
         "$tem": stat_cpu_temp,
         "$pt": stat_cpu_percent,
         "$disk": stat_disk_total_and_used,
+        "$shell": stat_shell,
+        "$de": stat_de,
+        "$fs": stat_fs,
+        "$lang": stat_lang,
+        "$datetime": stat_datetime,
+        # "$node": stat_node,
         "$system": system,
         "$configpath": configpath,
     }
