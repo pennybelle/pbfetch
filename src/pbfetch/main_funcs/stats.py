@@ -7,6 +7,7 @@ import pbfetch.parse_funcs.parse_login as login
 import pbfetch.parse_funcs.parse_kernel as kernel
 import pbfetch.parse_funcs.parse_shell as shell
 import pbfetch.parse_funcs.parse_de as de
+import pbfetch.parse_funcs.parse_fs as fs
 # import pbfetch.parse_funcs.parse_hostname as hostname
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
@@ -80,6 +81,7 @@ def stats():
     )
     stat_shell = shell.parse_shell()
     stat_de = de.parse_de()
+    stat_fs = fs.parse_fs()
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
@@ -100,6 +102,7 @@ def stats():
         "$disk": stat_disk_total_and_used,
         "$shell": stat_shell,
         "$de": stat_de,
+        "$fs": stat_fs,
         "$system": system,
         "$configpath": configpath,
     }
