@@ -13,7 +13,7 @@ import pbfetch.parse_funcs.parse_fs as fs
 
 import subprocess, platform, psutil
 import os
-from os import uname, statvfs
+from os import statvfs
 
 
 def stats():
@@ -29,7 +29,7 @@ def stats():
 
 
     # uname = tuple(platform.uname())
-    _uname = tuple(uname())
+    _uname = tuple(platform.uname())
     system = _uname[0]
     environ = dict(os.environ)
 
@@ -86,6 +86,8 @@ def stats():
     stat_de = de.parse_de().strip()
     stat_fs = fs.parse_fs().strip()
     stat_lang = environ["LANG"]
+    stat_datetime = subprocess.check_output(["date"]).decode("utf-8").replace("  ", " ")
+    # stat_node = platform.node()
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
@@ -108,6 +110,8 @@ def stats():
         "$de": stat_de,
         "$fs": stat_fs,
         "$lang": stat_lang,
+        "$datetime": stat_datetime,
+        # "$node": stat_node,
         "$system": system,
         "$configpath": configpath,
     }
