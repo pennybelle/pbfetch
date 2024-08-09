@@ -4,6 +4,7 @@ from subprocess import run
 def parse_wm():
     managers = {"hyprland": "hyprland", "kwin": "kwin"}
 
+    # this runs twice, idk why
     try:
         for manager in managers.keys():
             output = run(["pgrep", "-l", manager], capture_output=True).stdout

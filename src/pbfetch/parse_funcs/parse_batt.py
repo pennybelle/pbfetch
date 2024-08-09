@@ -9,15 +9,15 @@ def parse_batt():
 
         with open(os.path.join(path, "charge_full")) as full:
             full = int(full.read())
-            print(full)
+            # print(full)
 
         with open(os.path.join(path, "charge_now")) as now:
             now = int(now.read())
-            print(now)
+            # print(now)
 
         if full and now:
-            charge = f"{(now / full) * 100:.2f}" + "%"
-            print(charge)
+            charge = str(round((now / full) * 100)) + "%"
+            # print(charge)
             return charge
 
         return None
