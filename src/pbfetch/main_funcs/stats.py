@@ -86,7 +86,7 @@ def stats():
     stat_de = de.parse_de().strip()
     stat_fs = fs.parse_fs().strip()
     stat_lang = environ["LANG"]
-    stat_datetime = subprocess.check_output(["date"]).decode("utf-8").replace("  ", " ")
+    stat_datetime = " ".join(subprocess.check_output(["date"]).decode("utf-8").split())
     # stat_node = platform.node()
 
     # TODO: add easter egg stats for fun dynamic things
