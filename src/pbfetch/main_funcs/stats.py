@@ -14,6 +14,7 @@ import pbfetch.parse_funcs.parse_batt as batt
 import pbfetch.parse_funcs.parse_mb as mb
 import pbfetch.parse_funcs.parse_comp_name as comp_name
 import pbfetch.parse_funcs.parse_bios_type as bios
+import pbfetch.parse_funcs.parse_res as res
 import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage         
 # import pbfetch.parse_funcs.parse_hostname as hostname
 
@@ -98,6 +99,7 @@ def stats():
     stat_mb = mb.parse_mb()
     stat_comp_name = comp_name.parse_comp_name()
     stat_bios_type = bios.parse_bios_type()
+    stat_res = res.parse_res()
     # stat_node = platform.node()
 
     ##################################################################################
@@ -131,6 +133,7 @@ def stats():
         "$mboard": stat_mb,
         "$bios": stat_bios_type,
         "$comp": stat_comp_name,
+        "$res": stat_res,
         "$datetime": stat_datetime,
         # "$node": stat_node,
         "$system": system,
