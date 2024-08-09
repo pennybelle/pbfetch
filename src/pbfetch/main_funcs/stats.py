@@ -84,7 +84,7 @@ def stats():
     )
     # stat_shell = shell.parse_shell()
     stat_shell = environ["SHELL"]
-    stat_de = de.parse_de().strip()
+    stat_de = de.parse_de()
     stat_fs = fs.parse_fs()
     stat_lang = environ["LANG"]
     stat_datetime = " ".join(subprocess.check_output(["date"]).decode("utf-8").split())

@@ -1,15 +1,18 @@
 def parse_fs():
-    file = "/proc/cmdline"
+    file = "/etc/fstab"
     try:
-        with open(file) as cmdline:
-            cmdline = cmdline.read()
-            pieces = cmdline.split(" ")
-            file_system = None
-            for piece in reversed(pieces):
-                if "rootfstype" in piece:
-                    filesystem = piece.replace("rootfstype=", "").strip()
+        with open(file) as fstab:
+            fstab = fstab.read()
+            lines = fstab.splitlines()
+            for line in lines:
+                print(line)
+                if "subvol=/@" in line:
+                    print("found it")
+                    file_system = line.split("/")[1]
+                    file_system = file_system.split()[0]
+                    return file_system
 
-        return filesystem
+        return None
 
     except Exception as e:
         print(e)
