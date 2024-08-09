@@ -6,9 +6,11 @@ import pbfetch.parse_funcs.parse_mem as mem
 import pbfetch.parse_funcs.parse_login as login
 import pbfetch.parse_funcs.parse_kernel as kernel
 import pbfetch.parse_funcs.parse_shell as shell
+import pbfetch.parse_funcs.parse_wm as wm
 import pbfetch.parse_funcs.parse_de as de
 import pbfetch.parse_funcs.parse_fs as fs
 import pbfetch.parse_funcs.parse_gpu_name as gpu
+import pbfetch.parse_funcs.parse_batt as batt
 # import pbfetch.parse_funcs.parse_hostname as hostname
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
@@ -84,11 +86,13 @@ def stats():
     )
     # stat_shell = shell.parse_shell()
     stat_shell = environ["SHELL"]
+    stat_wm = wm.parse_wm() # pgrep -l compiz |cut -d " " -f2
     stat_de = de.parse_de()
     stat_fs = fs.parse_fs()
     stat_lang = environ["LANG"]
     stat_datetime = " ".join(subprocess.check_output(["date"]).decode("utf-8").split())
     stat_gpu_name = gpu.parse_gpu()
+    stat_bat = batt.parse_batt()
     # stat_node = platform.node()
 
     # TODO: add easter egg stats for fun dynamic things
@@ -109,9 +113,11 @@ def stats():
         "$pt": stat_cpu_percent,
         "$disk": stat_disk_total_and_used,
         "$shell": stat_shell,
+        "$wm": stat_wm,
         "$de": stat_de,
         "$fs": stat_fs,
         "$lang": stat_lang,
+        "$bat": stat_bat,
         "$gpun": stat_gpu_name,
         "$datetime": stat_datetime,
         # "$node": stat_node,

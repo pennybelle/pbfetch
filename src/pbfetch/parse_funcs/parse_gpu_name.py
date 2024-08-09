@@ -8,7 +8,7 @@ def vulkan():
         return gpu_info
 
     except Exception:
-        print("vulkan didnt work")
+        # print("vulkan didnt work")
         return None
 
 
@@ -22,7 +22,7 @@ def glxinfo():
         return gpu_info
 
     except Exception:
-        print("glxinfo didnt work")
+        # print("glxinfo didnt work")
         return None
 
 
