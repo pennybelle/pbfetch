@@ -31,7 +31,9 @@ def stats():
     # uname = tuple(platform.uname())
     _uname = tuple(uname())
     system = _uname[0]
-    stat_user = login.parse_login()
+    environ = dict(os.environ)
+
+    stat_user = environ["USER"]
     stat_host = _uname[1]
     stat_kernel_ver = _uname[2]
     stat_architecture = _uname[4]
@@ -79,9 +81,11 @@ def stats():
             "config"
         )
     )
-    stat_shell = shell.parse_shell()
-    stat_de = de.parse_de()
-    stat_fs = fs.parse_fs()
+    # stat_shell = shell.parse_shell()
+    stat_shell = environ["SHELL"]
+    stat_de = de.parse_de().strip()
+    stat_fs = fs.parse_fs().strip()
+    stat_lang = environ["LANG"]
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
@@ -103,6 +107,7 @@ def stats():
         "$shell": stat_shell,
         "$de": stat_de,
         "$fs": stat_fs,
+        "$lang": stat_lang,
         "$system": system,
         "$configpath": configpath,
     }
