@@ -63,7 +63,7 @@ def parse_de():
             return "xfce4"
         elif is_running("ksmserver"):
             return "kde"
-    return None
+    return "not found"
 
 
 def is_running(process):
