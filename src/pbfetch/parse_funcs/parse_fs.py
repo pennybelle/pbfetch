@@ -7,7 +7,7 @@ def parse_fs():
             file_system = None
             for piece in reversed(pieces):
                 if "rootfstype" in piece:
-                    filesystem = piece.replace("rootfstype=", "")
+                    filesystem = piece.replace("rootfstype=", "").strip()
 
         return filesystem
 
