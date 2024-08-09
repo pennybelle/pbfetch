@@ -18,6 +18,9 @@ def replace_keyword(template, keyword, replace_text):
     template = template.splitlines()
     replaced_template = []
 
+    if replace_text == None:
+        replace_text = "Error"
+
     for line in template:
         # Replace the text with a loading spinner
         if keyword not in line:

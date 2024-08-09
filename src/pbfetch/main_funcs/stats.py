@@ -8,6 +8,7 @@ import pbfetch.parse_funcs.parse_kernel as kernel
 import pbfetch.parse_funcs.parse_shell as shell
 import pbfetch.parse_funcs.parse_de as de
 import pbfetch.parse_funcs.parse_fs as fs
+import pbfetch.parse_funcs.parse_gpu_name as gpu
 # import pbfetch.parse_funcs.parse_hostname as hostname
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
@@ -87,6 +88,7 @@ def stats():
     stat_fs = fs.parse_fs().strip()
     stat_lang = environ["LANG"]
     stat_datetime = " ".join(subprocess.check_output(["date"]).decode("utf-8").split())
+    stat_gpu_name = gpu.parse_gpu()
     # stat_node = platform.node()
 
     # TODO: add easter egg stats for fun dynamic things
@@ -110,6 +112,7 @@ def stats():
         "$de": stat_de,
         "$fs": stat_fs,
         "$lang": stat_lang,
+        "$gpun": stat_gpu_name,
         "$datetime": stat_datetime,
         # "$node": stat_node,
         "$system": system,
