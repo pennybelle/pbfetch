@@ -11,8 +11,11 @@ import pbfetch.parse_funcs.parse_de as de
 import pbfetch.parse_funcs.parse_fs as fs
 import pbfetch.parse_funcs.parse_gpu_name as gpu
 import pbfetch.parse_funcs.parse_batt as batt
+import pbfetch.parse_funcs.parse_mb as mb
+import pbfetch.parse_funcs.parse_comp_name as comp_name
+import pbfetch.parse_funcs.parse_bios_type as bios
+import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage         
 # import pbfetch.parse_funcs.parse_hostname as hostname
-# import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
 import subprocess, platform, psutil
 import os
@@ -47,11 +50,10 @@ def stats():
     stat_kernel = kernel.parse_kernel_release()
     stat_uptime = uptime.parse_uptime()
     stat_cpu_percent = f"{round(psutil.cpu_percent(DELAY))}%"
-    # stat_cpu_percent = f"{cpu_usage.parse_cpu_usage()}%"
+    # stat_cpu_percent = cpu_usage.parse_cpu_usage()
     stat_cpu_temp = f"{temp.parse_temp()}°c" 
     stat_cpu_name = cpu.parse_cpu()
     ram_total, ram_used = mem.parse_mem()
-    stat_arch = platform.machine()
     stat_ram = str(
         f"{round(ram_used/1024)}/"
         f"{round(ram_total/1024)}"
@@ -93,7 +95,14 @@ def stats():
     stat_datetime = " ".join(subprocess.check_output(["date"]).decode("utf-8").split())
     stat_gpu_name = gpu.parse_gpu()
     stat_bat = batt.parse_batt()
+    stat_mb = mb.parse_mb()
+    stat_comp_name = comp_name.parse_comp_name()
+    stat_bios_type = bios.parse_bios_type()
     # stat_node = platform.node()
+
+    ##################################################################################
+    ##################################################################################
+    ##################################################################################
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
@@ -119,6 +128,9 @@ def stats():
         "$lang": stat_lang,
         "$bat": stat_bat,
         "$gpun": stat_gpu_name,
+        "$mboard": stat_mb,
+        "$bios": stat_bios_type,
+        "$comp": stat_comp_name,
         "$datetime": stat_datetime,
         # "$node": stat_node,
         "$system": system,

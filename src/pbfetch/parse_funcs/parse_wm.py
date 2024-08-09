@@ -9,7 +9,7 @@ def parse_wm():
         for manager in managers.keys():
             output = run(["pgrep", "-l", manager], capture_output=True).stdout
             output = str(output)
-            print(output)
+            # print(output)
 
             if output and manager in output:
                 return managers[manager]

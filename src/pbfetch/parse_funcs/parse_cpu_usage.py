@@ -4,52 +4,54 @@ import time
 def parse_cpu_usage():
     file = "/proc/stat"
     try:
+        data = None
         with open(file) as file:
+            data = file.readline().split()
+            data = [int(x) for x in data[1:8]]
 
-            def get_cpu_stats():
-                data = file.readline().split()
-                return [int(x) for x in data[1:]]
+        print(data)
 
-            # spline = line_parse()
-            # print(spline)
-            # total = int(spline[2])
+        user = data[0]
+        nice = data[1]
+        system = data[2]
+        idle = data[3]
+        iowait = data[4]
+        irq = data[5]
+        softirq = data[6]
 
-            first_check = get_cpu_stats()
-            time.sleep(0.1)
-            second_check = get_cpu_stats()
+        in_use = user + nice + system
+        total = in_use + idle + iowait + irq + softirq
 
-            deltas = [t2 - t1 for t1, t2 in zip(first_check, second_check)]
+        return str(round((in_use / total) * 100))
 
-            total_time = sum(deltas)
+        # spline = line_parse()
+        # print(spline)
+        # total = int(spline[2])
 
-            idle_time = deltas[3]
+        # in_use =
 
-            active_time = total_time - idle_time
+        # # one = int(spline[2])
+        # two = int(spline[2])
+        # # three = int(spline[4])
+        # four = int(spline[4])
+        # five = int(spline[5])
 
-            usage = f"{(active_time / total_time) * 100:.2g}"
+        # usage = f"{float((two + four) * 100 / (two + four + five)):.3g}"
 
-            # # one = int(spline[2])
-            # two = int(spline[2])
-            # # three = int(spline[4])
-            # four = int(spline[4])
-            # five = int(spline[5])
+        # if first_check > second_check:
+        #     usage = ((first_check - second_check) / total) * 100
+        # else:
+        #     usage = ((second_check - first_check) / total) * 100
 
-            # usage = f"{float((two + four) * 100 / (two + four + five)):.3g}"
+        # spline = line_parse()
+        # u = int(spline[2])
+        # t = int(spline[2]) + int(spline[4]) + int(spline[5])
 
-            # if first_check > second_check:
-            #     usage = ((first_check - second_check) / total) * 100
-            # else:
-            #     usage = ((second_check - first_check) / total) * 100
+        # time.sleep(1)
 
-            # spline = line_parse()
-            # u = int(spline[2])
-            # t = int(spline[2]) + int(spline[4]) + int(spline[5])
-
-            # time.sleep(1)
-
-            # spline = line_parse()
-            # u1 = int(spline[2])
-            # t1 = int(spline[2]) + int(spline[4]) + int(spline[5])
+        # spline = line_parse()
+        # u1 = int(spline[2])
+        # t1 = int(spline[2]) + int(spline[4]) + int(spline[5])
 
         return usage
         # return int((u - t) * 100 / (u1 - t1))
