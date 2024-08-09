@@ -5,6 +5,8 @@ import pbfetch.parse_funcs.parse_cpu as cpu
 import pbfetch.parse_funcs.parse_mem as mem
 import pbfetch.parse_funcs.parse_login as login
 import pbfetch.parse_funcs.parse_kernel as kernel
+import pbfetch.parse_funcs.parse_shell as shell
+import pbfetch.parse_funcs.parse_de as de
 # import pbfetch.parse_funcs.parse_hostname as hostname
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 
@@ -67,15 +69,17 @@ def stats():
         f"{total_disk_size_used}/{total_disk_size_in_gb} MB"
     )
     configpath = str(
-            os.path.join(
-                "/",
-                "home",
-                stat_user,
-                ".config",
-                "pbfetch",
-                "config"
-            )
+        os.path.join(
+            "/",
+            "home",
+            stat_user,
+            ".config",
+            "pbfetch",
+            "config"
         )
+    )
+    stat_shell = shell.parse_shell()
+    stat_de = de.parse_de()
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
@@ -94,6 +98,8 @@ def stats():
         "$tem": stat_cpu_temp,
         "$pt": stat_cpu_percent,
         "$disk": stat_disk_total_and_used,
+        "$shell": stat_shell,
+        "$de": stat_de,
         "$system": system,
         "$configpath": configpath,
     }
