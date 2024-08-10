@@ -7,7 +7,4 @@ def parse_res():
     res = res.split(",")[1]
     res = "".join(res.replace("current", "").split())
 
-    # w, h = res.split("x")
-
-    # return w, h
     return res

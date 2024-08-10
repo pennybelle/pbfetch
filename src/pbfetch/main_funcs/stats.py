@@ -56,7 +56,7 @@ def stats():
     stat_cpu_name = cpu.parse_cpu()
     ram_total, ram_used = mem.parse_mem()
     stat_ram = str(
-        f"{round(ram_used/1024)}/"
+        f"{round(ram_used/1024)} / "
         f"{round(ram_total/1024)}"
         " MB"
     ) if ram_total and ram_used else None
@@ -75,7 +75,7 @@ def stats():
     )
     total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
     stat_disk_total_and_used = (
-        f"{total_disk_size_used}/{total_disk_size_in_gb} MB"
+        f"{total_disk_size_used} / {total_disk_size_in_gb} MB"
     )
     configpath = str(
         os.path.join(
