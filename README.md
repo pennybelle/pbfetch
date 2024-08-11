@@ -29,7 +29,7 @@ These are some of the things you can do with pbfetch. The config is a simple tex
 Creating your own custom configuration is a bit more work than other fetches but the benefit is obviously not being limited to the creator's vision of the output format, rather the user themselves having almost complete freedom to change what they want how they want. 
 
 ## License
-The code is FOSS and licensed uner Apache 2.0, so you may alter and use the code how you'd like as long as you give proper credit.
+The code is FOSS and licensed under Apache 2.0, so you may alter and use the code how you'd like as long as you give proper credit.
 
 ## Disclaimer
 This project is very much a WIP, and only Arch Linux is supported. If you'd like to help me get this working on your system, please let me know! I'd like for this project to be as comprehensive as possible. If you find any issues please don't hesitate to contact me, I'd be more than happy to fix it. I hope you like it!
