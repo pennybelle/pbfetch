@@ -2,7 +2,8 @@
 
 ![Screenshot_20240803_191108](https://github.com/user-attachments/assets/8fb08b86-90ce-48d7-a428-dbc8c6dbf848)
 
-An unbelievably customizable hardware/software fetch. No more being limited to a logo on the left.
+An unbelievably customizable hardware/software fetch. 
+No more being limited to a logo on the left.
 
 ## Installation:
 Paru:
@@ -31,4 +32,4 @@ Creating your own custom configuration is a bit more work than other fetches but
 The code is FOSS and licensed uner Apache 2.0, so you may alter and use the code how you'd like as long as you give proper credit.
 
 ## Disclaimer
-This project is very much a WIP, and only Arch Linux is supported. If you'd like to help me get this working on your system, please let me know! I'd like for this project to be as comprehensive as possible. I hope you like it!
+This project is very much a WIP, and only Arch Linux is supported. If you'd like to help me get this working on your system, please let me know! I'd like for this project to be as comprehensive as possible. If you find any issues please don't hesitate to contact me, I'd be more than happy to fix it. I hope you like it!
