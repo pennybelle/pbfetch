@@ -16,7 +16,7 @@ Binary:
 > To install directly from the PKGBUILD, navigate to `pbfetch/bin/` and use `makepkg -si`.
 
 ## Config Examples
-These are some of the things you can do with pbfetch. The config is a simple text file and you can design the output to be whatever you want within the limits of text (for now...), and can display stat info wherever you'd like in whatever fashion you desire by inputting certain keyword tags into the config. For example, the tag `$host` would be replaced by hostname when you run the program. So a config with only the word `$host` in it would print as yoru hostname in the format of `user@device`. See photos below of the things you can do with this amount of creative freedom;
+These are some of the things you can do with pbfetch. The config is a simple text file and you can design the output to be whatever you want within the limits of text (for now...), and can display stat info wherever you'd like in whatever fashion you desire by inputting certain keyword tags into the config. For example, the tag `$host` would be replaced by hostname when you run the program. So a config with only the word `$host` in it would print as your hostname in the format of `user@device`. See photos below of the things you can do with this amount of creative freedom;
 
 ![Screenshot_20240808_214059](https://github.com/user-attachments/assets/948fd649-cde5-4b4a-a92d-6114bcffcaf9)
 
