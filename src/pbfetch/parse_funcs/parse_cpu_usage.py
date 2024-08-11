@@ -9,7 +9,7 @@ def parse_cpu_usage():
             data = file.readline().split()
             data = [int(x) for x in data[1:8]]
 
-        print(data)
+        # print(data)
 
         user = data[0]
         nice = data[1]
@@ -22,7 +22,7 @@ def parse_cpu_usage():
         in_use = user + nice + system
         total = in_use + idle + iowait + irq + softirq
 
-        return str(round((in_use / total) * 100))
+        return str(round((in_use / total) * 100)) + "%"
 
         # spline = line_parse()
         # print(spline)
