@@ -1,4 +1,4 @@
-from pbfetch.main_funcs.stats import stats
+from pbfetch.main_funcs.stats import get_config_dir, stats
 
 import os
 from shutil import copy
@@ -11,7 +11,7 @@ user = stats_dict["$user"]
 
 file = "config.txt"
 usr_tmp = os.path.join("/", "usr", "share", "pbfetch", "config")
-config_directory = os.path.join("/", "home", user, ".config", "pbfetch", "config")
+config_directory = get_config_dir()
 
 
 def handle_config():

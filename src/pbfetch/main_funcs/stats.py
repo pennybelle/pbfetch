@@ -22,7 +22,10 @@ import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage
 import subprocess, platform, psutil
 import os
 from os import statvfs
+from pathlib import Path
 
+def get_config_dir():
+    return os.environ.get("XDG_CONFIG_HOME", Path.home().joinpath(".config", "pbfetch"))
 
 def stats():
     # constant for checking cpu usage (in seconds)
@@ -81,12 +84,8 @@ def stats():
     )
     configpath = str(
         os.path.join(
-            "/",
-            "home",
-            stat_user,
-            ".config",
-            "pbfetch",
-            "config"
+            get_config_dir(),
+            "config.txt"
         )
     )
     # stat_shell = shell.parse_shell()
