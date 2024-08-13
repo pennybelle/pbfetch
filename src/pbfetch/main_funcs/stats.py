@@ -1,6 +1,7 @@
 import pbfetch.parse_funcs.parse_uptime as uptime
 import pbfetch.parse_funcs.parse_os as pos
 import pbfetch.parse_funcs.parse_temp as temp
+import pbfetch.parse_funcs.parse_cpu_temp as cpu_temp
 import pbfetch.parse_funcs.parse_cpu as cpu
 import pbfetch.parse_funcs.parse_mem as mem
 import pbfetch.parse_funcs.parse_login as login
@@ -51,8 +52,9 @@ def stats():
     stat_kernel = kernel.parse_kernel_release()
     stat_uptime = uptime.parse_uptime()
     stat_cpu_percent = f"{round(psutil.cpu_percent(DELAY))}%"
-    # stat_cpu_percent = cpu_usage.parse_cpu_usage()
-    stat_cpu_temp = f"{temp.parse_temp()}°c" 
+    # stat_cpu_percent = cpu_usage.parse_cpu_usage() # faster but less accurate
+    # stat_cpu_temp = f"{temp.parse_temp()}°c"
+    stat_cpu_temp = f"{cpu_temp.parse_cpu_temp()}°c"
     stat_cpu_name = cpu.parse_cpu()
     ram_total, ram_used = mem.parse_mem()
     stat_ram = str(
