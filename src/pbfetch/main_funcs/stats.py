@@ -90,7 +90,12 @@ def stats():
         )
     )
     # stat_shell = shell.parse_shell()
-    stat_shell = environ["SHELL"]
+    shell_pre_parse = environ["SHELL"].replace("/bin/", "")
+    shell_mid_parse = str(subprocess.check_output([f"{shell_pre_parse}", "--version"]).decode("utf-8"))
+    shell_post_parse = shell_mid_parse.split()
+    shell_first_half = shell_post_parse[0]
+    shell_second_half = shell_post_parse[1]
+    stat_shell = f"{shell_first_half} {shell_second_half}"
     stat_wm = wm.parse_wm() # pgrep -l compiz |cut -d " " -f2
     stat_de = de.parse_de()
     stat_fs = fs.parse_fs()
