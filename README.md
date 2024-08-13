@@ -59,7 +59,7 @@ manager. If you prefer using Rye:
 ## 🛠️ Config
 
 With **pbfetch**, your customization options are practically limitless. The
-configuration process is straightforwardjust edit a simple text file to craft
+configuration process is straightforward just edit a simple text file to craft
 your ideal output. Using specific keyword tags, you can precisely control what
 information is displayed and exactly where it appears on your screen.
 
@@ -96,8 +96,8 @@ are not confined to someone else's design, **pbfetch** puts you in charge!
 ## 📜 License
 
 **pbfetch** is open-source and licensed under the Apache 2.0 License. This means
-you are free to modify, distribute, and use the code as you see fitjust be sure
-to provide proper attribution where due.
+you are free to modify, distribute, and use the code as you see fit, just be
+sure to provide proper attribution where due.
 
 ## ⚠️ Disclaimer
 
