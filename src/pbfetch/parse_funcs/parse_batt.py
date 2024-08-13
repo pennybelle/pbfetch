@@ -10,11 +10,21 @@ def parse_batt():
         if os.path.exists(path) is not True:
             return "no battery"
 
-        with open(os.path.join(path, "charge_full")) as full:
+        if os.path.exists(os.path.join(path, "charge_full")):
+            file_full = "charge_full"
+        elif os.path.exists(os.path.join(path, "energy_full")):
+            file_full = "energy_full"
+
+        if os.path.exists(os.path.join(path, "charge_now")):
+            file_now = "charge_now"
+        elif os.path.exists(os.path.join(path, "energy_now")):
+            file_now = "energy_now"
+
+        with open(os.path.join(path, file_full)) as full:
             full = int(full.read())
             # print(full)
 
-        with open(os.path.join(path, "charge_now")) as now:
+        with open(os.path.join(path, file_now)) as now:
             now = int(now.read())
             # print(now)
 
