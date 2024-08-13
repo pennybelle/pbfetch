@@ -1,4 +1,4 @@
-# pbfetch
+# pbfetch - an unbelievably customizable fetch
 
 ![screen0](gallery/screen0.png)
 
