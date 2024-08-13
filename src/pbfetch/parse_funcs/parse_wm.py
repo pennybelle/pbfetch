@@ -2,7 +2,7 @@ from subprocess import run
 
 
 def parse_wm():
-    managers = {"hyprland": "hyprland", "kwin": "kwin"}
+    managers = {"Hyprland": "Hyprland", "kwin": "kwin"}
 
     # this runs twice, idk why
     try:
@@ -14,7 +14,7 @@ def parse_wm():
             if output and manager in output:
                 return managers[manager]
 
-        return None
+        return "not supported yet"
 
     except Exception as e:
         print(e)
