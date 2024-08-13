@@ -1,35 +1,111 @@
-## pbfetch
+# pbfetch
 
-![Screenshot_20240803_191108](https://github.com/user-attachments/assets/8fb08b86-90ce-48d7-a428-dbc8c6dbf848)
+![screen0](gallery/screen0.png)
 
-An unbelievably customizable hardware/software fetch. 
-No more being limited to a logo on the left.
+**pbfetch** is an incredibly customizable hardware/software fetch utility that
+dares to break the mold. Tired of the same old logo sitting on the left side of
+your terminal? With **pbfetch**, you have the power to design your system's
+fetch output exactly as you envision it. Your terminal, your rules, let your
+creativity shine!
 
-## Installation:
-Paru:
-> This package is now hosted on the [Arch User Repository](https://aur.archlinux.org/packages/pbfetch-git). If you have paru you can install with `paru -S pbfetch-git`
+## 🌟 Features
 
-Rye:
-> This program is bootstrapped by Rye. If you have Rye installed, in `/pbfetch/` use `rye sync` and `rye run pbfetch` to run fetch.
+- **Unmatched Customization:** Place information wherever you want, however you
+  want, with a simple text-based configuration.
+- **Flexible Configuration:** Swap out boring logos for dynamic content that you
+  control.
+- **Simple Syntax:** Utilize easy-to-understand keyword tags to display various
+  system stats.
 
-Binary:
-> To install directly from the PKGBUILD, navigate to `pbfetch/bin/` and use `makepkg -si`.
+## 🚀 Installation
 
-## Config Examples
-These are some of the things you can do with pbfetch. The config is a simple text file and you can design the output to be whatever you want within the limits of text (for now...), and can display stat info wherever you'd like in whatever fashion you desire by inputting certain keyword tags into the config. For example, the tag `$host` would be replaced by hostname when you run the program. So a config with only the word `$host` in it would print as your hostname in the format of `user@device`. See photos below of the things you can do with this amount of creative freedom;
+You have a few options to get started with **pbfetch** depending on your
+preferred method:
 
-![Screenshot_20240808_214059](https://github.com/user-attachments/assets/948fd649-cde5-4b4a-a92d-6114bcffcaf9)
+### Install via the AUR
 
-![Screenshot_20240808_214525](https://github.com/user-attachments/assets/a7f0b9f6-710f-43d6-ba2c-4035c6c0c46d)
+If you are on an arch based distribution, you can install **pbfetch** using your
+favorite AUR helper:
 
-![Screenshot_20240808_215154](https://github.com/user-attachments/assets/d22b57b3-a641-468b-809d-520b15c6e173)
+```bash
+paru -S pbfetch-git
+```
 
-![Screenshot_20240810_105613](https://github.com/user-attachments/assets/b114f119-87a3-446a-8f17-a6441bf74e85)
+Or if you prefer to install manually:
 
-Creating your own custom configuration is a bit more work than other fetches but the benefit is obviously not being limited to the creator's vision of the output format, rather the user themselves having almost complete freedom to change what they want how they want. 
+```bash
+git clone https://aur.archlinux.org/pbfetch-git.git
+cd pbfetch-git
+makepkg -si
+```
 
-## License
-The code is FOSS and licensed under Apache 2.0, so you may alter and use the code how you'd like as long as you give proper credit.
+### Install via Rye
 
-## Disclaimer
-This project is very much a WIP, and only Arch Linux is supported. If you'd like to help me get this working on your system, please let me know! I'd like for this project to be as comprehensive as possible. If you find any issues please don't hesitate to contact me, I'd be more than happy to fix it. I hope you like it!
+**pbfetch** is bootstrapped by [Rye](https://rye.astral.sh/), a Python toolchain
+manager. If you prefer using Rye:
+
+1. Make sure Rye is installed on your system.
+2. Clone the **pbfetch** repository and navigate to the project directory:
+   ```bash
+   git clone https://github.com/pennybelle/pbfetch.git
+   cd pbfetch/
+   ```
+3. Sync the project and run **pbfetch**:
+   ```bash
+   rye sync
+   rye run pbfetch
+   ```
+
+## 🛠️ Config
+
+With **pbfetch**, your customization options are practically limitless. The
+configuration process is straightforwardjust edit a simple text file to craft
+your ideal output. Using specific keyword tags, you can precisely control what
+information is displayed and exactly where it appears on your screen.
+
+The configuration file is the heart of **pbfetch**. It's a plain text file that
+allows you to design the fetch output exactly as you envision it. Want to show
+your hostname in a specific spot? Simply include the `$host` tag in your
+configuration, and **pbfetch** will replace it with your hostname when the
+program runs. For example, if your configuration contains `$host`, it will
+output something like `user@device`.
+
+You can find an example configuration file [here](src/pbfetch/config/config.txt)
+to get started.
+
+The sky's the limit when it comes to creativity! Whether you're aiming for a
+traditional system information display or something entirely unique, **pbfetch**
+empowers you to bring your vision to life.
+
+### Screenshot Gallery
+
+Check out some amazing examples of what you can create with **pbfetch**:
+
+![screen1](gallery/screen1.png)
+
+![screen2](gallery/screen2.png)
+
+![screen3](gallery/screen3.png)
+
+![screen4](gallery/screen4.png)
+
+Creating your own custom configuration is a bit more involved than other fetch
+utilities, but the reward is complete control over your terminal’s output. You
+are not confined to someone else's design, **pbfetch** puts you in charge!
+
+## 📜 License
+
+**pbfetch** is open-source and licensed under the Apache 2.0 License. This means
+you are free to modify, distribute, and use the code as you see fitjust be sure
+to provide proper attribution where due.
+
+## ⚠️ Disclaimer
+
+**pbfetch** is currently a work-in-progress (WIP). As of now, it is only
+supported on Arch Linux. However, I am eager to expand its compatibility! If
+you'd like to contribute or help get **pbfetch** working on your system, please
+don't hesitate to reach out. Your feedback and contributions are highly valued.
+
+If you encounter any issues, or if you have suggestions for improvements, please
+let me know. I’m here to help and excited to see what you’ll create with
+**pbfetch**. Enjoy! 🎉
