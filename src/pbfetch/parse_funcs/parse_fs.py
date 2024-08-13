@@ -5,7 +5,7 @@ def parse_fs():
             fstab = fstab.read()
             lines = fstab.splitlines()
             for line in lines:
-                if "subvol=/@" in line:
+                if "subvol=/" in line:
                     file_system = line.split("/")[1]
                     file_system = file_system.split()[0]
                     return file_system

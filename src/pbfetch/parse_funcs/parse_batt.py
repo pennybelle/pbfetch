@@ -7,6 +7,9 @@ def parse_batt():
     try:
         path = os.path.join("/", "sys", "class", "power_supply", "BAT0")
 
+        if os.path.exists(path) is not True:
+            return "no battery"
+
         with open(os.path.join(path, "charge_full")) as full:
             full = int(full.read())
             # print(full)
