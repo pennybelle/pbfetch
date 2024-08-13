@@ -15,6 +15,10 @@ def parse_batt():
             now = int(now.read())
             # print(now)
 
+        # dont ask ok... just........ dont ask.
+        if now > full:
+            full = now
+
         if full and now:
             charge = str(round((now / full) * 100)) + "%"
             # print(charge)
