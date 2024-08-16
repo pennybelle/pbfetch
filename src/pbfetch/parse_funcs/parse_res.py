@@ -2,9 +2,21 @@ import subprocess
 
 
 def parse_res():
-    res = str(subprocess.check_output(["xrandr"]).decode("utf-8"))
-    res = res.splitlines()[0]
-    res = res.split(",")[1]
-    res = "".join(res.replace("current", "").split())
+    try:
+        res = subprocess.Popen(
+            "xdpyinfo | grep dimensions",
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        res = res.communicate()[0]
+        print(res)
+        res = str(res)
+        res = res.split()
+        res = str(res[2])
 
-    return res
+        return res
+
+    except Exception as e:
+        print(e)
+        return None

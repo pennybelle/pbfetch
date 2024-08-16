@@ -54,6 +54,17 @@ def parse_de():
             elif desktop_session.startswith("wmaker"):  # e.g. wmaker-common
                 return "windowmaker"
         if os.environ.get("KDE_FULL_SESSION") == "true":
+            # print("boop")
+            # output = str(subprocess.run(["kinfo"], capture_output=True).stdout)
+            # output = output[2:-1]
+            # output = output.split(r"\n")
+            # # print(output)  # debug
+            # first_half = output[1].replace("Version: ", "")
+            # # print(first_half)  # debug
+            # second_half = output[5].replace("Graphics Platform: ", "")
+            # output = f"{first_half} ({second_half})"
+
+            # return output
             return "kde"
         elif os.environ.get("GNOME_DESKTOP_SESSION_ID"):
             if not "deprecated" in os.environ.get("GNOME_DESKTOP_SESSION_ID"):
