@@ -102,13 +102,13 @@ def stats():
     
     
     def stat_disk_total_and_used():
-        stat_vfs = statvfs("/")
-        total_disk_size_in_bytes = stat_vfs.f_frsize * stat_vfs.f_blocks
+        vfs = statvfs("/")
+        total_disk_size_in_bytes = vfs.f_frsize * vfs.f_blocks
         total_disk_size_in_gb = round(
             total_disk_size_in_bytes / (1024.0 ** 2)
         )
         disk_free_space_gb = round(
-            stat_vfs.f_frsize * stat_vfs.f_bfree / (1024.0 ** 2)
+            vfs.f_frsize * vfs.f_bfree / (1024.0 ** 2)
         )
         total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
         return (
@@ -117,7 +117,11 @@ def stats():
     
     def stat_shell():
         shell_pre_parse = environ["SHELL"].replace("/bin/", "")
-        shell_mid_parse = str(subprocess.check_output([f"{shell_pre_parse}", "--version"]).decode("utf-8"))
+        shell_mid_parse = str(
+            subprocess.check_output(
+                [f"{shell_pre_parse}", "--version"]
+            ).decode("utf-8")
+        )
         shell_post_parse = shell_mid_parse.split()
         shell_name = shell_post_parse[0]
         shell_version = shell_post_parse[1]
@@ -136,7 +140,9 @@ def stats():
         return environ["LANG"]
     
     def stat_datetime():
-        return " ".join(subprocess.check_output(["date"]).decode("utf-8").split())
+        return " ".join(
+            subprocess.check_output(["date"]).decode("utf-8").split()
+        )
     
     def stat_gpu_name():
         return gpu.parse_gpu()

@@ -36,8 +36,6 @@ if system != "Linux":
 
 
 def fetch(fetch_data):
-    # replaced_fetch_data = []
-
     # omit comments from output
     for line in fetch_data.split("\n"):
         # catch and release comments using # notation
@@ -46,25 +44,7 @@ def fetch(fetch_data):
             continue
         fetch_data = fetch_data.replace(regex_match.group(), "")
 
-        # # replace stat keywords with stat data
-        # for keyword in stats_dict.keys():
-        #     # associate stat keyword with its respective value
-        #     stat = stats_dict[keyword]
-        #     if stat is None:
-        #         continue
-        #     stat = str(stat)
-
-        # format char differences for keyword and respective value
-
-    # for line in fetch_data.splitlines():
     fetch_data = hf.replace_dictionary(fetch_data, stats_dict)
-
-    # fetch_data = "\n".join(replaced_fetch_data)
-    # fetch_data = hf.replace_dictionary(fetch_data, stats_dict)
-
-    # # TODO: make this optional from the config.txt
-    # # clear the terminal
-    # os.system("cls" if os.name == "nt" else "clear")
 
     # finally print fetch to terminal, format only from the right
     return fetch_data.rstrip()
