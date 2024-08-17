@@ -45,9 +45,6 @@ def stats():
     
     def system():
         return _uname[0]
-
-    def stat_user():
-        return environ["USER"]
     
     def stat_host():
         return _uname[1]
@@ -57,19 +54,7 @@ def stats():
     
     def stat_hostname():
         # return f"{login.parse_login()}@{hostname.parse_hostname()}"
-        return f"{stat_user()}@{stat_host()}"
-    
-    def stat_os():
-        return pos.parse_os()
-    
-    # def stat_kernel_ver():
-    #     return _uname[2]
-    
-    def stat_kernel():
-        return kernel.parse_kernel_release()
-    
-    def stat_uptime():
-        return uptime.parse_uptime()
+        return f"{environ["USER"]}@{stat_host()}"
     
     def stat_cpu_percent():
         # stat_cpu_percent = cpu_usage.parse_cpu_usage() # faster but less accurate
@@ -78,10 +63,7 @@ def stats():
     def stat_cpu_temp():
         # stat_cpu_temp = f"{temp.parse_temp()}°c"
         return f"{cpu_temp.parse_cpu_temp()}°c"
-    
-    def stat_cpu_name():
-        return cpu.parse_cpu()
-    
+
     def stat_ram():
         ram_total, ram_used = mem.parse_mem()
         if ram_total and ram_used:
@@ -126,72 +108,42 @@ def stats():
         shell_name = shell_post_parse[0]
         shell_version = shell_post_parse[1]
         return f"{shell_name} {shell_version}"
-    
-    def stat_wm():
-        return wm.parse_wm() # pgrep -l compiz |cut -d " " -f2
-    
-    def stat_de():
-        return de.parse_de()
-    
-    def stat_fs():
-        return fs.parse_fs()
-    
-    def stat_lang():
-        return environ["LANG"]
-    
+
     def stat_datetime():
         return " ".join(
             subprocess.check_output(["date"]).decode("utf-8").split()
         )
-    
-    def stat_gpu_name():
-        return gpu.parse_gpu()
-    
-    def stat_bat():
-        return batt.parse_batt()
-    
-    def stat_mb():
-        return mb.parse_mb()
-    
-    def stat_comp_name():
-        return comp_name.parse_comp_name()
-    
-    def stat_bios_type():
-        return bios.parse_bios_type()
-    
-    def stat_res():
-        return res.parse_res()
-    
+
     ########################################
 
     # TODO: add easter egg stats for fun dynamic things
     # init stats using keywords for configuration in .conf
     stats_dict = {
         # "$UNAME": _uname,
-        "$user": stat_user(),
+        "$user": environ["USER"],
         "$host": stat_hostname(),
-        "$sys": stat_os(),
+        "$sys": pos.parse_os(),
         # "$ARCH": stat_arch,
         "$arch": stat_architecture(),
-        "$ker": stat_kernel(),
+        "$ker": kernel.parse_kernel_release(),
         "$mem": stat_ram(),
-        "$up": stat_uptime(),
+        "$up": uptime.parse_uptime(),
         "$pac": stat_packages(),
-        "$cpu": stat_cpu_name(),
+        "$cpu": cpu.parse_cpu(),
         "$tem": stat_cpu_temp(),
         "$pt": stat_cpu_percent(),
         "$disk": stat_disk_total_and_used(),
         "$shell": stat_shell(),
-        "$wm": stat_wm(),
-        "$de": stat_de(),
-        "$fs": stat_fs(),
-        "$lang": stat_lang(),
-        "$bat": stat_bat(),
-        "$gpun": stat_gpu_name(),
-        "$mboard": stat_mb(),
-        "$bios": stat_bios_type(),
-        "$comp": stat_comp_name(),
-        "$res": stat_res(),
+        "$wm": wm.parse_wm(),
+        "$de": de.parse_de(),
+        "$fs": fs.parse_fs(),
+        "$lang": environ["LANG"],
+        "$bat": batt.parse_batt(),
+        "$gpun": gpu.parse_gpu(),
+        "$mboard": mb.parse_mb(),
+        "$bios": bios.parse_bios_type(),
+        "$comp": comp_name.parse_comp_name(),
+        "$res": res.parse_res(),
         "$datetime": stat_datetime(),
         # "$node": stat_node,
         "$system": system(),
