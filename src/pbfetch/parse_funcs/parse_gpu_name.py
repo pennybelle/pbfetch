@@ -10,7 +10,7 @@ def parse_gpu():
             stderr=subprocess.PIPE,
         )
         gpu_name = str(gpu_name.communicate()[0])
-        print(gpu_name)
+        # print(gpu_name)
         gpu_name = gpu_name.split("'")[1]
         gpu_name = gpu_name.split("\\n")[0]
         gpu_name = gpu_name.replace("OpenGL compatibility profile renderer: ", "")
