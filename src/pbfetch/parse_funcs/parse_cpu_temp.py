@@ -20,8 +20,7 @@ def parse_cpu_temp():
 
                 # return none if cpu isnt found
                 if j == 29:
-                    print("CPU Temp Error: CPU not found")
-                    return None
+                    break
 
                 # only return cpu temp
                 data = str(data)
@@ -32,6 +31,9 @@ def parse_cpu_temp():
                     cpu_temp = cpu_temp.split()[1]
 
                     return round(float(cpu_temp))
+
+        print("CPU Temp Error: CPU not found")
+        return None
 
     except Exception as e:
         print(f"CPU Temp Error: {e}")
