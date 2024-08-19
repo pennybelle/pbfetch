@@ -19,7 +19,8 @@ def parse_mem():
                 active = mem_format(line)
             if total and active:
                 used = int(total) - int(active)
-                return int(total), int(used)
+                percent = round((int(active) / int(total)) * 100)
+                return int(total), int(used), percent
 
     except Exception as e:
         print(e)
