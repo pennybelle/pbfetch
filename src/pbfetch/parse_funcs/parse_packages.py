@@ -1,8 +1,54 @@
 import subprocess
 
+
 def parse_packages():
-     stat_packages = f"{len(
-        str(
-            subprocess.check_output(["pacman", "-Q"])
-        ).split(" ")
-    )} (pacman)"
+    def package_query(command):
+        package_manager = command.split()[0]
+        query_output = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        query_output = query_output.communicate()[0]
+
+        # convert byte object to string for parsee
+        query_output = str(query_output)
+
+        if query_output == "b''":
+            return None
+
+        # remove irrelevent data
+        query_output = query_output.replace("/usr/lib", "")
+        query_output = query_output.replace(r"\xe2\x94\x9c\xe2\x94\x80\xe2\x94\x80", "")
+        query_output = query_output.replace(r"\xe2\x94\x94\xe2\x94\x80\xe2\x94\x80", "")
+        # print(query_output)
+
+        # remove artifacts from output
+        query_output = query_output[2 : len(query_output) - 1]
+
+        # split lines to count packages
+        query_output = query_output.split("\\n")
+
+        # filter out empty strings
+        # TODO: replace this with list comprehension
+        query_output = list(filter(None, query_output))
+
+        # length of remaining list == num of packages
+        package_count = len(query_output)
+
+        return f"{package_count} ({package_manager})"
+
+    try:
+        managers = [
+            package_query("pacman -Q"),
+            package_query("npm list -g"),
+        ]
+        # pacman = package_query("pacman -Q")
+        # npm = package_query("npm list -g")
+
+        return " ".join(filter(None, managers))
+
+    except Exception as e:
+        print(f"Package Parse Error: {e}")
+        return None

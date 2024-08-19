@@ -2,6 +2,8 @@ import os
 
 
 def parse_batt():
+    # print("boop")
+
     full = None
     now = None
     try:
