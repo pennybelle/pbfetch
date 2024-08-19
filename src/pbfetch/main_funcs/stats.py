@@ -1,7 +1,7 @@
 import pbfetch.parse_funcs.parse_uptime as uptime
 import pbfetch.parse_funcs.parse_os as pos
 # import pbfetch.parse_funcs.parse_temp as temp
-import pbfetch.parse_funcs.parse_cpu_temp as cpu_temp
+# import pbfetch.parse_funcs.parse_cpu_temp as cpu_temp
 import pbfetch.parse_funcs.parse_cpu as cpu
 import pbfetch.parse_funcs.parse_mem as mem
 # import pbfetch.parse_funcs.parse_login as login
@@ -29,8 +29,8 @@ def get_config_dir():
     return os.environ.get("XDG_CONFIG_HOME", Path.home().joinpath(".config", "pbfetch"))
 
 def stats():
-    # constant for checking cpu usage (in seconds)
-    DELAY = 0.025
+    # # constant for checking cpu usage (in seconds)
+    # DELAY = 0.025
     
     # fill a tuple with uname info to use for other stats
     _uname = tuple(platform.uname())
@@ -65,12 +65,12 @@ def stats():
     #     # stat_cpu_temp = f"{temp.parse_temp()}°c"
     #     return f"{cpu_temp.parse_cpu_temp()}°c"
     
-    def stat_cpu():
-        return (
-            f"{cpu.parse_cpu()} " 
-            f"{cpu_temp.parse_cpu_temp()}°c "
-            f"{round(psutil.cpu_percent(DELAY))}%"
-        )
+    # def stat_cpu():
+    #     return (
+    #         f"{cpu.parse_cpu()} " 
+    #         f"({cpu_temp.parse_cpu_temp()}°c) "
+    #         f"({round(psutil.cpu_percent(DELAY))}%)"
+    #     )
 
     def stat_ram():
         ram_total, ram_used, percent = mem.parse_mem()
@@ -133,7 +133,7 @@ def stats():
         "$mem": stat_ram(),
         "$up": uptime.parse_uptime(),
         "$pac": pac.parse_packages(),
-        "$cpu": stat_cpu(),
+        "$cpu": cpu.parse_cpu(),
         # "$tem": stat_cpu_temp(),
         # "$pt": stat_cpu_percent(),
         "$disk": stat_disk_total_and_used(),
