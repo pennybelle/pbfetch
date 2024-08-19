@@ -73,12 +73,12 @@ def stats():
         )
 
     def stat_ram():
-        ram_total, ram_used = mem.parse_mem()
+        ram_total, ram_used, percent = mem.parse_mem()
         if ram_total and ram_used:
             return str(
                 f"{round(ram_used/1024)} / "
                 f"{round(ram_total/1024)}"
-                " MB"
+                f" MB ({percent}%)"
             ) 
         else: 
             return None
@@ -93,8 +93,11 @@ def stats():
             vfs.f_frsize * vfs.f_bfree / (1024.0 ** 2)
         )
         total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
+        total_percent_used = round((total_disk_size_used / total_disk_size_in_gb) * 100)
         return (
-            f"{total_disk_size_used} / {total_disk_size_in_gb} MB"
+            f"{total_disk_size_used} / "
+            f"{total_disk_size_in_gb} MB "
+            f"({total_percent_used}%)"
         )
     
     def stat_shell():
