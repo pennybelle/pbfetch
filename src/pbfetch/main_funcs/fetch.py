@@ -1,7 +1,4 @@
 import re
-
-# from subprocess import Popen, PIPE
-
 import pbfetch.main_funcs.horizontal_formatter as hf
 import pbfetch.main_funcs.stats as stats
 from subprocess import Popen, PIPE
@@ -17,13 +14,10 @@ def get_console_width():
 
 
 console_width = get_console_width()
-
-# from pbfetch.main_funcs.stats import system
-
 stats_dict = stats.stats()
 system = stats_dict["$system"]
 
-if system != "Linux":
+if system.lower() != "linux":
     print("This fetch is currently only supported on linux, sorry!")
     exit()
 
