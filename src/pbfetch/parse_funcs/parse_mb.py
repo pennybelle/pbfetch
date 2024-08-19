@@ -1,10 +1,13 @@
 def parse_mb():
-    file = "/sys/class/dmi/id/board_name"
+    file = "/sys/class/dmi/id"
     try:
-        with open(file) as mb:
-            mb = mb.read()
+        with open(f"{file}/board_name") as mb:
+            mb = mb.read().strip()
 
-        return str(mb).strip()
+        with open(f"{file}/board_vendor") as v:
+            v = v.read().strip()
+
+        return f"{v} {mb}"
 
     except Exception as e:
         print(e)

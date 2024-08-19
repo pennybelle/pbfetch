@@ -1,21 +1,20 @@
-import subprocess
+import os
 
 
 def parse_res():
     try:
-        res = subprocess.Popen(
-            "xdpyinfo | grep dimensions",
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-        res = res.communicate()[0]
-        # print(res)
-        res = str(res)
-        res = res.split()
-        res = str(res[2])
+        path = "/sys/class/drm/card"
 
-        return res
+        for i in range(10):
+            if os.path.isdir(f"{path}{i}") is not True:
+                continue
+
+            with open(f"{path}{i}/card{i}-LVDS-1/modes") as file:
+                data = file.read()
+                return str(data).strip()
+
+        print("Resolution Error: LVDS not supported")
+        return None
 
     except Exception as e:
         print(f"Resolution Error: {e}")
