@@ -18,5 +18,5 @@ def parse_res():
         return res
 
     except Exception as e:
-        print(e)
+        print(f"Resolution Error: {e}")
         return None
