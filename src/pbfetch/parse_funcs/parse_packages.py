@@ -43,6 +43,7 @@ def parse_packages():
     try:
         managers = [
             package_query("pacman -Q"),
+            package_query("flatpak list"),
             package_query("npm list -g"),
         ]
         # pacman = package_query("pacman -Q")

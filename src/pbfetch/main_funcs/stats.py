@@ -20,7 +20,7 @@ import pbfetch.parse_funcs.parse_packages as pac
 # import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage         
 # import pbfetch.parse_funcs.parse_hostname as hostname
 
-import subprocess, platform, psutil
+import subprocess, platform
 import os
 from os import statvfs
 from pathlib import Path

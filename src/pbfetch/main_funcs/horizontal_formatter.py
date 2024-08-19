@@ -151,12 +151,13 @@ def final_touches(return_text):
     return return_text
 
 
-def replace_dictionary(template, dictionary):
+def replace_keywords(template, keywords_dict):
     # Replace all of the keywords in the dictionary
-    for k, v in dictionary.items():
-        if v == "":
-            v = "LOADING..."
-        template = replace_keyword(template, k, v)
+    for keyword, stat in keywords_dict.items():
+        # if stat == "":
+        #     stat = "LOADING..."
+
+        template = replace_keyword(template, keyword, stat)
 
     # Make sure each line does not exceed max_line_length
     lines = template.splitlines()

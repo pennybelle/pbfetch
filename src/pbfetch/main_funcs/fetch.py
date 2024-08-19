@@ -21,9 +21,6 @@ if system.lower() != "linux":
     print("This fetch is currently only supported on linux, sorry!")
     exit()
 
-# # init stats using keywords for configuration in .conf
-# file = os.path.join("src", "pbfetch", "config", "config.txt")
-
 
 def fetch(fetch_data):
     # omit comments from output
@@ -34,7 +31,7 @@ def fetch(fetch_data):
             continue
         fetch_data = fetch_data.replace(regex_match.group(), "")
 
-    fetch_data = hf.replace_dictionary(fetch_data, stats_dict)
+    fetch_data = hf.replace_keywords(fetch_data, stats_dict)
 
     # finally print fetch to terminal, format only from the right
     return fetch_data.rstrip()
