@@ -3,7 +3,7 @@ import re
 # from subprocess import Popen, PIPE
 
 import pbfetch.main_funcs.horizontal_formatter as hf
-from pbfetch.main_funcs.stats import stats
+import pbfetch.main_funcs.stats as stats
 from subprocess import Popen, PIPE
 
 current_loading_spinner = "/"
@@ -20,16 +20,12 @@ console_width = get_console_width()
 
 # from pbfetch.main_funcs.stats import system
 
-stats_dict = stats()
+stats_dict = stats.stats()
 system = stats_dict["$system"]
 
 if system != "Linux":
     print("This fetch is currently only supported on linux, sorry!")
     exit()
-
-
-"""/usr/share/pbfetch/config/"""
-
 
 # # init stats using keywords for configuration in .conf
 # file = os.path.join("src", "pbfetch", "config", "config.txt")
