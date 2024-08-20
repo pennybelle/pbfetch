@@ -1,8 +1,8 @@
 import pbfetch.parse_funcs.parse_cpu_temp as cpu_temp
 from psutil import cpu_percent
 
-# constant for checking cpu usage (in seconds)
-DELAY = 0.25
+# # constant for checking cpu usage (in seconds)
+# DELAY = 0.25
 
 
 # parse cpu info from /proc/cpuinfo
@@ -22,7 +22,7 @@ def parse_cpu():
         return (
             f"{cpu_name} "
             f"({cpu_temp.parse_cpu_temp()}°c) "
-            f"({round(cpu_percent(DELAY))}%)"
+            f"({round(cpu_percent())}%)"
         )
 
     except Exception as e:

@@ -43,10 +43,9 @@ def parse_packages():
     try:
         managers = [
             package_query("pacman -Q"),
-            package_query("npm list -g"),
+            package_query("flatpak list"),
+            # package_query("npm list -g"),
         ]
-        # pacman = package_query("pacman -Q")
-        # npm = package_query("npm list -g")
 
         return " ".join(filter(None, managers))
 
