@@ -2,7 +2,7 @@ import os
 
 
 def parse_batt():
-    print("boop")
+    print("batt boop")
 
     full = None
     now = None
