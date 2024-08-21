@@ -1,5 +1,8 @@
-from pbfetch.main_funcs.run_fetch import run_fetch
+from pbfetch.fetch import fetch
+from pbfetch.config import parse_config
+
+# TODO: import keywords from config, customizable by user
 
 
 def main():
-    run_fetch()
+    print(fetch(parse_config()))
