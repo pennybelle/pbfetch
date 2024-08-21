@@ -101,7 +101,10 @@ def stats():
         )
     
     def stat_shell():
-        shell_pre_parse = environ["SHELL"].replace("/usr/bin/", "")
+        try: 
+            shell_pre_parse = environ["SHELL"].replace("/bin/", "")
+        except FileNotFoundError:
+            shell_pre_parse = environ["SHELL"].replace("/usr/bin/", "")
         shell_mid_parse = str(
             subprocess.check_output(
                 [f"{shell_pre_parse}", "--version"]
