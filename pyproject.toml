@@ -2,14 +2,16 @@
 name = "pbfetch"
 version = "0.1.0"
 description = "An unbelievably customizable hardware/software fetch."
-authors = [
-    { name = "pennybelle", email = "kylanfreeman98@gmail.com" }
-]
-dependencies = [
-    "psutil"
-]
+authors = [{ name = "pennybelle", email = "contact@pennybelle.dev" }]
+dependencies = ["psutil"]
 readme = "README.md"
 requires-python = ">= 3.8"
+classifiers = ["License :: OSI Approved :: Apache Software License"]
+
+[project.urls]
+Homepage = "https://github.com/pennybelle/pbfetch/"
+Repository = "https://github.com/pennybelle/pbfetch.git"
+Issues = "https://github.com/pennybelle/pbfetch/issues"
 
 [build-system]
 requires = ["hatchling"]
