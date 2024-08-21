@@ -93,7 +93,9 @@ def stats():
             vfs.f_frsize * vfs.f_bfree / (1024.0 ** 2)
         )
         total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
-        total_percent_used = round((total_disk_size_used / total_disk_size_in_gb) * 100)
+        total_percent_used = round(
+            (total_disk_size_used / total_disk_size_in_gb) * 100
+        )
         return (
             f"{total_disk_size_used} / "
             f"{total_disk_size_in_gb} MB "
@@ -101,7 +103,7 @@ def stats():
         )
     
     def stat_shell():
-        shell_pre_parse = environ["SHELL"].replace("/bin/", "")
+        shell_pre_parse = environ["SHELL"].split("/")[-1]
         shell_mid_parse = str(
             subprocess.check_output(
                 [f"{shell_pre_parse}", "--version"]
