@@ -79,7 +79,7 @@ empowers you to bring your vision to life.
 
 ### Configuration Info
 
-Your configuration file must be placed in `$XDG_CONFIG_HOME/.config/pbfetch`, and the file itself must be called `config.txt`.
+The configuration file should be placed in `$XDG_CONFIG_HOME/.config/pbfetch`, and the file itself should be called `config.txt`.
 
 As of August 21st, 2024, these are the avalable stats for your configuration:
 
@@ -131,8 +131,6 @@ utilities, but the reward is complete control over your terminal’s output. You
 are not confined to someone else's design, **pbfetch** puts you in charge!
 
 ## 💻 Contributing
-
-Follow the [Django Code of Conduct](https://www.djangoproject.com/conduct/) when contributing (in short, just be a good hooman).
 
 When formatting Python code, use the [Black formatter](https://github.com/psf/black).
 
