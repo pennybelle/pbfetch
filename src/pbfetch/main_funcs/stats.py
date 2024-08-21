@@ -101,7 +101,7 @@ def stats():
         )
     
     def stat_shell():
-        shell_pre_parse = environ["SHELL"].replace("/bin/", "")
+        shell_pre_parse = environ["SHELL"].split("/")[-1]
         shell_mid_parse = str(
             subprocess.check_output(
                 [f"{shell_pre_parse}", "--version"]
