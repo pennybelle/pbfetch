@@ -14,3 +14,5 @@ config/
 
 # backup
 backup/
+
+.ruff_cache

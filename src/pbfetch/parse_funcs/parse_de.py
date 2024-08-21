@@ -1,4 +1,7 @@
-import sys, os, subprocess, re
+import sys
+import os
+import subprocess
+import re
 
 # i pulled this code from
 #   https://stackoverflow.com/questions/2035657/what-is-my-current-desktop-environment
@@ -67,7 +70,7 @@ def parse_de():
             # return output
             return "kde"
         elif os.environ.get("GNOME_DESKTOP_SESSION_ID"):
-            if not "deprecated" in os.environ.get("GNOME_DESKTOP_SESSION_ID"):
+            if "deprecated" not in os.environ.get("GNOME_DESKTOP_SESSION_ID"):
                 return "gnome2"
         # From http://ubuntuforums.org/showthread.php?t=652320
         elif is_running("xfce-mcs-manage"):
@@ -82,7 +85,7 @@ def is_running(process):
     # and http://richarddingwall.name/2009/06/18/windows-equivalents-of-ps-and-kill-commands/
     try:  # Linux/Unix
         s = subprocess.Popen(["ps", "axw"], stdout=subprocess.PIPE)
-    except:  # Windows
+    except Exception as _:  # Windows
         s = subprocess.Popen(["tasklist", "/v"], stdout=subprocess.PIPE)
     for x in s.stdout:
         x = str(x)
