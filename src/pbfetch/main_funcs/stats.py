@@ -1,12 +1,8 @@
 from pbfetch.parse_funcs.parse_uptime import parse_uptime
 from pbfetch.parse_funcs.parse_os import parse_os
-# import pbfetch.parse_funcs.parse_temp as temp
-# import pbfetch.parse_funcs.parse_cpu_temp as cpu_temp
 from pbfetch.parse_funcs.parse_cpu import parse_cpu
 from pbfetch.parse_funcs.parse_mem import parse_mem
-# import pbfetch.parse_funcs.parse_login as login
 from pbfetch.parse_funcs.parse_kernel import parse_kernel_release
-# import pbfetch.parse_funcs.parse_shell as shell
 from pbfetch.parse_funcs.parse_wm import parse_wm
 from pbfetch.parse_funcs.parse_de import parse_de
 from pbfetch.parse_funcs.parse_fs import parse_fs
@@ -17,8 +13,6 @@ from pbfetch.parse_funcs.parse_comp_name import parse_comp_name
 from pbfetch.parse_funcs.parse_bios_type import parse_bios_type
 from pbfetch.parse_funcs.parse_res import parse_res
 from pbfetch.parse_funcs.parse_packages import parse_packages
-# import pbfetch.parse_funcs.parse_cpu_usage as cpu_usage         
-# import pbfetch.parse_funcs.parse_hostname as hostname
 
 import subprocess, platform
 import os
