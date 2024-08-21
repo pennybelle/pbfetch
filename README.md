@@ -77,6 +77,43 @@ The sky's the limit when it comes to creativity! Whether you're aiming for a
 traditional system information display or something entirely unique, **pbfetch**
 empowers you to bring your vision to life.
 
+### Configuration Info
+
+Your configuration file must be placed in `$XDG_CONFIG_HOME/.config/pbfetch`, and the file itself must be called `config.txt`.
+
+As of August 21st, 2024, these are the avalable stats for your configuration:
+
+```
+$comp = System product name
+$user = Username
+$host = Username@Hostname
+$sys  = Operating System
+$ker  = Kernel
+$mem  = RAM (Memory)
+$up   = Uptime
+$pac  = Packages (only pacman currently supported)
+$arch = CPU Architecture
+$wm   = Window manager
+$de   = Desktop environment
+$fs   = Fstab
+$lang = Selected language/locale
+$bat  = Battery level
+$gpun = GPU Name
+$bios = BIOS Type
+$res  = Resolution
+$cpu  = CPU Name,
+$tem  = CPU Temp,
+$pt   = CPU Usage (percent),
+$disk = Disk ("used/total MB"),
+$shell = Shell
+$system = System
+$mboard = Motherboard information
+$datetime = Date and time
+$configpath = Location of pbfetch configuration file
+```
+
+You may place these anywhere you like in your configuration file.
+
 ### Screenshot Gallery
 
 Check out some amazing examples of what you can create with **pbfetch**:
@@ -92,6 +129,16 @@ Check out some amazing examples of what you can create with **pbfetch**:
 Creating your own custom configuration is a bit more involved than other fetch
 utilities, but the reward is complete control over your terminal’s output. You
 are not confined to someone else's design, **pbfetch** puts you in charge!
+
+## 💻 Contributing
+
+Follow the [Django Code of Conduct](https://www.djangoproject.com/conduct/) when contributing (in short, just be a good hooman).
+
+When formatting Python code, use the [Black formatter](https://github.com/psf/black).
+
+### Making changes
+
+To make changes to this codebase, you first need to create a fork. Then, you can clone your fork and follow the steps under [installation via Rye](#install-via-rye) to get the project running. From there, you can commit and push any changes that you've made. Finally, you can create a pull request on Github.
 
 ## 📜 License
 
