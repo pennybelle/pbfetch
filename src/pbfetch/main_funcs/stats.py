@@ -16,6 +16,7 @@ from pbfetch.parse_funcs.parse_packages import parse_packages
 from pbfetch.parse_funcs.parse_disc import parse_disc
 from pbfetch.parse_funcs.parse_shell import parse_shell
 from pbfetch.parse_funcs.parse_theme import parse_theme
+from pbfetch.parse_funcs.parse_term_font import parse_term_font
 
 import subprocess
 import platform
@@ -88,6 +89,7 @@ def stats():
         "$res": parse_res(),
         "$datetime": stat_datetime(),
         "$thm": parse_theme(),
+        "$tfont": parse_term_font(),
         # "$node": stat_node,
         "$system": system(),
         "$configpath": configpath(),

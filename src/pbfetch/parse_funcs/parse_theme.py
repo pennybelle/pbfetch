@@ -18,3 +18,4 @@ def parse_theme():
 
     except Exception as e:
         print(f"Parse Theme Error: {e}")
+        return None
