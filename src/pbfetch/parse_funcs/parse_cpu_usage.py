@@ -1,6 +1,3 @@
-import time
-
-
 def parse_cpu_usage():
     file = "/proc/stat"
     try:
@@ -53,7 +50,7 @@ def parse_cpu_usage():
         # u1 = int(spline[2])
         # t1 = int(spline[2]) + int(spline[4]) + int(spline[5])
 
-        return usage
+        # return usage
         # return int((u - t) * 100 / (u1 - t1))
 
     except Exception as e:
