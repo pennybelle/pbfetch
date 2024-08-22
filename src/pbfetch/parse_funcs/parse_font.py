@@ -19,3 +19,4 @@ def parse_font():
 
     except Exception as e:
         print(f"Parse Font Error: {e}")
+        return None
