@@ -1,3 +1,7 @@
+def mem_format(line):
+    return line.split(":")[1].replace("kB", "").strip()
+
+
 # parse memory info from /proc/meminfo
 def parse_mem():
     file = "/proc/meminfo"
@@ -9,19 +13,27 @@ def parse_mem():
         total = None
         active = None
 
-        def mem_format(line):
-            return line.split(":")[1].replace("kB", "").strip()
-
         for line in mem_info:
+            if total and active:
+                break
+
             if "MemTotal:" in line:
                 total = mem_format(line)
             if "Active:" in line:
                 active = mem_format(line)
-            if total and active:
-                used = int(total) - int(active)
-                percent = round((int(active) / int(total)) * 100)
-                return int(total), int(used), percent
+
+        if total and active:
+            total, active = int(total), int(active)
+            used = total - active
+            percent = round(active / total * 100)
+
+            return str(
+                f"{round(used/1024)} / " f"{round(total/1024)}" f" MB ({percent}%)"
+            )
+        else:
+            print("Error: could not parse ram usage")
+            return None
 
     except Exception as e:
-        print(e)
-        return None, None
+        print(f"Parse RAM Error: {e}")
+        return None

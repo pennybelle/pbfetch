@@ -13,11 +13,12 @@ from pbfetch.parse_funcs.parse_comp_name import parse_comp_name
 from pbfetch.parse_funcs.parse_bios_type import parse_bios_type
 from pbfetch.parse_funcs.parse_res import parse_res
 from pbfetch.parse_funcs.parse_packages import parse_packages
+from pbfetch.parse_funcs.parse_disc import parse_disc
+from pbfetch.parse_funcs.parse_shell import parse_shell
 
 import subprocess
 import platform
 import os
-from os import statvfs
 from pathlib import Path
 
 def get_config_dir():
@@ -48,51 +49,6 @@ def stat_hostname():
     # return f"{login.parse_login()}@{hostname.parse_hostname()}"
     return f"{environ["USER"]}@{stat_host()}"
 
-def stat_ram():
-    ram_total, ram_used, percent = parse_mem()
-    if ram_total and ram_used:
-        return str(
-            f"{round(ram_used/1024)} / "
-            f"{round(ram_total/1024)}"
-            f" MB ({percent}%)"
-        ) 
-    else: 
-        return None
-
-def stat_disk_total_and_used():
-    vfs = statvfs("/")
-    total_disk_size_in_bytes = vfs.f_frsize * vfs.f_blocks
-    total_disk_size_in_gb = round(
-        total_disk_size_in_bytes / (1024.0 ** 2)
-    )
-    disk_free_space_gb = round(
-        vfs.f_frsize * vfs.f_bfree / (1024.0 ** 2)
-    )
-    total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
-    total_percent_used = round(
-        (total_disk_size_used / total_disk_size_in_gb) * 100
-    )
-    return (
-        f"{total_disk_size_used} / "
-        f"{total_disk_size_in_gb} MB "
-        f"({total_percent_used}%)"
-    )
-
-def stat_shell():
-    shell_pre_parse = os.path.realpath(f"/proc/{os.getppid()}/exe")
-    shell_name = shell_pre_parse.split("/")[-1]
-    shell_version_pre_parse = str(
-        subprocess.check_output(
-            [f"{shell_name}", "--version"]
-        ).decode("utf-8")
-    )
-    if shell_name == "zsh":
-        shell_version = shell_version_pre_parse.split()[1]
-    elif shell_name == "bash":
-        shell_version = shell_version_pre_parse.split()[3]
-
-    return f"{shell_name} {shell_version}"
-
 def stat_datetime():
     return " ".join(
         subprocess.check_output(["date"]).decode("utf-8").split()
@@ -112,14 +68,14 @@ def stats():
         # "$ARCH": stat_arch,
         "$arch": stat_architecture(),
         "$ker": parse_kernel_release(),
-        "$mem": stat_ram(),
+        "$mem": parse_mem(),
         "$up": parse_uptime(),
         "$pac": parse_packages(),
         "$cpu": parse_cpu(),
         # "$tem": stat_cpu_temp(),
         # "$pt": stat_cpu_percent(),
-        "$disk": stat_disk_total_and_used(),
-        "$shell": stat_shell(),
+        "$disk": parse_disc(),
+        "$shell": parse_shell(),
         "$wm": parse_wm(),
         "$de": parse_de(),
         "$fs": parse_fs(),
