@@ -15,6 +15,7 @@ from pbfetch.parse_funcs.parse_res import parse_res
 from pbfetch.parse_funcs.parse_packages import parse_packages
 from pbfetch.parse_funcs.parse_disc import parse_disc
 from pbfetch.parse_funcs.parse_shell import parse_shell
+from pbfetch.parse_funcs.parse_theme import parse_theme
 
 import subprocess
 import platform
@@ -86,6 +87,7 @@ def stats():
         "$bios": parse_bios_type(),
         "$res": parse_res(),
         "$datetime": stat_datetime(),
+        "$thm": parse_theme(),
         # "$node": stat_node,
         "$system": system(),
         "$configpath": configpath(),
