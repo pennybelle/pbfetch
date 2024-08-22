@@ -14,7 +14,8 @@ from pbfetch.parse_funcs.parse_bios_type import parse_bios_type
 from pbfetch.parse_funcs.parse_res import parse_res
 from pbfetch.parse_funcs.parse_packages import parse_packages
 
-import subprocess, platform
+import subprocess
+import platform
 import os
 from os import statvfs
 from pathlib import Path
@@ -78,15 +79,18 @@ def stat_disk_total_and_used():
     )
 
 def stat_shell():
-    shell_pre_parse = environ["SHELL"].split("/")[-1]
-    shell_mid_parse = str(
+    shell_pre_parse = os.path.realpath(f"/proc/{os.getppid()}/exe")
+    shell_name = shell_pre_parse.split("/")[-1]
+    shell_version_pre_parse = str(
         subprocess.check_output(
-            [f"{shell_pre_parse}", "--version"]
+            [f"{shell_name}", "--version"]
         ).decode("utf-8")
     )
-    shell_post_parse = shell_mid_parse.split()
-    shell_name = shell_post_parse[0]
-    shell_version = shell_post_parse[1]
+    if shell_name == "zsh":
+        shell_version = shell_version_pre_parse.split()[1]
+    elif shell_name == "bash":
+        shell_version = shell_version_pre_parse.split()[3]
+
     return f"{shell_name} {shell_version}"
 
 def stat_datetime():
