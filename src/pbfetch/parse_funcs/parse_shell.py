@@ -8,11 +8,11 @@ def parse_shell():
     shell_version_pre_parse = str(
         check_output([f"{shell_name}", "--version"]).decode("utf-8")
     )
-    if shell_name == "zsh":
-        shell_version = shell_version_pre_parse.split()[1]
-    elif shell_name == "bash":
+    if shell_name == "bash":
         shell_version = shell_version_pre_parse.split()[3]
+    elif shell_name == "zsh":
+        shell_version = shell_version_pre_parse.split()[1]
     else:
-        return "not supported yet"
+        return str(shell_name)
 
     return f"{shell_name} {shell_version}"
