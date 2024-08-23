@@ -18,18 +18,18 @@ from pbfetch.parse_funcs.parse_shell import parse_shell
 from pbfetch.parse_funcs.parse_theme import parse_theme
 from pbfetch.parse_funcs.parse_term_font import parse_term_font
 from pbfetch.parse_funcs.parse_font import parse_font
-from pbfetch.parse_funcs.parse_weather import parse_weather
+# from pbfetch.parse_funcs.parse_weather import parse_weather
 
-import subprocess
-import platform
 import os
+from subprocess import check_output
+from platform import uname
 from pathlib import Path
 
 def get_config_dir():
     return os.environ.get("XDG_CONFIG_HOME", Path.home().joinpath(".config", "pbfetch"))
 
 # fill a tuple with uname info to use for other stats
-_uname = tuple(platform.uname())
+_uname = tuple(uname())
 environ =  dict(os.environ)
 
 def configpath():
@@ -55,7 +55,7 @@ def stat_hostname():
 
 def stat_datetime():
     return " ".join(
-        subprocess.check_output(["date"]).decode("utf-8").split()
+        check_output(["date"]).decode("utf-8").split()
     )
 
 ########################################
@@ -93,7 +93,7 @@ def stats():
         "$thm": parse_theme(),
         "$font": parse_font(),
         "$tfont": parse_term_font(),
-        "$weather": parse_weather(),
+        # "$weather": parse_weather(),
         # "$node": stat_node,
         "$system": system(),
         "$configpath": configpath(),

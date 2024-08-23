@@ -10,8 +10,7 @@ def parse_theme():
             stderr=PIPE,
         )
         theme = str(theme.communicate()[0])
-        theme = theme[2:len(theme) - 1]
-        theme = theme.replace(r'\n', "")
+        theme = theme[2:len(theme) - 3]
         theme = theme.replace("'", "")
 
         return theme

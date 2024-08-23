@@ -10,9 +10,7 @@ def parse_font():
             stderr=PIPE,
         )
         font = str(font.communicate()[0])
-        font = font[2:len(font) - 1]
-        font = font.replace(r'\n', "")
-        font = font.replace("'", "")
+        font = font[3:len(font) - 4]
         font = font.split('"')[1]
 
         return font
