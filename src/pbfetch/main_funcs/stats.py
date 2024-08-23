@@ -18,6 +18,7 @@ from pbfetch.parse_funcs.parse_shell import parse_shell
 from pbfetch.parse_funcs.parse_theme import parse_theme
 from pbfetch.parse_funcs.parse_term_font import parse_term_font
 from pbfetch.parse_funcs.parse_font import parse_font
+from pbfetch.parse_funcs.parse_weather import parse_weather
 
 import subprocess
 import platform
@@ -92,6 +93,7 @@ def stats():
         "$thm": parse_theme(),
         "$font": parse_font(),
         "$tfont": parse_term_font(),
+        "$weather": parse_weather(),
         # "$node": stat_node,
         "$system": system(),
         "$configpath": configpath(),
