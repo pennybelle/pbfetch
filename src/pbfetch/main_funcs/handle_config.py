@@ -6,7 +6,7 @@ from shutil import copy
 # from pbfetch.main_funcs.stats import system
 
 stats_dict = stats()
-user = stats_dict["$user"]
+user = stats_dict["$usr"]
 
 
 file = "config.txt"
