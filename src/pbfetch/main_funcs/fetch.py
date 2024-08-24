@@ -2,6 +2,7 @@ import re
 import pbfetch.main_funcs.horizontal_formatter as hf
 import pbfetch.main_funcs.stats as stats
 from subprocess import Popen, PIPE
+from platform import system as p_system
 
 current_loading_spinner = "/"
 
@@ -17,8 +18,7 @@ console_width = get_console_width()
 
 
 def fetch(fetch_data):
-    stats_dict = stats.stats(fetch_data)
-    system = stats_dict["$system"]
+    system = p_system()
 
     if system.lower() != "linux":
         print("This fetch is currently only supported on linux, sorry!")
@@ -31,6 +31,7 @@ def fetch(fetch_data):
             continue
         fetch_data = fetch_data.replace(regex_match.group(), "")
 
+    stats_dict = stats.stats(fetch_data)
     fetch_data = hf.replace_keywords(fetch_data, stats_dict)
 
     # finally print fetch to terminal, format only from the right
