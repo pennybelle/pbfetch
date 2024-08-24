@@ -14,15 +14,15 @@ def get_console_width():
 
 
 console_width = get_console_width()
-stats_dict = stats.stats()
-system = stats_dict["$system"]
-
-if system.lower() != "linux":
-    print("This fetch is currently only supported on linux, sorry!")
-    exit()
 
 
 def fetch(fetch_data):
+    stats_dict = stats.stats(fetch_data)
+    system = stats_dict["$system"]
+
+    if system.lower() != "linux":
+        print("This fetch is currently only supported on linux, sorry!")
+        exit()
     # omit comments from output
     for line in fetch_data.split("\n"):
         # catch and release comments using # notation

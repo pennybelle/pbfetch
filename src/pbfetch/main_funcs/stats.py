@@ -25,6 +25,7 @@ from subprocess import check_output
 from platform import uname
 from pathlib import Path
 
+
 def get_config_dir():
     return os.environ.get("XDG_CONFIG_HOME", Path.home().joinpath(".config", "pbfetch"))
 
@@ -60,43 +61,37 @@ def stat_datetime():
 
 ########################################
 
-def stats():
-    # TODO: add easter egg stats for fun dynamic things
+def stats(fetch_data):
     # init stats using keywords for configuration in .conf
+    # TODO: add easter egg stats for fun dynamic things
     stats_dict = {
-        # "$UNAME": _uname,
-        "$cmp": parse_comp_name(),
-        "$usr": environ["USER"],
-        "$hst": stat_hostname(),
-        "$sys": parse_os(),
-        # "$ARCH": stat_arch,
-        "$ach": stat_architecture(),
-        "$ker": parse_kernel_release(),
-        "$mem": parse_mem(),
-        "$upt": parse_uptime(),
-        "$pac": parse_packages(),
-        "$cpu": parse_cpu(),
-        # "$tem": stat_cpu_temp(),
-        # "$pt": stat_cpu_percent(),
-        "$dsk": parse_disc(),
-        "$shl": parse_shell(),
-        "$wmn": parse_wm(),
-        "$den": parse_de(),
-        "$fsm": parse_fs(),
-        "$lcl": environ["LANG"],
-        "$bat": parse_batt(),
-        "$gpu": parse_gpu(),
-        "$mbd": parse_mb(),
-        "$bio": parse_bios_type(),
-        "$res": parse_res(),
-        "$dat": stat_datetime(),
-        "$thm": parse_theme(),
-        "$fnt": parse_font(),
-        "$tft": parse_term_font(),
-        # "$weather": parse_weather(),
-        # "$node": stat_node,
+        "$cmp": parse_comp_name() if "$cmp" in fetch_data else None,
+        "$usr": environ["USER"] if "$usr" in fetch_data else None,
+        "$hst": stat_hostname() if "$hst" in fetch_data else None,
+        "$sys": parse_os() if "$sys" in fetch_data else None,
+        "$ach": stat_architecture() if "$arc" in fetch_data else None,
+        "$ker": parse_kernel_release() if "$ker" in fetch_data else None,
+        "$mem": parse_mem() if "$mem" in fetch_data else None,
+        "$upt": parse_uptime() if "$upt" in fetch_data else None,
+        "$pac": parse_packages() if "$pac" in fetch_data else None,
+        "$cpu": parse_cpu() if "$cpu" in fetch_data else None,
+        "$dsk": parse_disc() if "$dsk" in fetch_data else None,
+        "$shl": parse_shell() if "$shl" in fetch_data else None,
+        "$wmn": parse_wm() if "$wmn" in fetch_data else None,
+        "$den": parse_de() if "$den" in fetch_data else None,
+        "$fsm": parse_fs() if "$fsm" in fetch_data else None,
+        "$lcl": environ["LANG"] if "$lcl" in fetch_data else None,
+        "$bat": parse_batt() if "$bat" in fetch_data else None,
+        "$gpu": parse_gpu() if "$gpu" in fetch_data else None,
+        "$mbd": parse_mb() if "$mbd" in fetch_data else None,
+        "$bio": parse_bios_type() if "$bio" in fetch_data else None,
+        "$res": parse_res() if "$res" in fetch_data else None,
+        "$dat": stat_datetime() if "$dat" in fetch_data else None,
+        "$thm": parse_theme() if "$thm" in fetch_data else None,
+        "$fnt": parse_font() if "$fnt" in fetch_data else None,
+        "$tft": parse_term_font() if "$tft" in fetch_data else None,
+        "$configpath": configpath() if "$configpath" in fetch_data else None,
         "$system": system(),
-        "$configpath": configpath(),
     }
 
     return stats_dict
