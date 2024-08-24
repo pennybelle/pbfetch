@@ -173,6 +173,12 @@ def stats(fetch_data):
         # print("term_font")
         from pbfetch.parse_funcs.parse_term_font import parse_term_font
         stats_dict[term_font] = parse_term_font()
+    
+    if date_time in fetch_data:
+        stats_dict[date_time] = stat_datetime()
+    
+    if locale in fetch_data:
+        stats_dict[locale] = environ["LANG"]
 
     # stats_dict = {
     #     comp: parse_comp_name() if comp in fetch_data else None,
