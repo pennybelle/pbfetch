@@ -1,7 +1,7 @@
 from re import sub, fullmatch, compile
 from subprocess import Popen, PIPE
 
-current_loading_spinner = "/"
+# current_loading_spinner = "/"
 
 
 def get_console_width():
