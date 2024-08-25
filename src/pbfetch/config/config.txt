@@ -1,30 +1,30 @@
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
-┃ Software:                                                              ┃  $hst                ┃
-┃ • os   : $sys                                                          ┃  a really good girl  ┃
-┃ • up   : $upt                                                          ┣━━━━━━━━━━━━━━━━━━━━━━┫
-┃ • pkgs : $pac                                                          ┃   <rgb(23,147,209)>       .       </rgb>    ┃
-┃ • ker  : $ker                                                          ┃   <rgb(23,147,209)>      /#\      </rgb>    ┃
-┃ • fnt  : $fnt                                                          ┃   <rgb(23,147,209)>     /###\     </rgb>    ┃
-┃ • tfnt : $tft                                                          ┃   <rgb(23,147,209)>    /p^###\    </rgb>    ┃
-┃ • sh   : $shl                                                          ┃   <rgb(23,147,209)>   /##P^q##\   </rgb>    ┃
-┃ • de   : $den                                                          ┃   <rgb(23,147,209)>  /##(   )##\  </rgb>    ┃
-┃ • wm   : $wmn                                                          ┃   <rgb(23,147,209)> /###P   q#,^\ </rgb>    ┃
-┃ • fs   : $fsm                                                          ┃   <rgb(23,147,209)>/P^         ^q\</rgb>    ┃
-┃ • lcl  : $lcl                                                          ┃                      ┃
-┃ • bios : $bio                                                          ┗━━━━━━━━━━━━━━━━━━━━━━┫
-┃ • thme : $thm                                                                                 ┃
-┃                                                                                               ┃
-┃ Hardware:                                                                                     ┃
-┃ • comp : $cmp                                                                                 ┃
-┃ • gpu  : $gpu                                                                                 ┃
-┃ • cpu  : $cpu                                                                                 ┃
-┃ • arch : $arc                                                                                 ┃
-┃ • mb   : $mbd                                                                                 ┃
-┃ • ram  : $mem                                                                                 ┃
-┃ • disc : $dsc                                                                                 ┃
-┃ • res  : $res                                                                                 ┃
-┃ • batt : $bat                                                                                 ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Software:                                                                ┃  $hst                ┃
+┃ • os   : $sys                                                            ┃  a really good girl  ┃
+┃ • ker  : $ker                                                            ┣━━━━━━━━━━━━━━━━━━━━━━┫
+┃ • bios : $bio                                                            ┃   <rgb(23,147,209)>       .       </rgb>    ┃ <comment> these lines dont match up
+┃ • fs   : $fsm                                                            ┃   <rgb(23,147,209)>      /#\      </rgb>    ┃ <comment> because of the color tags,
+┃ • sh   : $shl                                                            ┃   <rgb(23,147,209)>     /###\     </rgb>    ┃ <comment> however the tags dont appear
+┃ • de   : $den                                                            ┃   <rgb(23,147,209)>    /p^###\    </rgb>    ┃ <comment> in the console output so
+┃ • wm   : $wmn                                                            ┃   <rgb(23,147,209)>   /##P^q##\   </rgb>    ┃ <comment> adjust your formatting
+┃ • lcl  : $lcl                                                            ┃   <rgb(23,147,209)>  /##(   )##\  </rgb>    ┃ <comment> accordingly, as demonstrated.
+┃ • thme : $thm                                                            ┃   <rgb(23,147,209)> /###P   q#,^\ </rgb>    ┃
+┃ • tfnt : $tft                                                            ┃   <rgb(23,147,209)>/P^         ^q\</rgb>    ┃
+┃ • fnt  : $fnt                                                            ┃                      ┃
+┃ • pkgs : $pac                                                            ┗━━━━━━━━━━━━━━━━━━━━━━┫
+┃ • up   : $upt                                                                                   ┃
+┃                                                                                                 ┃
+┃ Hardware:                                                                                       ┃
+┃ • comp : $cmp                                                                                   ┃
+┃ • arch : $arc                                                                                   ┃
+┃ • cpu  : $cpu                                                                                   ┃
+┃ • gpu  : $gpu                                                                                   ┃
+┃ • mb   : $mbd                                                                                   ┃
+┃ • ram  : $mem                                                                                   ┃
+┃ • disc : $dsc                                                                                   ┃
+┃ • res  : $res                                                                                   ┃
+┃ • batt : $bat                                                                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
                         _|            _|_|              _|                _|        
               _|_|_|    _|_|_|      _|        _|_|    _|_|_|_|    _|_|_|  _|_|_|    
@@ -108,4 +108,4 @@
 <comment> - RGB tags can interfere with stat prints if directly
 <comment> to the right of the stat keyword
 <comment> - Current comment style is too prone to false positives,
-<comment> this method is flawed and will be changed later
+<comment> this method is flawed and will be changed later [FIXED]
