@@ -69,8 +69,7 @@ config_path = "$configpath"
 syst = "$system"
 
 def stats(fetch_data):
-    # init stats using keywords for configuration in .conf
-    # TODO: add easter egg stats for fun dynamic things
+    # init necessary stats
     stats_dict = {syst: system(), host: stat_hostname()}
 
     # only import and add stats if keyword is present
@@ -180,34 +179,5 @@ def stats(fetch_data):
     if locale in fetch_data:
         stats_dict[locale] = environ["LANG"]
 
-    # stats_dict = {
-    #     comp: parse_comp_name() if comp in fetch_data else None,
-    #     user: environ["USER"] if user in fetch_data else None,
-    #     host: stat_hostname() if host in fetch_data else None,
-    #     sys: parse_os() if sys in fetch_data else None,
-    #     arch: stat_architecture() if arch in fetch_data else None,
-    #     kernel: parse_kernel_release() if kernel in fetch_data else None,
-    #     ram: parse_mem() if ram in fetch_data else None,
-    #     uptime: parse_uptime() if uptime in fetch_data else None,
-    #     packages: parse_packages() if packages in fetch_data else None,
-    #     cpu: parse_cpu() if cpu in fetch_data else None,
-    #     disc: parse_disc() if disc in fetch_data else None,
-    #     shell: parse_shell() if shell in fetch_data else None,
-    #     window_man: parse_wm() if window_man in fetch_data else None,
-    #     desktop_env: parse_de() if desktop_env in fetch_data else None,
-    #     filesystem: parse_fs() if filesystem in fetch_data else None,
-    #     locale: environ["LANG"] if locale in fetch_data else None,
-    #     battery: parse_batt() if battery in fetch_data else None,
-    #     gpu: parse_gpu() if gpu in fetch_data else None,
-    #     motherboard: parse_mb() if motherboard in fetch_data else None,
-    #     bios: parse_bios_type() if bios in fetch_data else None,
-    #     resolution: parse_res() if resolution in fetch_data else None,
-    #     date_time: stat_datetime() if date_time in fetch_data else None,
-    #     theme: parse_theme() if theme in fetch_data else None,
-    #     font: parse_font() if font in fetch_data else None,
-    #     term_font: parse_term_font() if term_font in fetch_data else None,
-    #     config_path: configpath() if config_path in fetch_data else None,
-    #     syst: system(),
-    # }
-
+    # TODO: add easter egg stats for fun dynamic things
     return stats_dict

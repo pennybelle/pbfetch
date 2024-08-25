@@ -26,7 +26,7 @@ def fetch(fetch_data):
     # omit comments from output
     for line in fetch_data.split("\n"):
         # catch and release comments using # notation
-        regex_match = re.search("#.*$", line)
+        regex_match = re.search("<comment>.*$", line)
         if not regex_match:
             continue
         fetch_data = fetch_data.replace(regex_match.group(), "")
