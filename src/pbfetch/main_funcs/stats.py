@@ -50,7 +50,7 @@ kernel = "$ker"
 ram = "$mem"
 packages = "$pac"
 cpu = "$cpu"
-disc = "$dsk"
+disc = "$dsc"
 shell = "$shl"
 window_man = "$wmn"
 desktop_env = "$den"
@@ -70,7 +70,7 @@ syst = "$system"
 
 def stats(fetch_data):
     # init necessary stats
-    stats_dict = {syst: system(), host: stat_hostname()}
+    stats_dict = {syst: system(), host: stat_hostname(), config_path: configpath()}
 
     # only import and add stats if keyword is present
     if uptime in fetch_data:
