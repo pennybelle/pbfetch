@@ -1,6 +1,6 @@
 from os import environ, path
 from subprocess import check_output
-from platform import uname
+from platform import uname, machine
 from pathlib import Path
 
 
@@ -45,7 +45,7 @@ comp = "$cmp"
 user = "$usr"
 host = "$hst"
 sys = "$sys"
-arch = "$ach"
+arch = "$arc"
 kernel = "$ker"
 ram = "$mem"
 packages = "$pac"
@@ -178,6 +178,9 @@ def stats(fetch_data):
     
     if locale in fetch_data:
         stats_dict[locale] = environ["LANG"]
+
+    if arch in fetch_data:
+        stats_dict[arch] = str(machine())
 
     # TODO: add easter egg stats for fun dynamic things
     return stats_dict
