@@ -20,6 +20,8 @@ def parse_wm():
         "qtile": "qtile",
         "niri": "niri",
         "swayfx": "swayfx",
+        "metacity": "metacity",
+        "gdm": "gdm",
     }
 
     try:

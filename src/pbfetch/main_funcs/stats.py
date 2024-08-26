@@ -204,5 +204,9 @@ def stats(fetch_data):
     if arch in fetch_data:
         stats_dict[arch] = str(machine())
 
+    for stat in stats_dict:
+        if stat is None:
+            stats_dict[stat] = "Error"
+
     # TODO: add easter egg stats for fun dynamic things
     return stats_dict
