@@ -1,4 +1,5 @@
 from subprocess import run
+from os import path
 
 
 def parse_cpu_temp():
@@ -10,6 +11,10 @@ def parse_cpu_temp():
             # check at most 30 times for each
             #   thermal_zone dir till cpu is found
             for j in range(30):
+                if path.isdir("/sys/class/thermal/thermal_zone{j}") is not True:
+                    if j == 29:
+                        return "No Thermal Zone"
+                    continue
                 data = run(
                     [
                         rf"paste <(cat /sys/class/thermal/thermal_zone{j}/type) <(cat /sys/class/thermal/thermal_zone{j}/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'"
@@ -33,8 +38,8 @@ def parse_cpu_temp():
                     return round(float(cpu_temp))
 
         print("CPU Temp Error: CPU not found")
-        return None
+        return "Error"
 
     except Exception as e:
         print(f"CPU Temp Error: {e}")
-        return None
+        return "Error"

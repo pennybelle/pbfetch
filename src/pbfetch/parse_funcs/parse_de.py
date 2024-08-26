@@ -70,25 +70,25 @@ def parse_de():
             return "xfce4"
         elif is_running("ksmserver"):
             de = "kde"
-        
+
         if de:
             session_type = subprocess.Popen(
-                'echo $XDG_SESSION_TYPE',
+                "echo $XDG_SESSION_TYPE",
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
             )
             session_type = str(session_type.communicate()[0])
-            session_type = session_type[2:len(session_type) - 3]
+            session_type = session_type[2 : len(session_type) - 3]
 
             plasma_version = subprocess.Popen(
-                'plasmashell --version',
+                "plasmashell --version",
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
             )
             plasma_version = str(plasma_version.communicate()[0])
-            plasma_version = plasma_version[2:len(plasma_version) - 3]
+            plasma_version = plasma_version[2 : len(plasma_version) - 3]
             plasma_version = plasma_version.replace("plasmashell", "").strip()
 
             if plasma_version:
