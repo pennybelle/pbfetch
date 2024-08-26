@@ -8,7 +8,7 @@ def get_console_width():
     console_width = Popen(["tput", "cols"], stdout=PIPE)
     console_width = int(float(console_width.communicate()[0].strip()))
 
-    return console_width + 5  # 5 extra spaces for the color reset bytecode
+    return console_width
 
 
 console_width = get_console_width()
@@ -62,7 +62,7 @@ def replace_keyword(template, keyword, replace_text):
         # Pad replaceText with spaces to match the whitespace we removed
         # insert color reset bytecode at the beginning of each line
         # to prevent buggy behavior
-        replaced_template.append("[39m" + split_line[0] + replace_text + split_line[1])
+        replaced_template.append("</rgb>" + split_line[0] + replace_text + split_line[1])
 
     template = "\n".join(replaced_template)
 
