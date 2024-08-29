@@ -1,5 +1,4 @@
 import os
-from subprocess import run
 
 
 def parse_res():
@@ -23,7 +22,7 @@ def parse_res():
     #         if os.path.exists(edid_path) is not True:
     #             print("no path")
     #             continue
-            
+
     #         with open(edid_path, mode="rb") as edid:
     #             byte = edid.read()
     #             while byte != b"":
@@ -34,9 +33,8 @@ def parse_res():
     #             continue
     #     print(edid)
     #     return
-    
+
     # except AttributeError:
-        
 
     # except Exception as e:
     #     print(e)
