@@ -5,6 +5,7 @@ from subprocess import check_output
 def parse_shell():
     shell_pre_parse = path.realpath(f"/proc/{getppid()}/exe")
     shell_name = shell_pre_parse.split("/")[-1]
+    shell_name = shell_name.split()[0]
     shell_version_pre_parse = str(
         check_output([f"{shell_name}", "--version"]).decode("utf-8")
     )
