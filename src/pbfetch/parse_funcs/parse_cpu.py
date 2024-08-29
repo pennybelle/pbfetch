@@ -22,7 +22,7 @@ def parse_cpu():
         return (
             f"{cpu_name} "
             f"({cpu_temp.parse_cpu_temp()}°c) "
-            f"({round(cpu_percent())}%)"
+            f"({int(cpu_percent())}%)"
         )
 
     except Exception as e:
