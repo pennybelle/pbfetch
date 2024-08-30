@@ -12,7 +12,7 @@ def parse_cpu_temp():
             #   thermal_zone dir till cpu is found
             for j in range(30):
                 if j == 29:
-                    return "No Thermal Zone"
+                    return None
                 if path.isdir(f"/sys/class/thermal/thermal_zone{j}") is not True:
                     continue
                 data = run(

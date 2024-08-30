@@ -19,9 +19,11 @@ def parse_cpu():
                 continue
             cpu_name = line.split(":")[1].strip()
 
+        temp = cpu_temp.parse_cpu_temp()
+
         return (
             f"{cpu_name} "
-            f"({cpu_temp.parse_cpu_temp()}°c) "
+            f"({temp}°c) " if temp else ""
             f"({int(cpu_percent())}%)"
         )
 
