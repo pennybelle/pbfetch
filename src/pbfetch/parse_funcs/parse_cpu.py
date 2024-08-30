@@ -20,12 +20,13 @@ def parse_cpu():
             cpu_name = line.split(":")[1].strip()
 
         temp = cpu_temp.parse_cpu_temp()
+        usage = int(cpu_percent())
 
-        return (
-            f"{cpu_name} "
-            f"({temp}°c) " if temp else ""
-            f"({int(cpu_percent())}%)"
-        )
+        cpu = cpu_name
+        cpu += f" ({temp}°c)" if temp else ""
+        cpu += f" ({usage}%)" if usage != 0 else ""
+
+        return cpu
 
     except Exception as e:
         print(e)
