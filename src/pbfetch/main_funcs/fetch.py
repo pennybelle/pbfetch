@@ -26,10 +26,19 @@ def fetch(fetch_data):
     # omit comments from output
     for line in fetch_data.split("\n"):
         # catch and release comments using # notation
-        regex_match = re.search("<comment>.*$", line)
+        inline_comment = re.search(r"<comment>.*<\/comment>", line)
+        rest_of_line_comment = re.search(r"<comment>.*$", line)
+        regex_match = (
+            inline_comment
+            or rest_of_line_comment
+        )
         if not regex_match:
             continue
-        fetch_data = fetch_data.replace(regex_match.group(), "")
+        if inline_comment:
+            match = inline_comment.group()
+        else:
+            match = rest_of_line_comment.group()
+        fetch_data = fetch_data.replace(match, " " * len(match))
 
     stats_dict = stats.stats(fetch_data)
     fetch_data = hf.replace_keywords(fetch_data, stats_dict)
