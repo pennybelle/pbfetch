@@ -13,7 +13,10 @@ def parse_font():
         font = font[3 : len(font) - 4]
         font = font.split('"')[1]
 
-        return font
+        if font:
+            return font
+        else:
+            return "not found"
 
     except Exception as e:
         print(f"Parse Font Error: {e}")

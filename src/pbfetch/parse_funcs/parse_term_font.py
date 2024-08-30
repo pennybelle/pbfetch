@@ -12,7 +12,10 @@ def parse_term_font():
         font = str(font.communicate()[0])
         font = font[3 : len(font) - 4]
 
-        return font
+        if font:
+            return font
+        else:
+            return "not found"
 
     except Exception as e:
         print(f"Parse Terminal Font Error: {e}")
