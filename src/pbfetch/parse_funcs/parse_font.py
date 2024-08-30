@@ -31,13 +31,11 @@ def parse_font():
         font = str(font.communicate()[0])
         font = font[3 : len(font) - 4]
 
-        font = font.splitlines()
+        font = font.split(r"\n")
         
         for line in font[::-1]:
-            if "8x16=y" in line:
-                return "8x16"
-            elif "8x8=y" in line:
-                return "8x8"
+            if "=y" in line:
+                return line[12 : len(line) - 2]
 
     except Exception as e:
         print(f"Parse Font Error: {e}")
