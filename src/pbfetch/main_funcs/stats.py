@@ -2,7 +2,6 @@ from os import environ, path
 from subprocess import check_output
 from platform import uname, machine
 from pathlib import Path
-from psutil import cpu_percent
 
 
 def get_config_dir():

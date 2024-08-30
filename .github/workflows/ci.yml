@@ -1,0 +1,22 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Lint and format code
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the latest version of rye
+        uses: eifinger/setup-rye@v4
+
+      - name: Instal dependencies
+        run: rye sync --no-lock
+
+      - name: Lint code
+        run: rye check
+
+      - name: Check formatting
+        run: rye fmt --check

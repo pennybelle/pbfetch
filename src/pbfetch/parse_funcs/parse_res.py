@@ -1,5 +1,4 @@
 import os
-from subprocess import run
 
 
 def parse_res():
