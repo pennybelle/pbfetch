@@ -15,7 +15,22 @@ def parse_term_font():
         if font:
             return font
         else:
-            return "not found"
+            font = Popen(
+                "zgrep FONT /proc/config.gz",
+                shell=True,
+                stdout=PIPE,
+                stderr=PIPE,
+            )
+            font = str(font.communicate()[0])
+            font = font[3 : len(font) - 4]
+
+            font = font.splitlines()
+            
+            for line in font[::-1]:
+                if "=y" in line:
+                    return line[12 : len(line) - 2]
+
+        return "not found"
 
     except Exception as e:
         print(f"Parse Terminal Font Error: {e}")
