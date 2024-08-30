@@ -14,7 +14,7 @@ def get_console_width():
 console_width = get_console_width()
 
 
-def replace_keyword(template, keyword, replace_text):
+def replace_keyword(template, keyword, stat):
     template = template.splitlines()
     replaced_template = []
 
@@ -24,14 +24,21 @@ def replace_keyword(template, keyword, replace_text):
             replaced_template.append(line)
             continue
 
+        is_error = False
+
         # Store the length of what we are using to replace it
-        replace_tex_length = len(replace_text)
+        stat_len = len(stat)
+
+        if stat == "ERROR":
+            is_error = True
+            stat = "<rgb(255,0,0)>ERROR</rgb>"
+            # stat_len = stat_len - 20
 
         # Split the string on the word
         split_line = line.split(keyword)
 
         # if len(line) < console_width:
-        split_line[1] = split_line[1].ljust(replace_tex_length)
+        split_line[1] = split_line[1].ljust(stat_len)
 
         # Measure the length of the second element in the split
         before_strip_length = len(split_line[1])
@@ -50,17 +57,21 @@ def replace_keyword(template, keyword, replace_text):
         keyword_length = len(keyword)
         max_allowed_length = keyword_length + whitespace_count
 
-        # Make sure our replaceText isn't too long
-        replace_text = replace_text.ljust(max_allowed_length, " ")
+        # handle error color tags conflicting with formatting
+        if is_error:
+            max_allowed_length += 20
 
-        if replace_tex_length > max_allowed_length:
-            replace_text = replace_text[:max_allowed_length]
+        # Make sure our replaceText isn't too long
+        stat = stat.ljust(max_allowed_length, " ")
+
+        if stat_len > max_allowed_length:
+            stat = stat[:max_allowed_length]
 
         # Pad replaceText with spaces to match the whitespace we removed
         # insert color reset bytecode at the beginning of each line
         # to prevent buggy behavior
         replaced_template.append(
-            "</rgb>" + split_line[0] + replace_text + split_line[1]
+            "</rgb>" + split_line[0] + stat + split_line[1]
         )
 
     template = "\n".join(replaced_template)
@@ -152,11 +163,11 @@ def final_touches(return_text):
     return return_text
 
 
-def replace_keywords(template, keywords_dict):
+def replace_keywords(template, stats_dict):
     # Replace all of the keywords in the dictionary
-    for keyword, stat in keywords_dict.items():
-        # if stat == "":
-        #     stat = "LOADING..."
+    for keyword, stat in stats_dict.items():
+        if stat is None:
+            stat = "ERROR"
 
         template = replace_keyword(template, keyword, stat)
 
