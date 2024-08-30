@@ -11,7 +11,7 @@ def parse_fs():
 
         values = [item for item in disks.values()]
         if len(values) == 1:
-            print(values)
+            # print(values)
             fs = values[0].fstype
             return fs
         
