@@ -1,4 +1,4 @@
-import os
+from os import path
 
 
 def parse_batt():
@@ -6,26 +6,32 @@ def parse_batt():
     full = None
     now = None
     try:
-        path = os.path.join("/", "sys", "class", "power_supply", "BAT0")
+        for i in range(11):
+            batt_path = path.join("/", "sys", "class", "power_supply", f"BAT{i}")
 
-        if os.path.exists(path) is not True:
-            return "not found"
+            print(batt_path)
 
-        if os.path.exists(os.path.join(path, "charge_full")):
+            if i == 10:
+                return "not found"
+
+            if path.exists(batt_path):
+                break
+
+        if path.exists(path.join(batt_path, "charge_full")):
             file_full = "charge_full"
-        elif os.path.exists(os.path.join(path, "energy_full")):
+        elif path.exists(path.join(batt_path, "energy_full")):
             file_full = "energy_full"
 
-        if os.path.exists(os.path.join(path, "charge_now")):
+        if path.exists(path.join(batt_path, "charge_now")):
             file_now = "charge_now"
-        elif os.path.exists(os.path.join(path, "energy_now")):
+        elif path.exists(path.join(batt_path, "energy_now")):
             file_now = "energy_now"
 
-        with open(os.path.join(path, file_full)) as full:
+        with open(path.join(batt_path, file_full)) as full:
             full = int(full.read())
             # print(full)
 
-        with open(os.path.join(path, file_now)) as now:
+        with open(path.join(batt_path, file_now)) as now:
             now = int(now.read())
             # print(now)
 
