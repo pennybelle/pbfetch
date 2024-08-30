@@ -13,7 +13,10 @@ def parse_theme():
         theme = theme[2 : len(theme) - 3]
         theme = theme.replace("'", "")
 
-        return theme
+        if theme:
+            return theme
+        else:
+            return "not found"
 
     except Exception as e:
         print(f"Parse Theme Error: {e}")
