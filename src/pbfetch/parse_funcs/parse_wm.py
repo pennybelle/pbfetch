@@ -33,7 +33,7 @@ def parse_wm():
             if output and manager in output:
                 return managers[manager]
 
-        return "not supported yet"
+        return "not found/supported"
 
     except Exception as e:
         print(e)
