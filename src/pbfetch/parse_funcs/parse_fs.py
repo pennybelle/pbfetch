@@ -9,7 +9,9 @@ def parse_fs():
             disks[disk.mountpoint] = disk
             # print(disks)
 
-        if len(disks) == 1:
+        keys = disks.keys()
+        if len(keys) == 1:
+            print(disks.items())
             fs = disks.items()[0].fstype
             return fs
         
