@@ -6,13 +6,13 @@ def parse_fs():
         partitions = disk_partitions() 
         disks = {}
         for disk in partitions:
-            disks[disk.mountpoint] = disk
+            disks[disk.device] = disk
             # print(disks)
 
-        keys = disks.keys()
-        if len(keys) == 1:
-            print(disks.items())
-            fs = disks.items()[0].fstype
+        values = [item for item in disks.values()]
+        if len(values) == 1:
+            print(values)
+            fs = disks.values()[0].fstype
             return fs
         
         elif "/" in disks.keys():
