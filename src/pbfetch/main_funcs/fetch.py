@@ -34,5 +34,8 @@ def fetch(fetch_data):
     stats_dict = stats.stats(fetch_data)
     fetch_data = hf.replace_keywords(fetch_data, stats_dict)
 
-    # finally print fetch to terminal, format only from the right
-    return fetch_data.rstrip()
+    # strip whitespace only from the right and reset colors at the end
+    fetch_data = fetch_data.rstrip() + "[39m"
+
+    # finally print fetch to terminal
+    return fetch_data
