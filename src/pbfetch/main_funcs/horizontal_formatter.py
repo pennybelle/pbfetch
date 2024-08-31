@@ -19,6 +19,7 @@ def replace_keyword(template, keyword, stat):
     replaced_template = []
 
     for line in template:
+        line = "</rgb>" + line
         # Replace the text with a loading spinner
         if keyword not in line:
             replaced_template.append(line)
@@ -70,7 +71,7 @@ def replace_keyword(template, keyword, stat):
         # Pad replaceText with spaces to match the whitespace we removed
         # insert color reset bytecode at the beginning of each line
         # to prevent buggy behavior
-        replaced_template.append("</rgb>" + split_line[0] + stat + split_line[1])
+        replaced_template.append(split_line[0] + stat + split_line[1])
 
     template = "\n".join(replaced_template)
 

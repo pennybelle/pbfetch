@@ -46,6 +46,10 @@ def fetch(fetch_data):
     # handle end-of-line comments
     fetch_data = omit_comments(fetch_data, r"<comment>.*$")
 
+    fetch_data = fetch_data.rstrip()
+
+    print(fetch_data)
+
     # init stats dictionary
     stats_dict = stats(fetch_data)
 
