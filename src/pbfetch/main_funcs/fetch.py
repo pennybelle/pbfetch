@@ -1,5 +1,5 @@
 import re
-import pbfetch.main_funcs.horizontal_formatter as hf
+from pbfetch.main_funcs.horizontal_formatter import replace_keywords
 from pbfetch.main_funcs.stats import stats
 from subprocess import Popen, PIPE
 from platform import system as p_system
@@ -50,7 +50,7 @@ def fetch(fetch_data):
     stats_dict = stats(fetch_data)
 
     # replace each keyword with respective stat (and format accordingly)
-    fetch_data = hf.replace_keywords(fetch_data, stats_dict)
+    fetch_data = replace_keywords(fetch_data, stats_dict)
 
     # strip whitespace only from the right and reset colors at the end
     fetch_data = fetch_data.rstrip() + "[39m"
