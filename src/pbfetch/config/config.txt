@@ -11,7 +11,7 @@
 │ • thme : $thm                                              │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
 │ • tfnt : $tft                                              │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
 │ • fnt  : $fnt                                              │                     │
-│ • pkgs : $pac                                  <>          └─────────────────────┤
+│ • pkgs : $pac                                              └─────────────────────┤
 │ • up   : $upt                                                                    │
 │                                                                                  │
 │ Hardware:                                                                        │
