@@ -9,8 +9,6 @@ def parse_batt():
         for i in range(11):
             batt_path = path.join("/", "sys", "class", "power_supply", f"BAT{i}")
 
-            print(batt_path)
-
             if i == 10:
                 return "not found"
 
