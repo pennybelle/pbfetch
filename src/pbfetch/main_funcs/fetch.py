@@ -18,9 +18,15 @@ console_width = get_console_width()
 
 
 def fetch(fetch_data):
+    supported_systems = [
+        "linux"
+    ]
+
+    # check system name
     system = p_system()
 
-    if system.lower() != "linux":
+    # exit if system is not supported
+    if system.lower() not in supported_systems:
         print("This fetch is currently only supported on linux, sorry!")
         exit()
 
