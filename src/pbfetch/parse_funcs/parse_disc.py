@@ -8,10 +8,10 @@ def parse_disc():
     disk_free_space_gb = round(vfs.f_frsize * vfs.f_bfree / (1024.0**2))
     total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
     total_percent_used = round((total_disk_size_used / total_disk_size_in_gb) * 100)
-    
+
     if total_percent_used < 1:
         total_percent_used = "<1"
-    
+
     return (
         f"{total_disk_size_used} / "
         f"{total_disk_size_in_gb} MB "

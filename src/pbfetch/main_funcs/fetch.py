@@ -18,9 +18,7 @@ console_width = get_console_width()
 
 
 def fetch(fetch_data):
-    supported_systems = [
-        "linux"
-    ]
+    supported_systems = ["linux"]
 
     # check system name
     system = p_system()
@@ -37,7 +35,7 @@ def fetch(fetch_data):
             if match:
                 match = match.group()
                 fetch_data = fetch_data.replace(match, " " * len(match))
-            
+
         return fetch_data
 
     # handle inline comments
