@@ -30,14 +30,12 @@ def fetch(fetch_data):
         inline_comment = re.search(r"<comment>.*?<\/comment>", line)
         if inline_comment:
             match = inline_comment.group()
-            print("inline comment:", match)
             fetch_data = fetch_data.replace(match, " " * len(match))
 
     for line in fetch_data.split("\n"):
         rest_of_line_comment = re.search(r"<comment>.*$", line)
         if rest_of_line_comment:
             match = rest_of_line_comment.group()
-            print("rest of line comment:", match)
             fetch_data = fetch_data.replace(match, " " * len(match))
 
     stats_dict = stats(fetch_data)
