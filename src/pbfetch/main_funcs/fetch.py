@@ -58,7 +58,7 @@ def fetch(fetch_data):
     fetch_data = replace_keywords(fetch_data, stats_dict)
 
     # strip whitespace only from the right and reset colors at the end
-    fetch_data = fetch_data.rstrip() + "[39m"
+    fetch_data = fetch_data.rstrip()
 
     # finally print fetch to terminal
     return fetch_data

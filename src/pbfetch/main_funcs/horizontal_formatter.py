@@ -74,7 +74,7 @@ def replace_keyword(template, keyword, stat):
 
     template = "\n".join(replaced_template)
 
-    return template
+    return template + "<rgb(255,255,255)></rgb>"
 
 
 def split_at_length(line):
