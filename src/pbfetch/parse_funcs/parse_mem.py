@@ -27,6 +27,9 @@ def parse_mem():
             used = total - active
             percent = round(active / total * 100)
 
+            if percent < 1:
+                percent = "<1"
+
             return str(
                 f"{round(used/1024)} / " f"{round(total/1024)}" f" MB ({percent}%)"
             )
