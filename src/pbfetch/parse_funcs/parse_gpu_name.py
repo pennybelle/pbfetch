@@ -17,7 +17,8 @@ def parse_gpu():
         gpu_name = command("lspci | grep -i nvidia")
         
         if gpu_name:
-            print(gpu_name)
+            gpu_name = gpu_name.split(":")[1]
+            gpu_name = gpu_name.strip()
             return gpu_name
 
     except Exception:
