@@ -28,10 +28,7 @@ def fetch(fetch_data):
         # catch and release comments using # notation
         inline_comment = re.search(r"<comment>.*<\/comment>", line)
         rest_of_line_comment = re.search(r"<comment>.*$", line)
-        regex_match = (
-            inline_comment
-            or rest_of_line_comment
-        )
+        regex_match = inline_comment or rest_of_line_comment
         if not regex_match:
             continue
         if inline_comment:

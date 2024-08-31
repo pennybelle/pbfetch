@@ -25,7 +25,7 @@ def parse_term_font():
             font = font[3 : len(font) - 4]
 
             font = font.split(r"\n")
-            
+
             for line in font[::-1]:
                 if "=y" in line:
                     return line[12 : len(line) - 2]

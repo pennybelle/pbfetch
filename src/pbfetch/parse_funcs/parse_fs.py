@@ -3,7 +3,7 @@ from psutil import disk_partitions
 
 def parse_fs():
     try:
-        partitions = disk_partitions() 
+        partitions = disk_partitions()
         disks = {}
         for disk in partitions:
             disks[disk.device] = disk
@@ -14,7 +14,7 @@ def parse_fs():
             # print(values)
             fs = values[0].fstype
             return fs
-        
+
         elif "/" in disks.keys():
             fs = disks["/"].fstype
             return fs

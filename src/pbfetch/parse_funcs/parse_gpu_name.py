@@ -1,5 +1,6 @@
 from subprocess import Popen, PIPE
 
+
 def command(input):
     input = Popen(
         input,
@@ -12,10 +13,11 @@ def command(input):
 
     return input
 
+
 def parse_gpu():
     try:
         gpu_name = command("lspci | grep -i nvidia")
-        
+
         if gpu_name:
             gpu_name = gpu_name.split(": ")[1]
             gpu_name = gpu_name.strip()
