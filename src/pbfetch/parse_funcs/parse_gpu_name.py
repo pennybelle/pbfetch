@@ -1,15 +1,30 @@
-import subprocess
+from subprocess import Popen, PIPE
 
+def command(input):
+    input = Popen(
+        input,
+        shell=True,
+        stdout=PIPE,
+        stderr=PIPE,
+    )
+    input = str(input.communicate()[0])
+    input = input[2 : len(input) - 3]
+
+    return input
 
 def parse_gpu():
     try:
-        gpu_name = subprocess.Popen(
-            'eglinfo | grep "OpenGL compatibility profile renderer:"',
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-        gpu_name = str(gpu_name.communicate()[0])
+        gpu_name = command("lspci | grep -i nvidia")
+        
+        if gpu_name:
+            print(gpu_name)
+            return gpu_name
+
+    except Exception:
+        pass
+
+    try:
+        gpu_name = command('eglinfo | grep "OpenGL compatibility profile renderer:"')
         # print(gpu_name)
 
         gpu_name = gpu_name.split("\\n")[2]
@@ -20,12 +35,15 @@ def parse_gpu():
 
         return gpu_name
 
-    except IndexError:
-        gpu_name = subprocess.Popen(
+    except Exception:
+        pass
+
+    try:
+        gpu_name = Popen(
             'lspci | grep "VGA compatible controller:"',
             shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            stdout=PIPE,
+            stderr=PIPE,
         )
         gpu_name = str(gpu_name.communicate()[0])
         # print(gpu_name)
