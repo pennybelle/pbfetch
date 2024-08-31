@@ -25,24 +25,29 @@ def fetch(fetch_data):
         exit()
 
     # omit comments from output
-    for line in fetch_data.split("\n"):
-        # catch and release comments using # notation
-        inline_comment = re.search(r"<comment>.*?<\/comment>", line)
-        if inline_comment:
-            match = inline_comment.group()
-            fetch_data = fetch_data.replace(match, " " * len(match))
+    def omit_comments(fetch_data, regex):
+        for line in fetch_data.split("\n"):
+            match = re.search(regex, line)
+            if match:
+                match = match.group()
+                fetch_data = fetch_data.replace(match, " " * len(match))
+            
+        return fetch_data
 
-    for line in fetch_data.split("\n"):
-        rest_of_line_comment = re.search(r"<comment>.*$", line)
-        if rest_of_line_comment:
-            match = rest_of_line_comment.group()
-            fetch_data = fetch_data.replace(match, " " * len(match))
+    # handle inline comments
+    fetch_data = omit_comments(fetch_data, r"<comment>.*?<\/comment>")
 
+    # handle end-of-line comments
+    fetch_data = omit_comments(fetch_data, r"<comment>.*$")
+
+    # init stats dictionary
     stats_dict = stats(fetch_data)
+
+    # replace each keyword with respective stat (and format accordingly)
     fetch_data = hf.replace_keywords(fetch_data, stats_dict)
 
     # strip whitespace only from the right and reset colors at the end
-    fetch_data = f"{fetch_data.rstrip()}[39m"
+    fetch_data = fetch_data.rstrip() + "[39m"
 
     # finally print fetch to terminal
     return fetch_data
