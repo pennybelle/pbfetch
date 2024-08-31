@@ -96,7 +96,7 @@ def parse_de():
 
             return f"{de} ({session_type})"
 
-    return "not found"
+    return "not found/supported"
 
 
 def is_running(process):

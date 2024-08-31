@@ -1,6 +1,6 @@
 import re
 import pbfetch.main_funcs.horizontal_formatter as hf
-import pbfetch.main_funcs.stats as stats
+from pbfetch.main_funcs.stats import stats
 from subprocess import Popen, PIPE
 from platform import system as p_system
 
@@ -23,25 +23,28 @@ def fetch(fetch_data):
     if system.lower() != "linux":
         print("This fetch is currently only supported on linux, sorry!")
         exit()
+
     # omit comments from output
     for line in fetch_data.split("\n"):
         # catch and release comments using # notation
-        inline_comment = re.search(r"<comment>.*<\/comment>", line)
-        rest_of_line_comment = re.search(r"<comment>.*$", line)
-        regex_match = inline_comment or rest_of_line_comment
-        if not regex_match:
-            continue
+        inline_comment = re.search(r"<comment>.*?<\/comment>", line)
         if inline_comment:
             match = inline_comment.group()
-        else:
-            match = rest_of_line_comment.group()
-        fetch_data = fetch_data.replace(match, " " * len(match))
+            print("inline comment:", match)
+            fetch_data = fetch_data.replace(match, " " * len(match))
 
-    stats_dict = stats.stats(fetch_data)
+    for line in fetch_data.split("\n"):
+        rest_of_line_comment = re.search(r"<comment>.*$", line)
+        if rest_of_line_comment:
+            match = rest_of_line_comment.group()
+            print("rest of line comment:", match)
+            fetch_data = fetch_data.replace(match, " " * len(match))
+
+    stats_dict = stats(fetch_data)
     fetch_data = hf.replace_keywords(fetch_data, stats_dict)
 
     # strip whitespace only from the right and reset colors at the end
-    fetch_data = f"{fetch_data.rstrip()}[39m."
+    fetch_data = f"{fetch_data.rstrip()}[39m"
 
     # finally print fetch to terminal
     return fetch_data

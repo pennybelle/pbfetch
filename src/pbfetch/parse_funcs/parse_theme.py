@@ -16,7 +16,7 @@ def parse_theme():
         if theme:
             return theme
         else:
-            return "not found"
+            return "not found/supported"
 
     except Exception as e:
         print(f"Parse Theme Error: {e}")
