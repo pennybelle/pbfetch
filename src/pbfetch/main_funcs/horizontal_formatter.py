@@ -118,7 +118,7 @@ def split_at_length(line):
 
             # Loop through the string from the current location to
             #   the next END_FLAG capturing the characters as we go
-            for j in range(1, line_length):
+            for j in range(1, line_length - i):
                 # Capture the current character at this index
                 buffer_char = line[i + j]
 
