@@ -48,7 +48,8 @@ def fetch(fetch_data):
 
     fetch_data = fetch_data.rstrip()
 
-    print(fetch_data)
+    # debug
+    # print(fetch_data)
 
     # init stats dictionary
     stats_dict = stats(fetch_data)

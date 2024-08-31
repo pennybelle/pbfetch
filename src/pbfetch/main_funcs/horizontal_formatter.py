@@ -20,7 +20,8 @@ def replace_keyword(template, keyword, stat):
 
     for line in template:
         line = "</rgb>" + line
-        # Replace the text with a loading spinner
+
+        # if no keyword add line to replace template and continue
         if keyword not in line:
             replaced_template.append(line)
             continue
@@ -33,12 +34,10 @@ def replace_keyword(template, keyword, stat):
         if stat == "ERROR":
             is_error = True
             stat = "<rgb(255,0,0)>ERROR</rgb>"
-            # stat_len = stat_len - 20
 
         # Split the string on the word
         split_line = line.split(keyword)
 
-        # if len(line) < console_width:
         split_line[1] = split_line[1].ljust(stat_len)
 
         # Measure the length of the second element in the split
