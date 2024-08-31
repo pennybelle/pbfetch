@@ -49,6 +49,7 @@ def parse_res():
 
                 with open(f"{res_path}/card{i}-{display}-1/modes") as file:
                     data = file.read()
+                    data = data.splitlines()[0]
                     return str(data).strip()
 
         print("Resolution Error: LVDS and eDP not found")
