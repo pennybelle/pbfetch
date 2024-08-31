@@ -1,6 +1,6 @@
 ┌────────────────────────────────────────────────────────────┬─────────────────────┐
-│ Software:                                                  │  $hst               │
-│ • os   : $sys                                              │  a very good girl   │
+│ Software:                                                  │$hst                 │
+│ • os   : $sys                                              │a really good girl   │
 │ • ker  : $ker                                              ├─────────────────────┤
 │ • bios : $bio                                              │   <rgb(23,147,209)>       .       </rgb>   │ <comment> these lines dont match up           </comment>
 │ • fs   : $fsm                                              │   <rgb(23,147,209)>      /#\      </rgb>   │ <comment> because of the color tags,          </comment>
