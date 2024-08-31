@@ -19,7 +19,7 @@ def replace_keyword(template, keyword, stat):
     replaced_template = []
 
     for line in template:
-        line = "</rgb>" + line
+        line = "<rgb(255,255,255)></rgb>" + line
 
         # if no keyword add line to replace template and continue
         if keyword not in line:
