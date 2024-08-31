@@ -31,7 +31,7 @@ def stat_architecture():
 
 def stat_hostname():
     # return f"{login.parse_login()}@{hostname.parse_hostname()}"
-    return f"{environ["USER"]}@{stat_host()}"
+    return f"{environ['USER']}@{stat_host()}"
 
 
 def stat_datetime():
