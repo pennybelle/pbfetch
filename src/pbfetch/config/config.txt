@@ -26,20 +26,20 @@
 │ • batt : $bat                                                                    │
 └──────────────────────────────────────────────────────────────────────────────────┘
 
-                        _|            _|_|              _|                _|        
-              _|_|_|    _|_|_|      _|        _|_|    _|_|_|_|    _|_|_|  _|_|_|    
-              _|    _|  _|    _|  _|_|_|_|  _|_|_|_|    _|      _|        _|    _|  
-              _|    _|  _|    _|    _|      _|          _|      _|        _|    _|  
-              _|_|_|    _|_|_|      _|        _|_|_|      _|_|    _|_|_|  _|    _|  
-              _|                                                                    
-              _|                                                                    
-                                                                                          
-                      This project aims to be the most customizable fetch.          
-                      You can do almost anything with the config.txt.               
-                      It is located in $configpath
-                                                                                             
-                      Have fun customizing! Take note of the comments in            
-                      the default config, as they contain valuable info.
+                  _|            _|_|              _|                _|        
+        _|_|_|    _|_|_|      _|        _|_|    _|_|_|_|    _|_|_|  _|_|_|    
+        _|    _|  _|    _|  _|_|_|_|  _|_|_|_|    _|      _|        _|    _|  
+        _|    _|  _|    _|    _|      _|          _|      _|        _|    _|  
+        _|_|_|    _|_|_|      _|        _|_|_|      _|_|    _|_|_|  _|    _|  
+        _|                                                                    
+        _|                                                                    
+                                                                                    
+                This project aims to be the most customizable fetch.          
+                You can do almost anything with the config.txt.               
+                It is located in $configpath
+                                                                                       
+                Have fun customizing! Take note of the comments in            
+                the default config, as they contain valuable info.
 
 <comment> Comments can be left by prefixing the line with "<comment>"
 <comment> Inline comments are also possible now! To end an inline comment, end it with </comment>
