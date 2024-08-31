@@ -9,8 +9,8 @@ def parse_disc():
     total_disk_size_used = total_disk_size_in_gb - disk_free_space_gb
     total_percent_used = round((total_disk_size_used / total_disk_size_in_gb) * 100)
     
-    if total_percent_used < 1:
-        total_percent_used = "<1"
+    # if total_percent_used < 1:
+    #     total_percent_used = "<1"
     
     return (
         f"{total_disk_size_used} / "
