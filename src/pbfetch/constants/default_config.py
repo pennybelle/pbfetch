@@ -1,4 +1,5 @@
-DEFAULT_CONFIG = """
+def default_config():
+    return r"""
 ┌────────────────────────────────────────────────────────────┬─────────────────────┐
 │ Software:                                                  │•$hst                │
 │ • os   : $sys                                              │•a really good girl  │
