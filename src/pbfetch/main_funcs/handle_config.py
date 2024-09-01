@@ -1,12 +1,7 @@
 from pbfetch.main_funcs.stats import get_config_dir
-
 from os import path, makedirs, environ
 
-# from pbfetch.main_funcs.stats import system
-
 user = environ["USER"]
-
-
 config_directory = get_config_dir()
 file = "config.txt"
 
