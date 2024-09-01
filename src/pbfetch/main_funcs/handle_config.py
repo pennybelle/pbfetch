@@ -38,26 +38,4 @@ def handle_config():
             print(f"The config can be located in {config_directory}")
             exit()
 
-    # else:
-    #     print(f"Generating new config in {config_directory}")
-
-    #     # only import default config if needed
-    #     from pbfetch.constants.default_config import DEFAULT_CONFIG
-
-    #     content = DEFAULT_CONFIG
-
-    #     if content:
-    #         # make config directory
-    #         makedirs(config_directory)
-
-    #         # paste default config string into newly created config.txt
-    #         with open(path.join(config_directory, file), "w") as config:
-    #             config.write(DEFAULT_CONFIG)
-
-    #         config = content
-    #         print("Default config copied successfully")
-    #     else:
-    #         print("The default config is empty...Uh Oh!")
-    #         exit()
-
     return config
