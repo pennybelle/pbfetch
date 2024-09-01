@@ -10,5 +10,7 @@
 #   universal: false
 
 -e file:.
+nvidia-ml-py3==7.352.0
+    # via pbfetch
 psutil==6.0.0
     # via pbfetch
