@@ -1,7 +1,6 @@
 from pbfetch.main_funcs.stats import get_config_dir
 
 from os import path, makedirs, environ
-from shutil import copy
 
 # from pbfetch.main_funcs.stats import system
 
