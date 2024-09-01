@@ -28,6 +28,7 @@ def handle_config():
 
         if content:
             config = content
+
         else:
             print("The config is empty! Try adding some ascii art OwO")
             print(f"The config can be located in {config_directory}")
