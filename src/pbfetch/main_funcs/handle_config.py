@@ -14,20 +14,23 @@ config_directory = get_config_dir()
 
 
 def handle_config():
-    # copy a default config into ~/.config/pbfetch/config/ on first launch
     if path.isdir(config_directory):
         if path.exists(path.join(config_directory, file)) is not True:
             print("Generating default config")
-            copy(
-                path.join(usr_tmp, file),
-                path.join(config_directory, file),
-            )
 
-        with open(path.join(config_directory, file)) as fetch_data:
-            content = fetch_data.read()
+            # only import default config if needed
+            from pbfetch.constants.default_config import DEFAULT_CONFIG
+
+            # paste default config string into newly created config.txt
+            with open(path.join(config_directory, file), "w") as config:
+                config.write(DEFAULT_CONFIG)
+
+        # read config
+        with open(path.join(config_directory, file)) as config:
+            content = config.read()
 
             if content:
-                fetch_data = content
+                config = content
             else:
                 print("The config is empty! Try adding some ascii art OwO")
                 print(f"The config can be located in {config_directory}")
@@ -35,19 +38,24 @@ def handle_config():
 
     else:
         print(f"Generating new config in {config_directory}")
-        with open(str(path.join(usr_tmp, file))) as usr_share_file:
-            content = usr_share_file.read()
 
-            if content:
-                makedirs(config_directory)
-                copy(
-                    path.join(usr_tmp, file),
-                    path.join(config_directory, file),
-                )
-                fetch_data = content
-                print("Default config copied successfully")
-            else:
-                print("The default config is empty...Uh Oh!")
-                exit()
+        # only import default config if needed
+        from pbfetch.constants.default_config import DEFAULT_CONFIG
 
-    return fetch_data
+        content = DEFAULT_CONFIG
+
+        if content:
+            # make config directory
+            makedirs(config_directory)
+
+            # paste default config string into newly created config.txt
+            with open(path.join(config_directory, file), "w") as config:
+                config.write(DEFAULT_CONFIG)
+
+            config = content
+            print("Default config copied successfully")
+        else:
+            print("The default config is empty...Uh Oh!")
+            exit()
+
+    return config
