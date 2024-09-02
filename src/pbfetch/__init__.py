@@ -1,5 +1,5 @@
 from pbfetch.fetch import fetch
-from pbfetch.handle_config import handle_config
+from pbfetch.config import handle_config
 
 
 def main():
