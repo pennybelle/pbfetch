@@ -1,5 +1,6 @@
 from os import path, makedirs, environ
 
+from pbfetch.constants import DEFAULT_CONFIG
 from pbfetch.stats import get_config_dir
 
 user = environ["USER"]
@@ -16,12 +17,11 @@ def handle_config():
         print("Generating default config")
 
         # only import default config if needed
-        from pbfetch.constants.default_config import default_config
 
         # paste default config string into newly created config.txt
         with open(path.join(config_directory, file), "w") as config:
             # slice first newline in default config
-            config.write(default_config()[1:])
+            config.write(DEFAULT_CONFIG[1:])
 
     # read config
     with open(path.join(config_directory, file)) as config:
