@@ -1,5 +1,6 @@
-from pbfetch.main_funcs.stats import get_config_dir
 from os import path, makedirs, environ
+
+from pbfetch.stats import get_config_dir
 
 user = environ["USER"]
 config_directory = get_config_dir()
