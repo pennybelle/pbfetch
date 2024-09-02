@@ -77,121 +77,121 @@ def stats(fetch_data):
     # only import and add stats if keyword is present
     if uptime in fetch_data:
         # print("uptime")
-        from pbfetch.parse_funcs.parse_uptime import parse_uptime
+        from pbfetch.parse.uptime import parse_uptime
 
         stats_dict[uptime] = parse_uptime()
 
     if sys in fetch_data:
         # print("sys")
-        from pbfetch.parse_funcs.parse_os import parse_os
+        from pbfetch.parse.os import parse_os
 
         stats_dict[sys] = parse_os()
 
     if cpu in fetch_data:
         # print("cpu")
-        from pbfetch.parse_funcs.parse_cpu import parse_cpu
+        from pbfetch.parse.cpu import parse_cpu
 
         stats_dict[cpu] = parse_cpu()
 
     if ram in fetch_data:
         # print("ram")
-        from pbfetch.parse_funcs.parse_mem import parse_mem
+        from pbfetch.parse.memory import parse_mem
 
         stats_dict[ram] = parse_mem()
 
     if kernel in fetch_data:
         # print("kernel")
-        from pbfetch.parse_funcs.parse_kernel import parse_kernel_release
+        from pbfetch.parse.kernel import parse_kernel_release
 
         stats_dict[kernel] = parse_kernel_release()
 
     if window_man in fetch_data:
         # print("window_man")
-        from pbfetch.parse_funcs.parse_wm import parse_wm
+        from pbfetch.parse.wm import parse_wm
 
         stats_dict[window_man] = parse_wm()
 
     if desktop_env in fetch_data:
         # print("desktop_env")
-        from pbfetch.parse_funcs.parse_de import parse_de
+        from pbfetch.parse.de import parse_de
 
         stats_dict[desktop_env] = parse_de()
 
     if filesystem in fetch_data:
         # print("filesystem")
-        from pbfetch.parse_funcs.parse_fs import parse_fs
+        from pbfetch.parse.fs import parse_fs
 
         stats_dict[filesystem] = parse_fs()
 
     if gpu in fetch_data:
         # print("gpu")
-        from pbfetch.parse_funcs.parse_gpu_name import parse_gpu
+        from pbfetch.parse.gpu import parse_gpu
 
         stats_dict[gpu] = parse_gpu()
 
     if battery in fetch_data:
         # print("battery")
-        from pbfetch.parse_funcs.parse_batt import parse_batt
+        from pbfetch.parse.battery import parse_batt
 
         stats_dict[battery] = parse_batt()
 
     if motherboard in fetch_data:
         # print("motherboard")
-        from pbfetch.parse_funcs.parse_mb import parse_mb
+        from pbfetch.parse.motherboard import parse_mb
 
         stats_dict[motherboard] = parse_mb()
 
     if comp in fetch_data:
         # print("comp")
-        from pbfetch.parse_funcs.parse_comp_name import parse_comp_name
+        from pbfetch.parse.computer_name import parse_comp_name
 
         stats_dict[comp] = parse_comp_name()
 
     if bios in fetch_data:
         # print("bios")
-        from pbfetch.parse_funcs.parse_bios_type import parse_bios_type
+        from pbfetch.parse.bios_type import parse_bios_type
 
         stats_dict[bios] = parse_bios_type()
 
     if resolution in fetch_data:
         # print("resolution")
-        from pbfetch.parse_funcs.parse_res import parse_res
+        from pbfetch.parse.resolution import parse_res
 
         stats_dict[resolution] = parse_res()
 
     if packages in fetch_data:
         # print("packages")
-        from pbfetch.parse_funcs.parse_packages import parse_packages
+        from pbfetch.parse.packages import parse_packages
 
         stats_dict[packages] = parse_packages()
 
     if disc in fetch_data:
         # print("disc")
-        from pbfetch.parse_funcs.parse_disc import parse_disc
+        from pbfetch.parse.disk import parse_disk
 
-        stats_dict[disc] = parse_disc()
+        stats_dict[disc] = parse_disk()
 
     if shell in fetch_data:
         # print("shell")
-        from pbfetch.parse_funcs.parse_shell import parse_shell
+        from pbfetch.parse.shell import parse_shell
 
         stats_dict[shell] = parse_shell()
 
     if theme in fetch_data:
         # print("theme")
-        from pbfetch.parse_funcs.parse_theme import parse_theme
+        from pbfetch.parse.theme import parse_theme
 
         stats_dict[theme] = parse_theme()
 
     if font in fetch_data:
         # print("font")
-        from pbfetch.parse_funcs.parse_font import parse_font
+        from pbfetch.parse.font import parse_font
 
         stats_dict[font] = parse_font()
 
     if term_font in fetch_data:
         # print("term_font")
-        from pbfetch.parse_funcs.parse_term_font import parse_term_font
+        from pbfetch.parse.term_font import parse_term_font
 
         stats_dict[term_font] = parse_term_font()
 

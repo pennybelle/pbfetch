@@ -1,7 +1,7 @@
 from os import statvfs
 
 
-def parse_disc():
+def parse_disk():
     vfs = statvfs("/")
     total_disk_size_in_bytes = vfs.f_frsize * vfs.f_blocks
     total_disk_size_in_gb = round(total_disk_size_in_bytes / (1024.0**2))
