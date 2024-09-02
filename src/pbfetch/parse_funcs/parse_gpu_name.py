@@ -1,5 +1,5 @@
 from subprocess import Popen, PIPE
-import nvidia_smi
+# import nvidia_smi
 
 
 def command(input):
@@ -16,24 +16,24 @@ def command(input):
 
 
 def parse_gpu():
-    try:
-        nvidia_smi.nvmlInit()
-        handle = nvidia_smi.nvmDeviceGetHandleByIndex(0)
-        print(handle)
-
-    except Exception:
-        pass
-
     # try:
-    #     gpu_name = command("lspci | grep -i nvidia")
-
-    #     if gpu_name:
-    #         gpu_name = gpu_name.split(": ")[1]
-    #         gpu_name = gpu_name.strip()
-    #         return gpu_name
+    #     nvidia_smi.nvmlInit()
+    #     handle = nvidia_smi.nvmDeviceGetHandleByIndex(0)
+    #     print(handle)
 
     # except Exception:
     #     pass
+
+    try:
+        gpu_name = command("lspci | grep -i nvidia")
+
+        if gpu_name:
+            gpu_name = gpu_name.split(": ")[1]
+            gpu_name = gpu_name.strip()
+            return gpu_name
+
+    except Exception:
+        pass
 
     try:
         gpu_name = command('eglinfo | grep "OpenGL compatibility profile renderer:"')
