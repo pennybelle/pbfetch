@@ -19,12 +19,46 @@ def replace_keyword(template, keyword, stat):
     replaced_template = []
 
     for line in template:
-        line = "<rgb(255,255,255)></rgb>" + line
+        line = "<rgb(255,255,255)></rgb>" + line.rstrip()
 
         # if no keyword add line to replace template and continue
         if keyword not in line:
             replaced_template.append(line)
             continue
+
+        # # keyword to init stretching to the right
+        # stretch = "$stretch"
+
+        # # check if keyword is to stretch line to console width
+        # if stretch in line:
+        #     # split line at keyword
+        #     split_line = line.split(stretch)
+
+        #     # use char directly to the left of keyword as char
+        #     copy_char = split_line[0][-1]
+
+        #     difference = console_width - len(line)
+
+        #     # if keyword at very beginning or very end of line
+        #     if len(split_line) == 1:
+        #         # if difference is 0 or less, just remove stretch tag
+        #         if difference > 0:
+        #             line = line.replace(stretch, copy_char * (difference))
+        #         else:
+        #             line = line.replace(stretch, "")
+
+        #         replaced_template.append(line)
+        #         continue
+
+        #     # if keyword NOT at very beginning or end then stretch
+        #     first_half = split_line[0]
+        #     second_half = split_line[1]
+
+        #     second_half = (copy_char * difference) + second_half
+
+        #     line = first_half + second_half
+        #     replaced_template.append(line)
+        #     continue
 
         is_error = False
 
