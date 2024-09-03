@@ -1,9 +1,9 @@
 [project]
 name = "pbfetch"
-version = "0.1.0"
+version = "0.2.0"
 description = "An unbelievably customizable hardware/software fetch."
 authors = [{ name = "pennybelle", email = "contact@pennybelle.dev" }]
-dependencies = ["psutil", "nvidia-ml-py3"]
+dependencies = ["psutil"]
 readme = "README.md"
 requires-python = ">= 3.8"
 classifiers = ["License :: OSI Approved :: Apache Software License"]
