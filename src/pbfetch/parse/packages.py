@@ -1,13 +1,13 @@
-import subprocess
+from subprocess import Popen, PIPE
 
 
 def package_query(command):
     package_manager = command.split()[0]
-    query_output = subprocess.Popen(
+    query_output = Popen(
         command,
         shell=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        stdout=PIPE,
+        stderr=PIPE,
     )
     query_output = query_output.communicate()[0]
 

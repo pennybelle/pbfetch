@@ -1,7 +1,7 @@
-import sys
-import os
-import subprocess
-import re
+from sys import platform
+from os import environ
+from subprocess import Popen, PIPE
+from re import search
 
 # i pulled this code from
 #   https://stackoverflow.com/questions/2035657/what-is-my-current-desktop-environment
@@ -13,12 +13,12 @@ def parse_de():
     # and http://ubuntuforums.org/showthread.php?t=652320
     # and http://ubuntuforums.org/showthread.php?t=652320
     # and http://ubuntuforums.org/showthread.php?t=1139057
-    if sys.platform in ["win32", "cygwin"]:
+    if platform in ["win32", "cygwin"]:
         return "windows"
-    elif sys.platform == "darwin":
+    elif platform == "darwin":
         return "mac"
     else:  # Most likely either a POSIX system or something not much common
-        desktop_session = os.environ.get("DESKTOP_SESSION")
+        desktop_session = environ.get("DESKTOP_SESSION")
         if (
             desktop_session is not None
         ):  # easier to match if we doesn't have  to deal with caracter cases
@@ -60,10 +60,10 @@ def parse_de():
                 return "razor-qt"
             elif desktop_session.startswith("wmaker"):  # e.g. wmaker-common
                 return "windowmaker"
-        if os.environ.get("KDE_FULL_SESSION") == "true":
+        if environ.get("KDE_FULL_SESSION") == "true":
             de = "kde"
-        elif os.environ.get("GNOME_DESKTOP_SESSION_ID"):
-            if "deprecated" not in os.environ.get("GNOME_DESKTOP_SESSION_ID"):
+        elif environ.get("GNOME_DESKTOP_SESSION_ID"):
+            if "deprecated" not in environ.get("GNOME_DESKTOP_SESSION_ID"):
                 return "gnome2"
         # From http://ubuntuforums.org/showthread.php?t=652320
         elif is_running("xfce-mcs-manage"):
@@ -72,20 +72,20 @@ def parse_de():
             de = "kde"
 
         if de:
-            session_type = subprocess.Popen(
+            session_type = Popen(
                 "echo $XDG_SESSION_TYPE",
                 shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                stdout=PIPE,
+                stderr=PIPE,
             )
             session_type = str(session_type.communicate()[0])
             session_type = session_type[2 : len(session_type) - 3]
 
-            plasma_version = subprocess.Popen(
+            plasma_version = Popen(
                 "plasmashell --version",
                 shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                stdout=PIPE,
+                stderr=PIPE,
             )
             plasma_version = str(plasma_version.communicate()[0])
             plasma_version = plasma_version[2 : len(plasma_version) - 3]
@@ -103,11 +103,11 @@ def is_running(process):
     # From http://www.bloggerpolis.com/2011/05/how-to-check-if-a-process-is-running-using-python/
     # and http://richarddingwall.name/2009/06/18/windows-equivalents-of-ps-and-kill-commands/
     try:  # Linux/Unix
-        s = subprocess.Popen(["ps", "axw"], stdout=subprocess.PIPE)
+        s = Popen(["ps", "axw"], stdout=PIPE)
     except Exception as _:  # Windows
-        s = subprocess.Popen(["tasklist", "/v"], stdout=subprocess.PIPE)
+        s = Popen(["tasklist", "/v"], stdout=PIPE)
     for x in s.stdout:
         x = str(x)
-        if re.search(process, x):
+        if search(process, x):
             return True
     return False

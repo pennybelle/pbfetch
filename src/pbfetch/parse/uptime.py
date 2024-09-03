@@ -1,8 +1,8 @@
-import time
+from time import clock_gettime, CLOCK_BOOTTIME
 
 
 def parse_uptime():
-    seconds = int(time.clock_gettime(time.CLOCK_BOOTTIME))
+    seconds = int(clock_gettime(CLOCK_BOOTTIME))
 
     # math for time formatting with day, hr, min, sec
     m, s = divmod(seconds, 60)

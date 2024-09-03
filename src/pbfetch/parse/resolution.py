@@ -1,4 +1,4 @@
-import os
+from os import path
 
 
 def parse_res():
@@ -44,7 +44,7 @@ def parse_res():
 
         for display in display_types:
             for i in range(10):
-                if os.path.isdir(f"{res_path}/card{i}-{display}-1") is not True:
+                if path.isdir(f"{res_path}/card{i}-{display}-1") is not True:
                     continue
 
                 with open(f"{res_path}/card{i}-{display}-1/modes") as file:

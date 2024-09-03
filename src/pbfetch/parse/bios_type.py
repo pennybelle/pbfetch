@@ -1,9 +1,9 @@
-import os
+from os import path
 
 
 def parse_bios_type():
     try:
-        if os.path.isdir("/sys/firmware/efi") or os.path.exists(
+        if path.isdir("/sys/firmware/efi") or path.exists(
             "/sys/firmware/acpi/tables/UEFI"
         ):
             bios_type = "UEFI"
