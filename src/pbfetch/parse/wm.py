@@ -2,36 +2,36 @@ from subprocess import run
 
 
 def parse_wm():
-    managers = {
-        "Hyprland": "Hyprland",
-        "kwin": "kwin",
-        "river": "river",
-        "sway": "sway",
-        "labwc": "labwc",
-        "anvil": "anvil",
-        "cosmic": "cosmic",
-        "mirace": "miracle",
-        "mutter": "mutter",
-        "theseus": "theseus",
-        "wayfire": "wayfire",
-        "weston": "weston",
-        "cage": "cage",
-        "gamescope": "gamescope",
-        "qtile": "qtile",
-        "niri": "niri",
-        "swayfx": "swayfx",
-        "metacity": "metacity",
-        "gdm": "gdm",
-    }
+    managers = [
+        "kwin",
+        "river",
+        "sway",
+        "labwc",
+        "anvil",
+        "cosmic",
+        "mirace",
+        "mutter",
+        "theseus",
+        "wayfire",
+        "weston",
+        "cage",
+        "gamescope",
+        "qtile",
+        "niri",
+        "swayfx",
+        "metacity",
+        "gdm",
+        "Hyprland",
+    ]
 
     try:
-        for manager in managers.keys():
+        for manager in managers:
             output = run(["pgrep", "-l", manager], capture_output=True).stdout
             output = str(output)
             # print(output)
 
             if output and manager in output:
-                return managers[manager]
+                return manager
 
         return "not found/supported"
 
