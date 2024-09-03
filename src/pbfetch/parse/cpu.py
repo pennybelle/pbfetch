@@ -1,4 +1,4 @@
-import pbfetch.parse_funcs.parse_cpu_temp as cpu_temp
+import pbfetch.parse.cpu_temp as cpu_temp
 from psutil import cpu_percent
 
 # # constant for checking cpu usage (in seconds)

@@ -1,1 +1,1 @@
-exclude = [".git", ".venv", "gallery", "src/pbfetch/BACKUP"]
+exclude = [".git", ".venv", "gallery", "legacy"]

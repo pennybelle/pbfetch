@@ -1,5 +1,6 @@
-from pbfetch.main_funcs.run_fetch import run_fetch
+from pbfetch.fetch import fetch
+from pbfetch.config import handle_config
 
 
 def main():
-    run_fetch()
+    print(fetch(handle_config()))

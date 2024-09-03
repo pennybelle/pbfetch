@@ -1,8 +1,9 @@
 import re
-from pbfetch.main_funcs.horizontal_formatter import replace_keywords
-from pbfetch.main_funcs.stats import stats
 from subprocess import Popen, PIPE
 from platform import system as p_system
+
+from pbfetch.horizontal_formatter import replace_keywords
+from pbfetch.stats import stats
 
 current_loading_spinner = "/"
 
