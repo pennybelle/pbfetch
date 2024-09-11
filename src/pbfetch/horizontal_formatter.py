@@ -14,6 +14,17 @@ def get_console_width():
 console_width = get_console_width()
 
 
+# TODO: WIP stretch feature
+# def stretch(template, keyword):
+#     template = template.splitlines()
+#     replaced_template = []
+
+#     for line in template:
+#         if keyword not in line:
+#             replaced_template.append(line)
+#             continue
+
+
 def replace_keyword(template, keyword, stat):
     template = template.splitlines()
     replaced_template = []

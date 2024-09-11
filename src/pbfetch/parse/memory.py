@@ -11,21 +11,21 @@ def parse_mem():
             mem_info = mem_info.splitlines()
 
         total = None
-        active = None
+        free = None
 
         for line in mem_info:
-            if total and active:
+            if total and free:
                 break
 
             if "MemTotal:" in line:
                 total = mem_format(line)
-            if "Active:" in line:
-                active = mem_format(line)
+            if "MemFree:" in line:
+                free = mem_format(line)
 
-        if total and active:
-            total, active = int(total), int(active)
-            used = total - active
-            percent = round(active / total * 100)
+        if total and free:
+            total, free = int(total), int(free)
+            used = total - free
+            percent = round(used / total * 100)
 
             if percent < 1:
                 percent = "<1"
