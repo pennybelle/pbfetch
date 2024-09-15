@@ -3,6 +3,27 @@ from subprocess import check_output
 from platform import uname, machine
 from pathlib import Path
 
+from pbfetch.parse.battery import parse_batt
+from pbfetch.parse.bios_type import parse_bios_type
+from pbfetch.parse.computer_name import parse_comp_name
+from pbfetch.parse.cpu import parse_cpu
+from pbfetch.parse.de import parse_de
+from pbfetch.parse.disk import parse_disk
+from pbfetch.parse.font import parse_font
+from pbfetch.parse.fs import parse_fs
+from pbfetch.parse.gpu import parse_gpu
+from pbfetch.parse.kernel import parse_kernel_release
+from pbfetch.parse.memory import parse_mem
+from pbfetch.parse.motherboard import parse_mb
+from pbfetch.parse.os import parse_os
+from pbfetch.parse.packages import parse_packages
+from pbfetch.parse.resolution import parse_res
+from pbfetch.parse.shell import parse_shell
+from pbfetch.parse.term_font import parse_term_font
+from pbfetch.parse.theme import parse_theme
+from pbfetch.parse.uptime import parse_uptime
+from pbfetch.parse.wm import parse_wm
+
 
 def get_config_dir():
     return environ.get("XDG_CONFIG_HOME", Path.home().joinpath(".config", "pbfetch"))
@@ -39,170 +60,45 @@ def stat_datetime():
 
 
 ########################################
+# TODO: add easter egg stats for fun dynamic things You, 1 second ago • Uncommitted changes
 
-# keywords
-uptime = "$upt"
-comp = "$cmp"
-user = "$usr"
-host = "$hst"
-sys = "$sys"
-arch = "$arc"
-kernel = "$ker"
-ram = "$mem"
-packages = "$pac"
-cpu = "$cpu"
-disc = "$dsc"
-shell = "$shl"
-window_man = "$wmn"
-desktop_env = "$den"
-filesystem = "$fsm"
-locale = "$lcl"
-battery = "$bat"
-gpu = "$gpu"
-motherboard = "$mbd"
-bios = "$bio"
-resolution = "$res"
-date_time = "$dat"
-theme = "$thm"
-font = "$fnt"
-term_font = "$tft"
-config_path = "$configpath"
-syst = "$system"
+KEYWORDS = {
+    "$upt": parse_uptime,
+    "$cmp": parse_comp_name,
+    "$usr": lambda: environ["USER"],
+    "$hst": stat_hostname,
+    "$sys": parse_os,
+    "$arc": lambda: str(machine()),
+    "$ker": parse_kernel_release,
+    "$mem": parse_mem,
+    "$pac": parse_packages,
+    "$cpu": parse_cpu,
+    "$dsc": parse_disk,
+    "$shl": parse_shell,
+    "$wmn": parse_wm,
+    "$den": parse_de,
+    "$fsm": parse_fs,
+    "$lcl": lambda: environ["LANG"],
+    "$bat": parse_batt,
+    "$gpu": parse_gpu,
+    "$mbd": parse_mb,
+    "$bio": parse_bios_type,
+    "$res": parse_res,
+    "$dat": stat_datetime,
+    "$thm": parse_theme,
+    "$fnt": parse_font,
+    "$tft": parse_term_font,
+    "$configpath": configpath,
+    "$system": system,
+}
 
 
 def stats(fetch_data):
-    # init necessary stats
-    stats_dict = {syst: system(), host: stat_hostname(), config_path: configpath()}
+    init = ["$system", "$hst", "$configpath"]
+    stats_dict = {}
 
-    # only import and add stats if keyword is present
-    if uptime in fetch_data:
-        # print("uptime")
-        from pbfetch.parse.uptime import parse_uptime
+    for keyword in KEYWORDS:
+        if keyword in init or keyword in fetch_data:
+            stats_dict[keyword] = KEYWORDS[keyword]()
 
-        stats_dict[uptime] = parse_uptime()
-
-    if sys in fetch_data:
-        # print("sys")
-        from pbfetch.parse.os import parse_os
-
-        stats_dict[sys] = parse_os()
-
-    if cpu in fetch_data:
-        # print("cpu")
-        from pbfetch.parse.cpu import parse_cpu
-
-        stats_dict[cpu] = parse_cpu()
-
-    if ram in fetch_data:
-        # print("ram")
-        from pbfetch.parse.memory import parse_mem
-
-        stats_dict[ram] = parse_mem()
-
-    if kernel in fetch_data:
-        # print("kernel")
-        from pbfetch.parse.kernel import parse_kernel_release
-
-        stats_dict[kernel] = parse_kernel_release()
-
-    if window_man in fetch_data:
-        # print("window_man")
-        from pbfetch.parse.wm import parse_wm
-
-        stats_dict[window_man] = parse_wm()
-
-    if desktop_env in fetch_data:
-        # print("desktop_env")
-        from pbfetch.parse.de import parse_de
-
-        stats_dict[desktop_env] = parse_de()
-
-    if filesystem in fetch_data:
-        # print("filesystem")
-        from pbfetch.parse.fs import parse_fs
-
-        stats_dict[filesystem] = parse_fs()
-
-    if gpu in fetch_data:
-        # print("gpu")
-        from pbfetch.parse.gpu import parse_gpu
-
-        stats_dict[gpu] = parse_gpu()
-
-    if battery in fetch_data:
-        # print("battery")
-        from pbfetch.parse.battery import parse_batt
-
-        stats_dict[battery] = parse_batt()
-
-    if motherboard in fetch_data:
-        # print("motherboard")
-        from pbfetch.parse.motherboard import parse_mb
-
-        stats_dict[motherboard] = parse_mb()
-
-    if comp in fetch_data:
-        # print("comp")
-        from pbfetch.parse.computer_name import parse_comp_name
-
-        stats_dict[comp] = parse_comp_name()
-
-    if bios in fetch_data:
-        # print("bios")
-        from pbfetch.parse.bios_type import parse_bios_type
-
-        stats_dict[bios] = parse_bios_type()
-
-    if resolution in fetch_data:
-        # print("resolution")
-        from pbfetch.parse.resolution import parse_res
-
-        stats_dict[resolution] = parse_res()
-
-    if packages in fetch_data:
-        # print("packages")
-        from pbfetch.parse.packages import parse_packages
-
-        stats_dict[packages] = parse_packages()
-
-    if disc in fetch_data:
-        # print("disc")
-        from pbfetch.parse.disk import parse_disk
-
-        stats_dict[disc] = parse_disk()
-
-    if shell in fetch_data:
-        # print("shell")
-        from pbfetch.parse.shell import parse_shell
-
-        stats_dict[shell] = parse_shell()
-
-    if theme in fetch_data:
-        # print("theme")
-        from pbfetch.parse.theme import parse_theme
-
-        stats_dict[theme] = parse_theme()
-
-    if font in fetch_data:
-        # print("font")
-        from pbfetch.parse.font import parse_font
-
-        stats_dict[font] = parse_font()
-
-    if term_font in fetch_data:
-        # print("term_font")
-        from pbfetch.parse.term_font import parse_term_font
-
-        stats_dict[term_font] = parse_term_font()
-
-    if date_time in fetch_data:
-        stats_dict[date_time] = stat_datetime()
-
-    if locale in fetch_data:
-        stats_dict[locale] = environ["LANG"]
-
-    if arch in fetch_data:
-        stats_dict[arch] = str(machine())
-
-    # TODO: add easter egg stats for fun dynamic things
     return stats_dict
