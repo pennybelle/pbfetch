@@ -33,6 +33,7 @@ def parse_mem():
             return str(
                 f"{round(used/1024)} / " f"{round(total/1024)}" f" MB ({percent}%)"
             )
+
         else:
             print("Error: could not parse ram usage")
             return None

@@ -59,9 +59,7 @@ def stat_datetime():
     return " ".join(check_output(["date"]).decode("utf-8").split())
 
 
-########################################
 # TODO: add easter egg stats for fun dynamic things You, 1 second ago • Uncommitted changes
-
 KEYWORDS = {
     "$upt": parse_uptime,
     "$cmp": parse_comp_name,

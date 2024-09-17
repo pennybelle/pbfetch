@@ -1,8 +1,103 @@
 from os import path
+from subprocess import Popen, PIPE
+
+
+def command(input):
+    output = Popen(
+        input,
+        shell=True,
+        stdout=PIPE,
+        stderr=PIPE,
+    )
+    output = str(output.communicate()[0])[2 : len(output) - 1]
+
+    return output
 
 
 def parse_res():
+    try:
+        res = command("screenresolution get 2>&1")
+
+        return res
+
+    except Exception:
+        print("screenresolution failed")
+        pass
+
+    try:
+        res = command("system_profiler SPDisplaysDataType")
+
+        return res
+
+    except Exception:
+        print("system_profiler failed")
+        pass
+
+    try:
+        res = command(
+            """PlistBuddy -c "Print DisplayAnyUserSets:0:0:Resolution" /Library/Preferences/com.apple.windowserver.plist"""
+        )
+
+        return res
+
+    except Exception:
+        print("PlistBuddy failed")
+        pass
+
+    try:
+        h = command(
+            """wmic path Win32_VideoController get CurrentHorizontalResolution"""
+        )
+        w = command(
+            """wmic path Win32_VideoController get CurrentVerticalResolution)"""
+        )
+
+        res = f"{w}x{h}"
+
+        return res
+
+    except Exception:
+        print("wmic failed")
+        pass
+
+    try:
+        res = command("screenmode")
+
+        return res
+
+    except Exception:
+        print("screenmode failed")
+        pass
+
+    try:
+        res = command("xrandr --nograb --current")
+
+        return res
+
+    except Exception:
+        print("xrandr failed")
+        pass
+
+    try:
+        res = command("xwininfo -root")
+
+        return res
+
+    except Exception:
+        pass
+
+    try:
+        res = command("xdpyinfo")
+
+        return res
+
+    except Exception:
+        print("xdpyinfo failed")
+        pass
+
     res_path = "/sys/class/drm"
+
+    print("all failed, falling back to eDP or LVDS")
 
     # try:
     #     cards = run(["ls", "-l", res_path], capture_output=True).stdout
