@@ -21,7 +21,7 @@ def parse_res():
         return res
 
     except Exception:
-        print("screenresolution failed")
+        # print("screenresolution failed")
         pass
 
     try:
@@ -30,7 +30,7 @@ def parse_res():
         return res
 
     except Exception:
-        print("system_profiler failed")
+        # print("system_profiler failed")
         pass
 
     try:
@@ -41,7 +41,7 @@ def parse_res():
         return res
 
     except Exception:
-        print("PlistBuddy failed")
+        # print("PlistBuddy failed")
         pass
 
     try:
@@ -57,7 +57,7 @@ def parse_res():
         return res
 
     except Exception:
-        print("wmic failed")
+        # print("wmic failed")
         pass
 
     try:
@@ -66,7 +66,7 @@ def parse_res():
         return res
 
     except Exception:
-        print("screenmode failed")
+        # print("screenmode failed")
         pass
 
     try:
@@ -75,7 +75,7 @@ def parse_res():
         return res
 
     except Exception:
-        print("xrandr failed")
+        # print("xrandr failed")
         pass
 
     try:
@@ -92,12 +92,12 @@ def parse_res():
         return res
 
     except Exception:
-        print("xdpyinfo failed")
+        # print("xdpyinfo failed")
         pass
 
     res_path = "/sys/class/drm"
 
-    print("all failed, falling back to eDP or LVDS")
+    # print("all failed, falling back to eDP or LVDS")
 
     # try:
     #     cards = run(["ls", "-l", res_path], capture_output=True).stdout
