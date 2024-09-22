@@ -5,8 +5,17 @@ from subprocess import Popen, PIPE
 
 
 def get_console_width():
+    # gather raw output from console
     console_width = Popen(["tput", "cols"], stdout=PIPE)
-    console_width = int(float(console_width.communicate()[0].strip()))
+
+    # format raw data into int
+    console_width = int(
+        str(console_width.communicate()[0])
+        .replace("b'", "")
+        .replace(r"\n", "")
+        .replace("'", "")
+        .strip()
+    )
 
     return console_width
 

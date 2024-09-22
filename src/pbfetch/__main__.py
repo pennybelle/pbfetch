@@ -1,3 +1,4 @@
-import pbfetch
+from pbfetch.__main__ import main
 
-pbfetch.main()
+
+print(main())

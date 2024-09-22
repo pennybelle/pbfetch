@@ -8,7 +8,7 @@ config_directory = get_config_dir()
 file = "config.txt"
 
 
-def handle_config():
+def config():
     # make config directory
     if path.isdir(config_directory) is not True:
         makedirs(config_directory)
