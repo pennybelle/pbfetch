@@ -9,30 +9,31 @@ file = "config.txt"
 
 
 def handle_config():
+    # make config directory
     if path.isdir(config_directory) is not True:
-        # make config directory
         makedirs(config_directory)
 
+    # only import default config if needed
     if path.exists(path.join(config_directory, file)) is not True:
-        print("Generating default config")
+        print("Generating default config...")
 
-        # only import default config if needed
+        # slice first newline in default config
+        default_config = DEFAULT_CONFIG[1:]
 
         # paste default config string into newly created config.txt
         with open(path.join(config_directory, file), "w") as config:
-            # slice first newline in default config
-            config.write(DEFAULT_CONFIG[1:])
+            config.write(default_config)
+
+        return default_config
 
     # read config
     with open(path.join(config_directory, file)) as config:
-        content = config.read()
+        config = config.read()
 
-        if content:
-            config = content
+        if config:
+            return config
 
         else:
             print("The config is empty! Try adding some ascii art OwO")
             print(f"The config can be located in {config_directory}")
             exit()
-
-    return config

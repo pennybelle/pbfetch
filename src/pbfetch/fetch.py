@@ -1,16 +1,24 @@
-import re
+from re import search
 from subprocess import Popen, PIPE
 from platform import system as p_system
 
 from pbfetch.horizontal_formatter import replace_keywords
 from pbfetch.stats import stats
 
-current_loading_spinner = "/"
+# current_loading_spinner = "/"
 
 
 def get_console_width():
     console_width = Popen(["tput", "cols"], stdout=PIPE)
-    console_width = int(float(console_width.communicate()[0].strip()))
+    console_width = (
+        str(console_width.communicate()[0])
+        .replace("b'", "")
+        .replace(r"\n", "")
+        .replace("'", "")
+        .strip()
+    )
+    console_width = int(console_width)
+    # console_width = int(float(console_width.communicate()[0].strip()))
 
     return console_width
 
@@ -32,7 +40,7 @@ def fetch(fetch_data):
     # omit comments from output
     def omit_comments(fetch_data, regex):
         for line in fetch_data.split("\n"):
-            match = re.search(regex, line)
+            match = search(regex, line)
             if match:
                 match = match.group()
                 fetch_data = fetch_data.replace(match, " " * len(match))
@@ -45,6 +53,7 @@ def fetch(fetch_data):
     # handle end-of-line comments
     fetch_data = omit_comments(fetch_data, r"<comment>.*$")
 
+    # strip whitespace only from the right
     fetch_data = fetch_data.rstrip()
 
     # debug
@@ -56,8 +65,5 @@ def fetch(fetch_data):
     # replace each keyword with respective stat (and format accordingly)
     fetch_data = replace_keywords(fetch_data, stats_dict)
 
-    # strip whitespace only from the right and reset colors at the end
-    fetch_data = fetch_data.rstrip()
-
-    # finally print fetch to terminal
+    # send finalized output back to pbfetch.__init__.main
     return fetch_data
