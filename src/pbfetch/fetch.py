@@ -3,6 +3,7 @@ from platform import system as p_system
 
 from pbfetch.horizontal_formatter import replace_keywords
 from pbfetch.stats import stats
+from pbfetch.constants import PLUG
 
 # current_loading_spinner = "/"
 
@@ -18,7 +19,7 @@ def omit_comments(fetch_data, regex):
     return fetch_data
 
 
-def fetch(fetch_data):
+def fetch(data):
     supported_systems = ["linux"]
 
     # check system name
@@ -31,6 +32,8 @@ def fetch(fetch_data):
         print("on https://github.com/pennybelle/pbfetch/issues")
         print("or consider contributing to the project!")
         exit()
+
+    fetch_data, is_default = data
 
     # handle inline comments
     fetch_data = omit_comments(fetch_data, r"<comment>.*?<\/comment>")
@@ -49,6 +52,10 @@ def fetch(fetch_data):
 
     # replace each keyword with respective stat (and format accordingly)
     fetch_data = replace_keywords(fetch_data, stats_dict)
+
+    if is_default:
+        plug = replace_keywords(PLUG, stats_dict)
+        fetch_data = fetch_data + plug
 
     # send finalized output back to pbfetch.__init__.main
     return fetch_data
