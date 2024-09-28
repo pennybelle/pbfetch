@@ -1,4 +1,4 @@
-from pbfetch.__main__ import main
+from pbfetch.__init__ import main
 
 
 print(main())

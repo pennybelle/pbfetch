@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 
 def get_console_width():
     # gather raw output from console
-    console_width = Popen(["tput", "cols"], stdout=PIPE)
+    console_width = Popen(["stty", "size"], stdout=PIPE)
 
     # format raw data into int
     console_width = int(
@@ -14,6 +14,7 @@ def get_console_width():
         .replace("b'", "")
         .replace(r"\n", "")
         .replace("'", "")
+        .split()[1]
         .strip()
     )
 
@@ -43,7 +44,7 @@ def replace_keyword(template, keyword, stat):
 
         # if no keyword add line to replace template and continue
         if keyword not in line:
-            replaced_template.append(line)
+            replaced_template.append(line.rstrip())
             continue
 
         is_error = False
@@ -90,7 +91,7 @@ def replace_keyword(template, keyword, stat):
         # Pad replaceText with spaces to match the whitespace we removed
         # insert color reset bytecode at the beginning of each line
         # to prevent buggy behavior
-        replaced_template.append(split_line[0] + stat + split_line[1])
+        replaced_template.append(split_line[0] + stat + split_line[1].rstrip())
 
     template = "\n".join(replaced_template)
 
