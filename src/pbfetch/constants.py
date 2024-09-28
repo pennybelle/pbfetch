@@ -3,30 +3,30 @@ RGB_REGEX = r"\$RGB\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9]
 DEFAULT_CONFIG = r"""
 ┌────────────────────────────────────────────────────────────┬─────────────────────┐
 │ Software:                                                  │$hst                 │
-│ • os   : $sys                                              ├─────────────────────┤
-│ • ker  : $ker                                              │   <rgb(23,147,209)>       .       </rgb>   │ <comment> these lines dont match up           </comment>
-│ • bios : $bio                                              │   <rgb(23,147,209)>      /#\      </rgb>   │ <comment> because of the color tags,          </comment>
-│ • fs   : $fsm                                              │   <rgb(23,147,209)>     /###\     </rgb>   │ <comment> however the tags dont appear        </comment>
-│ • sh   : $shl                                              │   <rgb(23,147,209)>    /p^###\    </rgb>   │ <comment> in the console output so            </comment>
-│ • de   : $den                                              │   <rgb(23,147,209)>   /##P^q##\   </rgb>   │ <comment> adjust your formatting              </comment>
-│ • wm   : $wmn                                              │   <rgb(23,147,209)>  /##(   )##\  </rgb>   │ <comment> accordingly, as demonstrated.       </comment>
-│ • lcl  : $lcl                                              │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
-│ • thme : $thm                                              │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
-│ • tfnt : $tft                                              │                     │
-│ • fnt  : $fnt                                              └─────────────────────┤
-│ • pkgs : $pac                                                                    │
-│ • up   : $upt                                                                    │
+│ • os     $sys                                              ├─────────────────────┤
+│ • ker    $ker                                              │   <rgb(23,147,209)>       .       </rgb>   │ <comment> these lines dont match up           </comment>
+│ • bios   $bio                                              │   <rgb(23,147,209)>      /#\      </rgb>   │ <comment> because of the color tags,          </comment>
+│ • fs     $fsm                                              │   <rgb(23,147,209)>     /###\     </rgb>   │ <comment> however the tags dont appear        </comment>
+│ • sh     $shl                                              │   <rgb(23,147,209)>    /p^###\    </rgb>   │ <comment> in the console output so            </comment>
+│ • de     $den                                              │   <rgb(23,147,209)>   /##P^q##\   </rgb>   │ <comment> adjust your formatting              </comment>
+│ • wm     $wmn                                              │   <rgb(23,147,209)>  /##(   )##\  </rgb>   │ <comment> accordingly, as demonstrated.       </comment>
+│ • lcl    $lcl                                              │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
+│ • thme   $thm                                              │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
+│ • tfnt   $tft                                              │                     │
+│ • fnt    $fnt                                              └─────────────────────┤
+│ • pkgs   $pac                                                                    │
+│ • up     $upt                                                                    │
 │                                                                                  │
 │ Hardware:                                                                        │
-│ • comp : $cmp                                                                    │
-│ • arch : $arc                                                                    │
-│ • cpu  : $cpu                                                                    │
-│ • gpu  : $gpu                                                                    │
-│ • mb   : $mbd                                                                    │
-│ • ram  : $mem                               <comment> inline comment </comment>  │
-│ • disc : $dsc                                                                    │
-│ • res  : $res                                                                    │
-│ • batt : $bat                                                                    │
+│ • comp   $cmp                                                                    │
+│ • arch   $arc                                                                    │
+│ • cpu    $cpu                                                                    │
+│ • gpu    $gpu                                                                    │
+│ • mb     $mbd                                                                    │
+│ • ram    $mem                               <comment> inline comment </comment>  │
+│ • disc   $dsc                                                                    │
+│ • res    $res                                                                    │
+│ • batt   $bat                                                                    │
 └──────────────────────────────────────────────────────────────────────────────────┘
 
 <comment> Comments can be left by prefixing the line with <comment>
