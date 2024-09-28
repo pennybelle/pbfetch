@@ -1,7 +1,7 @@
 from os import path
 from subprocess import Popen, PIPE
 
-import tkinter as tk
+# import tkinter as tk
 
 
 def command(input):
@@ -17,16 +17,16 @@ def command(input):
 
 
 def parse_res():
-    try:
-        root = tk.Tk()
+    # try:
+    #     root = tk.Tk()
 
-        w = root.winfo_screenwidth()
-        h = root.winfo_screenheight()
+    #     w = root.winfo_screenwidth()
+    #     h = root.winfo_screenheight()
 
-        return f"{w}x{h}"
+    #     return f"{w}x{h}"
 
-    except Exception:
-        pass
+    # except Exception:
+    #     pass
 
     try:
         res = command("screenresolution get 2>&1")
