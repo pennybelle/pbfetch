@@ -1,7 +1,7 @@
 from re import sub, fullmatch, compile
 from subprocess import Popen, PIPE
 
-from pbfetch.constants import RGB_START, RGB_END
+from pbfetch.constants import RGB_START, RGB_END, FINAL_RGB_START, COLOR_RESET
 
 # current_loading_spinner = "/"
 
@@ -173,8 +173,8 @@ def split_at_length(line):
 
 def final_touches(return_text):
     return_text = sub(
-        r"<rgb\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)\>",
-        r"[38;2;\g<1>;\g<2>;\g<3>m",
+        FINAL_RGB_START,
+        COLOR_RESET,
         return_text,
     )
     return_text = str(sub(r"\<\/rgb\>", "[39m", return_text))
