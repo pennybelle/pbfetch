@@ -1,6 +1,8 @@
 from re import sub, fullmatch, compile
 from subprocess import Popen, PIPE
 
+from pbfetch.constants import RGB_START, RGB_END
+
 # current_loading_spinner = "/"
 
 
@@ -88,7 +90,7 @@ def replace_keyword(template, keyword, stat):
         if stat_len > max_allowed_length:
             stat = stat[:max_allowed_length]
 
-        # Pad replaceText with spaces to match the whitespace we removed
+        # Pad replaceText wr"\/rgb"ith spaces to match the whitespace we removed
         # insert color reset bytecode at the beginning of each line
         # to prevent buggy behavior
         replaced_template.append(split_line[0] + stat + split_line[1].rstrip())
@@ -103,10 +105,8 @@ def split_at_length(line):
     END_FLAG = ">"
 
     COMMAND_PATTERNS = [
-        compile(
-            r"rgb\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*\)"
-        ),
-        compile(r"\/rgb"),
+        compile(RGB_START),
+        compile(RGB_END),
     ]
 
     current_count = 0
