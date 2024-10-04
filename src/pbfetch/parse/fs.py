@@ -36,13 +36,3 @@ def parse_fs():
     except Exception as e:
         print(f"Parse Filesystem Error: {e}")
         return None
-
-
-"""
-{'/dev/mapper/root': sdiskpart(device='/dev/mapper/root', mountpoint='/', fstype='btrfs', opts='rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=256,subvol=/@')}
-{'/dev/mapper/root': sdiskpart(device='/dev/mapper/root', mountpoint='/.snapshots', fstype='btrfs', opts='rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=260,subvol=/@.snapshots')}
-{'/dev/mapper/root': sdiskpart(device='/dev/mapper/root', mountpoint='/var/log', fstype='btrfs', opts='rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=258,subvol=/@log')}
-{'/dev/mapper/root': sdiskpart(device='/dev/mapper/root', mountpoint='/var/cache/pacman/pkg', fstype='btrfs', opts='rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=259,subvol=/@pkg')}
-{'/dev/mapper/root': sdiskpart(device='/dev/mapper/root', mountpoint='/home', fstype='btrfs', opts='rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=257,subvol=/@home')}
-{'/dev/mapper/root': sdiskpart(device='/dev/mapper/root', mountpoint='/home', fstype='btrfs', opts='rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=257,subvol=/@home'), '/dev/nvme0n1p1': sdiskpart(device='/dev/nvme0n1p1', mountpoint='/boot', fstype='vfat', opts='rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro')}
-"""
