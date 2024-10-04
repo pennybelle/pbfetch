@@ -11,34 +11,31 @@ def parse_cpu_temp():
             # check at most 30 times for each
             #   thermal_zone dir till cpu is found
             for j in range(30):
-                if j == 29:
-                    return None
+                # check for valid thermal zone
                 if path.isdir(f"/sys/class/thermal/thermal_zone{j}") is not True:
                     continue
+
+                # get thermal zone type and temp readout
                 data = run(
                     [
-                        rf"paste <(cat /sys/class/thermal/thermal_zone{j}/type) <(cat /sys/class/thermal/thermal_zone{j}/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'"
-                    ],  #  | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'
+                        rf"paste <(cat /sys/class/thermal/thermal_zone{j}/type) <(cat /sys/class/thermal/thermal_zone{j}/temp)"  # | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'
+                    ],
                     shell=True,
                     capture_output=True,
                 ).stdout
 
-                # return none if cpu isnt found
-                if j == 29:
-                    break
+                # parse output
+                data = data.decode()
+                data = str(data).replace("\t", " ").replace("\n", " ")
 
-                # only return cpu temp
-                data = str(data)
+                # only return temp if thermal zone is valid type
                 if sensor_type in data:
                     # parse string for temp number
-                    cpu_temp = str(data)
-                    cpu_temp = " ".join(cpu_temp.split("\\"))
-                    cpu_temp = cpu_temp.split()[1]
+                    cpu_temp = data.split(" ")[1]
 
-                    return round(float(cpu_temp))
+                    return int(cpu_temp) // 1000
 
-        print("CPU Temp Error: CPU not found")
-        return "Error"
+        return None
 
     except Exception as e:
         print(f"CPU Temp Error: {e}")

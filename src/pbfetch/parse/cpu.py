@@ -1,4 +1,4 @@
-import pbfetch.parse.cpu_temp as cpu_temp
+from pbfetch.parse.cpu_temp import parse_cpu_temp
 from psutil import cpu_percent
 
 # # constant for checking cpu usage (in seconds)
@@ -19,7 +19,7 @@ def parse_cpu():
                 continue
             cpu_name = line.split(":")[1].strip()
 
-        temp = cpu_temp.parse_cpu_temp()
+        temp = parse_cpu_temp()
         usage = int(cpu_percent())
 
         cpu = cpu_name
