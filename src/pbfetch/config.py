@@ -1,6 +1,6 @@
 from os import path, makedirs, environ
 
-from pbfetch.constants import DEFAULT_CONFIG, PLUG
+from pbfetch.constants import DEFAULT_CONFIG
 from pbfetch.stats import get_config_dir
 
 user = environ["USER"]
