@@ -33,7 +33,7 @@ def parse_cpu_temp():
                     # parse string for temp number
                     cpu_temp = data.split(" ")[1]
 
-                    return int(cpu_temp) // 1000
+                    return round(float(cpu_temp)) // 1000
 
         return None
 
