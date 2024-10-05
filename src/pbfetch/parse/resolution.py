@@ -25,8 +25,7 @@ def parse_res():
 
         return f"{w}x{h}"
 
-    except Exception as e:
-        print(e)
+    except Exception:
         pass
 
     try:
