@@ -14,8 +14,8 @@ DEFAULT_CONFIG = r"""
 │ • sh     $shl                                              │   <rgb(23,147,209)>    /p^###\    </rgb>   │ <comment> in the console output so            </comment>
 │ • de     $den                                              │   <rgb(23,147,209)>   /##P^q##\   </rgb>   │ <comment> adjust your formatting              </comment>
 │ • wm     $wmn                                              │   <rgb(23,147,209)>  /##(   )##\  </rgb>   │ <comment> accordingly, as demonstrated.       </comment>
-│ • lcl    $lcl                                              │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
-│ • thme   $thm                                              │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
+│ • thme   $thm                                              │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
+│ • lcl    $lcl                                              │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
 │ • tfnt   $tft                                              │                     │
 │ • fnt    $fnt                                              └─────────────────────┤
 │ • pkgs   $pac                                                                    │
