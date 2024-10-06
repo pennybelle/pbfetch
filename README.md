@@ -1,6 +1,6 @@
 # pbfetch - an unbelievably customizable fetch
 
-![screen0](gallery/screen0.png)
+![screen5](gallery/screen5.png)
 
 **pbfetch** is an incredibly customizable hardware/software fetch utility that
 dares to break the mold. Tired of the same old logo sitting on the left side of
