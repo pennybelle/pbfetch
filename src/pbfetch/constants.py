@@ -5,33 +5,33 @@ FINAL_RGB_START = r"<rgb\(\s*([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\s*,\s*([01]?
 COLOR_RESET = r"[38;2;\g<1>;\g<2>;\g<3>m"
 
 DEFAULT_CONFIG = r"""
-┌────────────────────────────────────────────────────────────┬─────────────────────┐
-│ Software:                                                  │$hst                 │
-│ • os     $sys                                              ├─────────────────────┤
-│ • ker    $ker                                              │   <rgb(23,147,209)>       .       </rgb>   │ <comment> these lines dont match up           </comment>
-│ • bios   $bio                                              │   <rgb(23,147,209)>      /#\      </rgb>   │ <comment> because of the color tags,          </comment>
-│ • fs     $fsm                                              │   <rgb(23,147,209)>     /###\     </rgb>   │ <comment> however the tags dont appear        </comment>
-│ • sh     $shl                                              │   <rgb(23,147,209)>    /p^###\    </rgb>   │ <comment> in the console output so            </comment>
-│ • de     $den                                              │   <rgb(23,147,209)>   /##P^q##\   </rgb>   │ <comment> adjust your formatting              </comment>
-│ • wm     $wmn                                              │   <rgb(23,147,209)>  /##(   )##\  </rgb>   │ <comment> accordingly, as demonstrated.       </comment>
-│ • thme   $thm                                              │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
-│ • lcl    $lcl                                              │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
-│ • tfnt   $tft                                              │                     │
-│ • fnt    $fnt                                              └─────────────────────┤
-│ • pkgs   $pac                                                                    │
-│ • up     $upt                                                                    │
-│                                                                                  │
-│ Hardware:                                                                        │
-│ • comp   $cmp                                                                    │
-│ • arch   $arc                                                                    │
-│ • cpu    $cpu                                                                    │
-│ • gpu    $gpu                                                                    │
-│ • mb     $mbd                                                                    │
-│ • ram    $mem                               <comment> inline comment </comment>  │
-│ • disc   $dsc                                                                    │
-│ • res    $res                                                                    │
-│ • batt   $bat                                                                    │
-└──────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────┬─────────────────────┐
+│ Software:                                              │$hst                 │
+│ • os     $sys                                          ├─────────────────────┤
+│ • ker    $ker                                          │   <rgb(23,147,209)>       .       </rgb>   │ <comment> these lines dont match up           </comment>
+│ • bios   $bio                                          │   <rgb(23,147,209)>      /#\      </rgb>   │ <comment> because of the color tags,          </comment>
+│ • fs     $fsm                                          │   <rgb(23,147,209)>     /###\     </rgb>   │ <comment> however the tags dont appear        </comment>
+│ • sh     $shl                                          │   <rgb(23,147,209)>    /p^###\    </rgb>   │ <comment> in the console output so            </comment>
+│ • de     $den                                          │   <rgb(23,147,209)>   /##P^q##\   </rgb>   │ <comment> adjust your formatting              </comment>
+│ • wm     $wmn                                          │   <rgb(23,147,209)>  /##(   )##\  </rgb>   │ <comment> accordingly, as demonstrated.       </comment>
+│ • thme   $thm                                          │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
+│ • lcl    $lcl                                          │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
+│ • tfnt   $tft                                          │                     │
+│ • fnt    $fnt                                          └─────────────────────┤
+│ • pkgs   $pac                                                                │
+│ • up     $upt                                                                │
+│                                                                              │
+│ Hardware:                                                                    │
+│ • comp   $cmp                                                                │
+│ • arch   $arc                                                                │
+│ • cpu    $cpu                                                                │
+│ • gpu    $gpu                                                                │
+│ • mb     $mbd                                                                │
+│ • ram    $mem                           <comment> inline comment </comment>  │
+│ • disc   $dsc                                                                │
+│ • res    $res                                                                │
+│ • batt   $bat                                                                │
+└──────────────────────────────────────────────────────────────────────────────┘
 
 <comment> Comments can be left by prefixing the line with <comment>
 <comment> Inline comments are also possible now! To end an inline comment, end it with </comment>
