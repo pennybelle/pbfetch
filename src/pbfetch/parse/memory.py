@@ -31,7 +31,7 @@ def parse_mem():
                 percent = "<1"
 
             return str(
-                f"{round(used/1024)} / " f"{round(total/1024)}" f" MB ({percent}%)"
+                f"{used/1024/1024:.2f} / " f"{total/1024/1024:.2f}" f" GB ({percent}%)"
             )
 
         else:

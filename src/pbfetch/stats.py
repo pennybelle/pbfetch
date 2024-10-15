@@ -55,7 +55,7 @@ def parse_os():
         return None
 
 
-# TODO: add easter egg stats for fun dynamic things You, 1 second ago • Uncommitted changes
+# TODO: add easter egg stats for fun dynamic things
 KEYWORDS = {
     "$upt": parse_uptime,
     "$cmp": parse_comp_name,
