@@ -72,15 +72,6 @@ def parse_de():
             de = "kde"
 
         if de:
-            session_type = Popen(
-                "echo $XDG_SESSION_TYPE",
-                shell=True,
-                stdout=PIPE,
-                stderr=PIPE,
-            )
-            session_type = str(session_type.communicate()[0])
-            session_type = session_type[2 : len(session_type) - 3]
-
             plasma_version = Popen(
                 "plasmashell --version",
                 shell=True,
@@ -92,9 +83,9 @@ def parse_de():
             plasma_version = plasma_version.replace("plasmashell", "").strip()
 
             if plasma_version:
-                return f"{de} plasma {plasma_version} ({session_type})"
+                return f"{de} plasma {plasma_version}"
 
-            return f"{de} ({session_type})"
+            return de
 
     return "not found/supported"
 

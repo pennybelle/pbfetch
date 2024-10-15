@@ -15,7 +15,8 @@ def parse_comp_name():
         if version == "System Version":
             version = ""
 
-        name = name + " " + version
+        if version:
+            return f"{name} ({version})"
 
         return name
 

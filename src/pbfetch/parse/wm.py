@@ -1,4 +1,4 @@
-from subprocess import run
+from subprocess import run, Popen, PIPE
 
 
 def parse_wm():
@@ -31,6 +31,18 @@ def parse_wm():
             # print(output)
 
             if output and manager in output:
+                session_type = run(
+                    ["echo $XDG_SESSION_TYPE"],
+                    shell=True,
+                    capture_output=True,
+                ).stdout
+
+                # parse output
+                session_type = session_type.decode().strip()
+
+                if session_type:
+                    return f"{manager} ({session_type})"
+
                 return manager
 
         return "not found/supported"

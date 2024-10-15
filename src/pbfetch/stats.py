@@ -15,7 +15,6 @@ from pbfetch.parse.gpu import parse_gpu
 from pbfetch.parse.kernel import parse_kernel_release
 from pbfetch.parse.memory import parse_mem
 from pbfetch.parse.motherboard import parse_mb
-from pbfetch.parse.os import parse_os
 from pbfetch.parse.packages import parse_packages
 from pbfetch.parse.resolution import parse_res
 from pbfetch.parse.shell import parse_shell
@@ -23,6 +22,11 @@ from pbfetch.parse.term_font import parse_term_font
 from pbfetch.parse.theme import parse_theme
 from pbfetch.parse.uptime import parse_uptime
 from pbfetch.parse.wm import parse_wm
+
+
+# fill a tuple with uname info to use for other stats
+_uname = tuple(uname())
+environ = dict(environ)
 
 
 def get_config_dir():
@@ -33,30 +37,22 @@ def configpath():
     return str(path.join(get_config_dir(), "config.txt"))
 
 
-# fill a tuple with uname info to use for other stats
-_uname = tuple(uname())
-environ = dict(environ)
+# parse os name from /etc/os-release
+def parse_os():
+    try:
+        with open("/etc/os-release", "r") as content:
+            if content:
+                stat_os = content.read()
+                stat_os = stat_os.split("=")
+                stat_os = stat_os[1].splitlines()[0].replace('"', "")
+            else:
+                stat_os = None
 
+            return f"{stat_os} {_uname[4]}"
 
-def system():
-    return _uname[0]
-
-
-def stat_host():
-    return _uname[1]
-
-
-def stat_architecture():
-    return _uname[4]
-
-
-def stat_hostname():
-    # return f"{login.parse_login()}@{hostname.parse_hostname()}"
-    return f"{environ['USER']}@{stat_host()}"
-
-
-def stat_datetime():
-    return " ".join(check_output(["date"]).decode("utf-8").split())
+    except Exception as e:
+        print(f"Parse OS Error: {e}")
+        return None
 
 
 # TODO: add easter egg stats for fun dynamic things You, 1 second ago • Uncommitted changes
@@ -64,9 +60,10 @@ KEYWORDS = {
     "$upt": parse_uptime,
     "$cmp": parse_comp_name,
     "$usr": lambda: environ["USER"],
-    "$hst": stat_hostname,
+    "$nde": lambda: _uname[1],
+    "$hst": lambda: f"{environ['USER']}@{_uname[1]}",
     "$sys": parse_os,
-    "$arc": lambda: str(machine()),
+    "$arc": lambda: _uname[4],
     "$ker": parse_kernel_release,
     "$mem": parse_mem,
     "$pac": parse_packages,
@@ -82,12 +79,13 @@ KEYWORDS = {
     "$mbd": parse_mb,
     "$bio": parse_bios_type,
     "$res": parse_res,
-    "$dat": stat_datetime,
+    "$dat": lambda: " ".join(check_output(["date"]).decode("utf-8").split()),
     "$thm": parse_theme,
     "$fnt": parse_font,
     "$tft": parse_term_font,
+    "$trm": lambda: environ["TERM"],
     "$configpath": configpath,
-    "$system": system,
+    "$system": lambda: _uname[0],
 }
 
 

@@ -11,19 +11,19 @@ DEFAULT_CONFIG = r"""
 │ • ker    $ker                                          │   <rgb(23,147,209)>       .       </rgb>   │ <comment> these lines dont match up           </comment>
 │ • bios   $bio                                          │   <rgb(23,147,209)>      /#\      </rgb>   │ <comment> because of the color tags,          </comment>
 │ • fs     $fsm                                          │   <rgb(23,147,209)>     /###\     </rgb>   │ <comment> however the tags dont appear        </comment>
-│ • sh     $shl                                          │   <rgb(23,147,209)>    /p^###\    </rgb>   │ <comment> in the console output so            </comment>
-│ • de     $den                                          │   <rgb(23,147,209)>   /##P^q##\   </rgb>   │ <comment> adjust your formatting              </comment>
-│ • wm     $wmn                                          │   <rgb(23,147,209)>  /##(   )##\  </rgb>   │ <comment> accordingly, as demonstrated.       </comment>
-│ • thme   $thm                                          │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
-│ • lcl    $lcl                                          │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
-│ • tfnt   $tft                                          │                     │
-│ • fnt    $fnt                                          └─────────────────────┤
+│ • term   $trm                                          │   <rgb(23,147,209)>    /p^###\    </rgb>   │ <comment> in the console output so            </comment>
+│ • sh     $shl                                          │   <rgb(23,147,209)>   /##P^q##\   </rgb>   │ <comment> adjust your formatting              </comment>
+│ • de     $den                                          │   <rgb(23,147,209)>  /##(   )##\  </rgb>   │ <comment> accordingly, as demonstrated.       </comment>
+│ • wm     $wmn                                          │   <rgb(23,147,209)> /###P   q#,^\ </rgb>   │ <comment> it is recommended to build your     </comment>
+│ • thme   $thm                                          │   <rgb(23,147,209)>/P^         ^q\</rgb>   │ <comment> structure before adding color tags. </comment>
+│ • lcl    $lcl                                          │                     │
+│ • tfnt   $tft                                          └─────────────────────┤
+│ • fnt    $fnt                                                                │
 │ • pkgs   $pac                                                                │
 │ • up     $upt                                                                │
 │                                                                              │
 │ Hardware:                                                                    │
 │ • comp   $cmp                                                                │
-│ • arch   $arc                                                                │
 │ • cpu    $cpu                                                                │
 │ • gpu    $gpu                                                                │
 │ • mb     $mbd                                                                │
@@ -63,6 +63,7 @@ DEFAULT_CONFIG = r"""
 <comment> $thm = theme
 <comment> $fnt = system font
 <comment> $tft = terminal font
+<comment> $trm = terminal name
 
 <comment> Warnings:
 
@@ -98,18 +99,18 @@ DEFAULT_CONFIG = r"""
 """
 
 PLUG = """
-                  _|            _|_|              _|                _|        
-        _|_|_|    _|_|_|      _|        _|_|    _|_|_|_|    _|_|_|  _|_|_|    
-        _|    _|  _|    _|  _|_|_|_|  _|_|_|_|    _|      _|        _|    _|  
-        _|    _|  _|    _|    _|      _|          _|      _|        _|    _|  
-        _|_|_|    _|_|_|      _|        _|_|_|      _|_|    _|_|_|  _|    _|  
-        _|                                                                    
-        _|                                                                    
-                                                                                    
-                This project aims to be the most customizable fetch.          
-                You can do almost anything with the config.txt.               
-                It is located in $configpath
-                                                                                       
-                Have fun customizing! Take note of the comments in            
-                the default config, as they contain valuable info.
+                _|            _|_|              _|                _|        
+      _|_|_|    _|_|_|      _|        _|_|    _|_|_|_|    _|_|_|  _|_|_|    
+      _|    _|  _|    _|  _|_|_|_|  _|_|_|_|    _|      _|        _|    _|  
+      _|    _|  _|    _|    _|      _|          _|      _|        _|    _|  
+      _|_|_|    _|_|_|      _|        _|_|_|      _|_|    _|_|_|  _|    _|  
+      _|                                                                    
+      _|                                                                    
+                                                                                  
+              This project aims to be the most customizable fetch.          
+              You can do almost anything with the config.txt.               
+              It is located in $configpath
+                                                                                     
+              Have fun customizing! Take note of the comments in            
+              the default config, as they contain valuable info.
 """

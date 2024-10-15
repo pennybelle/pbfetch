@@ -31,10 +31,7 @@ def parse_gpu():
         if gpu_name:
             gpu_name = gpu_name.split(": ")[1]
             gpu_name = gpu_name.strip()
-
-            gpu_name = sub(r" \(.+\)$", "", gpu_name.strip())
-            gpu_name = sub(r"^Mesa ", "", gpu_name.strip())
-            return gpu_name
+            return sub(r" \(.+\)$", "", gpu_name.strip())
 
     except Exception:
         pass
@@ -49,9 +46,7 @@ def parse_gpu():
         gpu_name = gpu_name.replace("OpenGL compatibility profile renderer: ", "")
         # print(gpu_name)
 
-        gpu_name = sub(r" \(.+\)$", "", gpu_name.strip())
-        gpu_name = sub(r"^Mesa ", "", gpu_name.strip())
-        return gpu_name
+        return sub(r" \(.+\)$", "", gpu_name.strip())
 
     except Exception:
         pass
@@ -69,9 +64,7 @@ def parse_gpu():
         gpu_name = gpu_name[2 : len(gpu_name) - 3]
         gpu_name = gpu_name.split("VGA compatible controller:")[1].strip()
 
-        gpu_name = sub(r" \(.+\)$", "", gpu_name.strip())
-        gpu_name = sub(r"^Mesa ", "", gpu_name.strip())
-        return gpu_name
+        return sub(r" \(.+\)$", "", gpu_name.strip())
 
     except Exception as e:
         print(f"GPU Parse Error: {e}")
