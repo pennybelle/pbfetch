@@ -18,6 +18,11 @@ def parse_cpu():
             if "model name" not in line:
                 continue
             cpu_name = line.split(":")[1].strip()
+            break
+
+        # parse verbose output and strip whitespace
+        cpu_name = cpu_name.replace("with Radeon Graphics", "")
+        cpu_name = cpu_name.strip()
 
         temp = parse_cpu_temp()
         usage = int(cpu_percent())
