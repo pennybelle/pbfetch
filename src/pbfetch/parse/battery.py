@@ -1,4 +1,5 @@
 from os import path
+from subprocess import run
 
 
 def parse_batt():
@@ -14,6 +15,21 @@ def parse_batt():
 
             if path.exists(batt_path):
                 break
+
+        charge_path = path.join("/", "sys", "class", "power_supply")
+
+        charge_file = run(["ls", charge_path], capture_output=True).stdout
+        charge_file = charge_file.decode().split()
+        ac_dir = None
+
+        for i in charge_file:
+            if i.startswith("A"):
+                ac_dir = i
+                break
+
+        if ac_dir:
+            with open(path.join(charge_path, ac_dir, "online")) as is_charging:
+                is_charging = int(is_charging.read())
 
         if path.exists(path.join(batt_path, "charge_full")):
             file_full = "charge_full"
@@ -38,7 +54,12 @@ def parse_batt():
             full = now
 
         if full and now:
-            charge = str(round((now / full) * 100)) + "%"
+            charge = f"{round((now / full) * 100)}%"
+            if ac_dir:
+                if is_charging:
+                    charge = f"{charge} (AC Connected)"
+                else:
+                    charge = f"{charge} (Discharging)"
             # print(charge)
             return charge
 

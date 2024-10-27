@@ -27,7 +27,7 @@ def parse_wm():
     try:
         for manager in managers:
             output = run(["pgrep", "-l", manager], capture_output=True).stdout
-            output = str(output)
+            output = output.decode()
             # print(output)
 
             if output and manager in output:
