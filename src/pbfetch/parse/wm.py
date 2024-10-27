@@ -1,4 +1,4 @@
-from subprocess import run, Popen, PIPE
+from subprocess import run
 
 
 def parse_wm():
