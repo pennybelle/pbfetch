@@ -1,6 +1,6 @@
 from os import environ, path
 from subprocess import check_output
-from platform import uname, machine
+from platform import uname
 from pathlib import Path
 
 from pbfetch.parse.battery import parse_batt
