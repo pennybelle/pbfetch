@@ -1,5 +1,5 @@
 from os import environ, path
-from subprocess import check_output
+from subprocess import check_output, run
 from platform import uname
 from pathlib import Path
 
@@ -55,6 +55,20 @@ def parse_os():
         return None
 
 
+def term():
+    term = environ["TERM"]
+    try:
+        term_ver = run([term, "--version"], capture_output=True).stdout
+        term_ver = term_ver.decode().split(" ")
+        for i in term_ver:
+            if "." in i:
+                return f"{term} {i}"
+        return term
+
+    except Exception:
+        return term
+
+
 # TODO: add easter egg stats for fun dynamic things
 KEYWORDS = {
     "$upt": parse_uptime,
@@ -83,7 +97,7 @@ KEYWORDS = {
     "$thm": parse_theme,
     "$fnt": parse_font,
     "$tft": parse_term_font,
-    "$trm": lambda: environ["TERM"],
+    "$trm": term,
     "$configpath": configpath,
     "$system": lambda: _uname[0],
 }
