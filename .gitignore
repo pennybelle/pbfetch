@@ -17,4 +17,4 @@ backup/
 
 .ruff_cache
 
-.code-workspace
+pbfetch.code-workspace
