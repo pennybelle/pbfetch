@@ -57,6 +57,8 @@ def parse_os():
 
 def term():
     term = environ["TERM"]
+    # term_size = run(["stty", "size"], capture_output=True).stdout.decode()
+    # print(term_size)
     try:
         term_ver = run([term, "--version"], capture_output=True).stdout
         term_ver = term_ver.decode().split(" ")
