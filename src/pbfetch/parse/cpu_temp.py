@@ -3,6 +3,7 @@ from os import path
 
 
 def parse_cpu_temp():
+    dir = "/sys/class/thermal/thermal_zone"
     try:
         # priority sensor is inside cpu,
         #   secondary sensor (backup data) is
@@ -12,17 +13,15 @@ def parse_cpu_temp():
             #   thermal_zone dir till cpu is found
             for j in range(30):
                 # check for valid thermal zone
-                if path.isdir(f"/sys/class/thermal/thermal_zone{j}") is not True:
+                if path.isdir(f"{dir}{j}") is not True:
                     continue
 
                 # get thermal zone type and temp readout
                 data = run(
-                    [
-                        rf"paste <(cat /sys/class/thermal/thermal_zone{j}/type) <(cat /sys/class/thermal/thermal_zone{j}/temp)"  # | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'
-                    ],
+                    [rf"paste <(cat {dir}{j}/type) <(cat {dir}{j}/temp)"],
                     shell=True,
                     capture_output=True,
-                ).stdout
+                ).stdout  # | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'
 
                 # parse output
                 data = data.decode()
