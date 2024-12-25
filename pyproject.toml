@@ -5,7 +5,7 @@ description = "An unbelievably customizable hardware/software fetch."
 authors = [{ name = "pennybelle", email = "contact@pennybelle.dev" }]
 dependencies = ["psutil"]
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">= 3.13"
 classifiers = ["License :: OSI Approved :: Apache Software License"]
 
 [project.urls]
