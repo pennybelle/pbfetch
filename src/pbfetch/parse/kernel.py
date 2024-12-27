@@ -1,3 +1,6 @@
+from pbfetch.handle_error import error
+
+
 def parse_kernel_release():
     file = "/proc/version"
     try:
@@ -8,5 +11,5 @@ def parse_kernel_release():
         return kernel
 
     except Exception as e:
-        print(f"Parse Kernel Error: {e}")
+        print(error(e, "Kernel"))
         return None

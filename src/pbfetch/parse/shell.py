@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from os import path, getppid
 from subprocess import check_output
 
@@ -10,7 +11,7 @@ def parse_shell():
         shell_name = shell_name.split()[0]
 
     except Exception as e:
-        print(f"Parse Shell Error: {e}")
+        print(error(e, "Shell"))
         return None
 
     try:

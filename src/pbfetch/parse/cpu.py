@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from pbfetch.parse.cpu_temp import parse_cpu_temp
 from psutil import cpu_percent
 
@@ -20,19 +21,24 @@ def parse_cpu():
             cpu_name = line.split(":")[1].strip()
             break
 
-        # parse verbose output and strip whitespace
-        cpu_name = cpu_name.replace("with Radeon Graphics", "")
-        cpu_name = cpu_name.strip()
+        if cpu_name:
+            # parse verbose output and strip whitespace
+            cpu_name = cpu_name.replace("with Radeon Graphics", "")
+            cpu_name = cpu_name.strip()
 
-        temp = parse_cpu_temp()
-        usage = int(cpu_percent())
+            temp = parse_cpu_temp()
+            usage = int(cpu_percent())
 
-        cpu = cpu_name
-        cpu += f" ({temp}°c)" if temp else ""
-        cpu += f" ({usage}%)" if usage != 0 else ""
+            cpu = cpu_name
+            cpu += f" ({temp}°c)" if temp else ""
+            cpu += f" ({usage}%)" if usage != 0 else ""
 
-        return cpu
+            return cpu
+
+        else:
+            print("Error: CPU: Model Name not found in /proc/cpuinfo")
+            return cpu_name
 
     except Exception as e:
-        print(f"Parse CPU Error: {e}")
+        print(error(e, "CPU"))
         return None

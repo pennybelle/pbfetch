@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import Popen, PIPE
 
 
@@ -16,5 +17,5 @@ def parse_weather():
         return weather
 
     except Exception as e:
-        print(f"Parse Weather Error: {e}")
+        print(error(e, "Weather"))
         return None

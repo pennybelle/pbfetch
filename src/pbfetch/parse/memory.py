@@ -1,3 +1,6 @@
+from pbfetch.handle_error import error
+
+
 def mem_format(line):
     return line.split(":")[1].replace("kB", "").strip()
 
@@ -39,5 +42,5 @@ def parse_mem():
             return None
 
     except Exception as e:
-        print(f"Parse RAM Error: {e}")
+        print(error(e, "RAM"))
         return None

@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from os import statvfs
 
 
@@ -20,5 +21,5 @@ def parse_disk():
         )
 
     except Exception as e:
-        print(f"Parse Disk Error: {e}")
+        print(error(e, "Disk"))
         return None

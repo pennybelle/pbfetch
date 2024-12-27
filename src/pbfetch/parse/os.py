@@ -1,3 +1,6 @@
+from pbfetch.handle_error import error
+
+
 # parse os name from /etc/os-release
 def parse_os():
     try:
@@ -12,5 +15,5 @@ def parse_os():
             return stat_os
 
     except Exception as e:
-        print(f"Parse OS Error: {e}")
+        print(error(e, "OS"))
         return None

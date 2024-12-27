@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import Popen, PIPE
 
 
@@ -51,5 +52,5 @@ def parse_packages():
         return " ".join(filter(None, managers))
 
     except Exception as e:
-        print(f"Package Parse Error: {e}")
+        print(error(e, "Package Manager"))
         return None

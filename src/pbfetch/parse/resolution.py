@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from os import path
 from subprocess import Popen, PIPE, run
 
@@ -212,9 +213,9 @@ def parse_res():
                     data = data.splitlines()[0]
                     return str(data).strip()
 
-        print("Resolution Error: LVDS and eDP not found")
+        print("Error: Resolution: LVDS and eDP not found")
         return None
 
     except Exception as e:
-        print(f"Resolution Error: {e}")
+        print(error(e, "Resolution"))
         return None

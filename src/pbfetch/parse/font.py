@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import Popen, PIPE
 
 
@@ -38,5 +39,5 @@ def parse_font():
                 return line[12 : len(line) - 2]
 
     except Exception as e:
-        print(f"Parse Font Error: {e}")
+        print(error(e, "Font"))
         return None

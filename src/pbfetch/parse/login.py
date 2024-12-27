@@ -1,3 +1,6 @@
+from pbfetch.handle_error import error
+
+
 def parse_login():
     file = "/etc/passwd"
     try:
@@ -11,5 +14,5 @@ def parse_login():
         return user
 
     except Exception as e:
-        print(f"Parse Login Error: {e}")
+        print(error(e, "Login"))
         return None

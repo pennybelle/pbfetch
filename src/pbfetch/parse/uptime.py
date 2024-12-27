@@ -1,9 +1,10 @@
+from pbfetch.handle_error import error
 from time import clock_gettime, CLOCK_BOOTTIME
 
 
 def parse_uptime():
     try:
-        seconds = int(clock_gettime(CLOCK_BOOTTIME))
+        seconds = int(clock_gettime(int(CLOCK_BOOTTIME)))
 
         # math for time formatting with day, hr, min, sec
         m, s = divmod(seconds, 60)
@@ -18,5 +19,5 @@ def parse_uptime():
         return (fdays + fhours + fminutes + fsecs).rstrip()
 
     except Exception as e:
-        print(f"Uptime Error: {e}")
+        print(error(e, "Uptime"))
         return None

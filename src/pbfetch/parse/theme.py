@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import Popen, PIPE
 
 
@@ -19,5 +20,5 @@ def parse_theme():
             return "not found/supported"
 
     except Exception as e:
-        print(f"Parse Theme Error: {e}")
+        print(error(e, "Theme"))
         return None

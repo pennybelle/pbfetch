@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import run
 
 
@@ -48,5 +49,5 @@ def parse_wm():
         return "not found/supported"
 
     except Exception as e:
-        print(e)
+        print(error(e, "Window Manager"))
         return None

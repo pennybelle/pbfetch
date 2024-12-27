@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import Popen, PIPE
 from re import sub
 # import nvidia_smi
@@ -67,5 +68,5 @@ def parse_gpu():
         return sub(r" \(.+\)$", "", gpu_name.strip())
 
     except Exception as e:
-        print(f"GPU Parse Error: {e}")
+        print(error(e, "GPU"))
         return None

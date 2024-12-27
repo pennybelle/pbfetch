@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from os import path
 
 
@@ -19,5 +20,5 @@ def parse_mb():
         return f"{v} {mb}"
 
     except Exception as e:
-        print(f"Parse Motherboard Error: {e}")
+        print(error(e, "Motherboard"))
         return None

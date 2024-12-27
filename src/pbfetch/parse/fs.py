@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from psutil import disk_partitions
 
 
@@ -34,5 +35,5 @@ def parse_fs():
         return "not found"
 
     except Exception as e:
-        print(f"Parse Filesystem Error: {e}")
+        print(error(e, "File System"))
         return None

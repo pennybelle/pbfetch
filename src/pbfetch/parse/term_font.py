@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import Popen, PIPE
 
 
@@ -33,5 +34,5 @@ def parse_term_font():
         return "not found"
 
     except Exception as e:
-        print(f"Parse Terminal Font Error: {e}")
+        print(error(e, "Terminal Font"))
         return None

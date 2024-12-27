@@ -1,3 +1,6 @@
+from pbfetch.handle_error import error
+
+
 def parse_hostname():
     file = "/etc/hostname"
     try:
@@ -7,5 +10,5 @@ def parse_hostname():
         return hostname.strip()
 
     except Exception as e:
-        print(f"Parse Host Error: {e}")
+        print(error(e, "Hostname"))
         return None
