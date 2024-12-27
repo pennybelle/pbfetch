@@ -1,6 +1,6 @@
 [project]
 name = "pbfetch"
-version = "0.2.0"
+version = "0.3.0"
 description = "An unbelievably customizable hardware/software fetch."
 authors = [{ name = "pennybelle", email = "contact@pennybelle.dev" }]
 dependencies = ["psutil"]
@@ -14,7 +14,7 @@ Repository = "https://github.com/pennybelle/pbfetch.git"
 Issues = "https://github.com/pennybelle/pbfetch/issues"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.26.3"]
 build-backend = "hatchling.build"
 
 [tool.rye]
