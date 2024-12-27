@@ -1,6 +1,6 @@
 from pbfetch.handle_error import error
 from os import path
-from subprocess import Popen, PIPE, run
+from subprocess import Popen, PIPE
 
 import tkinter as tk
 
