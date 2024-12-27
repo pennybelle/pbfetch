@@ -1,6 +1,6 @@
 [project]
 name = "pbfetch"
-version = "0.3.2"
+version = "0.3.3"
 description = "An unbelievably customizable hardware/software fetch."
 authors = [{ name = "pennybelle", email = "contact@pennybelle.dev" }]
 dependencies = ["psutil"]
