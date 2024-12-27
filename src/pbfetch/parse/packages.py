@@ -44,6 +44,7 @@ def parse_packages():
         managers = [
             package_query("pacman -Q"),
             package_query("flatpak list"),
+            package_query("apk info -e -a"),
             # package_query("npm list -g"),
         ]
 
