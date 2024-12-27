@@ -3,6 +3,8 @@ from subprocess import check_output, run
 from platform import uname
 from pathlib import Path
 
+# import requests
+
 from pbfetch.parse.battery import parse_batt
 from pbfetch.parse.bios_type import parse_bios_type
 from pbfetch.parse.computer_name import parse_comp_name
@@ -69,6 +71,14 @@ def term():
 
     except Exception:
         return term
+
+
+# def is_connected():
+#     try:
+#         requests.get("https://www.google.com")
+
+#     except Exception:
+#         return
 
 
 # TODO: add easter egg stats for fun dynamic things
