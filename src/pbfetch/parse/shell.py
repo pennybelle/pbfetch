@@ -19,7 +19,11 @@ def parse_shell():
             shell_version_pre_parse = str(
                 check_output([f"{shell_name}", "--version"]).decode("utf-8")
             )
-            shell_version = shell_version_pre_parse.split()[3]
+            shell_version = shell_version_pre_parse.split(" ")
+            for i in shell_version:
+                if "." in i:
+                    shell_version = i
+                    break
         else:
             return str(shell_name)
 
