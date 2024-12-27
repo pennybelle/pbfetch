@@ -15,10 +15,10 @@ def parse_shell():
         return None
 
     try:
-        shell_version_pre_parse = str(
-            check_output([f"{shell_name}", "--version"]).decode("utf-8")
-        )
         if shell_name in check_version:
+            shell_version_pre_parse = str(
+                check_output([f"{shell_name}", "--version"]).decode("utf-8")
+            )
             shell_version = shell_version_pre_parse.split()[3]
         else:
             return str(shell_name)

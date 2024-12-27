@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from subprocess import run
 from os import path
 
@@ -37,5 +38,5 @@ def parse_cpu_temp():
         return None
 
     except Exception as e:
-        print(f"Parse CPU Temp Error: {e}")
+        print(error(e, "CPU Temp"))
         return "Error"

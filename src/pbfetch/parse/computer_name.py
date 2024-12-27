@@ -1,3 +1,6 @@
+from pbfetch.handle_error import error
+
+
 def parse_comp_name():
     file = "/sys/class/dmi/id"
     name = "/product_name"
@@ -21,5 +24,5 @@ def parse_comp_name():
         return name
 
     except Exception as e:
-        print(f"Parse Computer Name Error: {e}")
+        print(error(e, "Computer Name"))
         return None

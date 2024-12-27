@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from os import path
 
 
@@ -39,5 +40,5 @@ def parse_bios_type():
         return bios_type
 
     except Exception as e:
-        print(f"Parse Bios Error: {e}")
+        print(error(e, "Bios"))
         return None

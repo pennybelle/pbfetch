@@ -1,3 +1,6 @@
+from pbfetch.handle_error import error
+
+
 def parse_cpu_usage():
     file = "/proc/stat"
     try:
@@ -54,5 +57,5 @@ def parse_cpu_usage():
         # return int((u - t) * 100 / (u1 - t1))
 
     except Exception as e:
-        print(f"Parse CPU Usage Error: {e}")
+        print(error(e, "CPU Usage"))
         return None

@@ -1,3 +1,4 @@
+from pbfetch.handle_error import error
 from os import path
 from subprocess import run
 
@@ -66,5 +67,5 @@ def parse_batt():
         return None
 
     except Exception as e:
-        print(f"Parse Battery Error: {e}")
+        print(error(e, "Battery"))
         return None
