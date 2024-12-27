@@ -11,5 +11,5 @@ def parse_login():
         return user
 
     except Exception as e:
-        print(e)
+        print(f"Parse Login Error: {e}")
         return None
