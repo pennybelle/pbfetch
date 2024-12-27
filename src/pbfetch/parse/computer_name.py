@@ -21,5 +21,5 @@ def parse_comp_name():
         return name
 
     except Exception as e:
-        print(f"Computer Name Error:    {e}")
+        print(f"Parse Computer Name Error: {e}")
         return None

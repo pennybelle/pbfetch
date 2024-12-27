@@ -8,5 +8,5 @@ def parse_kernel_release():
         return kernel
 
     except Exception as e:
-        print(e)
+        print(f"Parse Kernel Error: {e}")
         return None

@@ -54,5 +54,5 @@ def parse_cpu_usage():
         # return int((u - t) * 100 / (u1 - t1))
 
     except Exception as e:
-        print(e)
+        print(f"Parse CPU Usage Error: {e}")
         return None

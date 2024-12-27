@@ -34,5 +34,5 @@ def parse_cpu():
         return cpu
 
     except Exception as e:
-        print(e)
+        print(f"Parse CPU Error: {e}")
         return None

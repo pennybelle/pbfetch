@@ -66,5 +66,5 @@ def parse_batt():
         return None
 
     except Exception as e:
-        print(e)
+        print(f"Parse Battery Error: {e}")
         return None

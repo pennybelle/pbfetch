@@ -7,5 +7,5 @@ def parse_hostname():
         return hostname.strip()
 
     except Exception as e:
-        print(e)
+        print(f"Parse Host Error: {e}")
         return None

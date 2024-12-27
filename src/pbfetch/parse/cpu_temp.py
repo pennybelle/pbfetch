@@ -37,5 +37,5 @@ def parse_cpu_temp():
         return None
 
     except Exception as e:
-        print(f"CPU Temp Error: {e}")
+        print(f"Parse CPU Temp Error: {e}")
         return "Error"

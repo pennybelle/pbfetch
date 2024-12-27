@@ -39,5 +39,5 @@ def parse_bios_type():
         return bios_type
 
     except Exception as e:
-        print(f"Bios Parse Error: {e}")
+        print(f"Parse Bios Error: {e}")
         return None
