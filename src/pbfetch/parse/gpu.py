@@ -1,7 +1,6 @@
 from pbfetch.handle_error import error
 from subprocess import Popen, PIPE
 from re import sub
-# import nvidia_smi
 
 
 def command(input):
@@ -18,13 +17,13 @@ def command(input):
 
 
 def parse_gpu():
-    # try:
-    #     nvidia_smi.nvmlInit()
-    #     handle = nvidia_smi.nvmDeviceGetHandleByIndex(0)
-    #     print(handle)
+    try:
+        gpu_name = command("nvidia-smi --query-gpu=name --format=csv,noheader")
 
-    # except Exception:
-    #     pass
+        return gpu_name.strip()
+
+    except Exception:
+        pass
 
     try:
         gpu_name = command("lspci | grep -i nvidia")
